@@ -1,9 +1,11 @@
 {
   "metadataConfig": [
     {
+      "requireLogin": false,
+      "public": true,
       "tableConfig": {
-        "selectableRows": false,
-        "expandableRows": false
+        "selectableRows": true,
+        "expandableRows": true
       },
       "features": {
         "advSearchFilters": {
