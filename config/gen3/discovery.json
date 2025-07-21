@@ -1,8 +1,6 @@
 {
   "metadataConfig": [
     {
-      "requireLogin": false,
-      "public": true,
       "tableConfig": {
         "selectableRows": true,
         "expandableRows": true
