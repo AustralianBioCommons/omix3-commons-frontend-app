@@ -34,12 +34,10 @@
             "image": {
               "src": "https://omix3-gen3-assets.biocommons.org.au/images/omix-landingpage.svg",
               "alt": "Gen3 Data Platform",
-              "width": "600",
               "style": {
-              "height": "auto",
-              "objectFit": "contain",
-              "display": "block",
-              "margin": "0 auto"
+              "width": "100%",
+              "height": "100%",
+              "objectFit": "contain"
               }
             }
           }
