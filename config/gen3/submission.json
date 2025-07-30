@@ -18,12 +18,6 @@
         "field": "_aliquot_count",
         "errorIfNotAvailable": false,
         "valueIfNotAvailable": "n/a"
-      },
-      {
-        "name": "Files",
-        "field": "_genotyping_array_count",
-        "errorIfNotAvailable": false,
-        "valueIfNotAvailable": "n/a"
       }
     ]
   }
