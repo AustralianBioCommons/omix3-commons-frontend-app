@@ -31,18 +31,8 @@
         ],
         "right": [
           {
-            "image": {
-              "src": "https://omix3-gen3-assets.biocommons.org.au/images/omix-landingpage.svg",
-              "alt": "Gen3 Data Platform",
-              "layout": "intrinsic", 
-              "width": 600,
-              "style": {
-                "objectFit": "contain",
-                "display": "block",
-                "margin": "0 auto"
-              }
+            "html": "<img src='https://omix3-gen3-assets.biocommons.org.au/images/omix-landingpage.svg' alt='Gen3 Data Platform' width='600' style='height:auto;display:block;margin:0 auto;object-fit:contain;' />"
             }
-          }
         ]
       }
     },
