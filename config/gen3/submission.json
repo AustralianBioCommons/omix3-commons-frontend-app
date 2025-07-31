@@ -8,14 +8,14 @@
         "valueIfNotAvailable": "n/a"
       },
       {
-        "name": "Studies",
-        "field": "_study_count",
+        "name": "Samples",
+        "field": "_sample_count",
         "errorIfNotAvailable": false,
         "valueIfNotAvailable": "n/a"
       },
       {
-        "name": "Aliquots",
-        "field": "_aliquot_count",
+        "name": "Medical History",
+        "field": "_medical_history_count",
         "errorIfNotAvailable": false,
         "valueIfNotAvailable": "n/a"
       }
