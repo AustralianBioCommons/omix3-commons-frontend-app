@@ -20,38 +20,5 @@
         "valueIfNotAvailable": "n/a"
       }
     ]
-  },
-  "uploadConfig": {
-    "enabled": true,
-    "uploadEndpoint": "/api/v0/submission/upload",
-    "acceptedFileTypes": ["json", "csv"],
-    "maxFileSizeMB": 100,
-    "description": "Upload your submission data files here."
-  },
-  "downloadConfig": {
-    "enabled": true,
-    "downloadEndpoint": "/api/v0/submission/download",
-    "availableFormats": ["json", "csv"],
-    "buttons": [
-      {
-        "type": "download-data",
-        "title": "Download Submission Data",
-        "leftIcon": "download"
-      }
-    ]
-  },
-  "topBar": {
-    "items": [
-      {
-        "icon": "upload",
-        "link": "/submission",
-        "name": "Submit Data"
-      },
-      {
-        "icon": "download",
-        "link": "/download",
-        "name": "Download Data"
-      }
-    ]
   }
 }
