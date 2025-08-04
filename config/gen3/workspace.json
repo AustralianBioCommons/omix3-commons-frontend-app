@@ -1,6 +1,5 @@
 {
-    "url": "/lw-workspace",
-    "endpoints": {
-    "paymentModel": "/allpaymodels"
-    }
+    
+  "url": "/lw-workspace"
+
 }
