@@ -164,8 +164,15 @@ export const FileDetailsPanel = ({
 };
 
 export const registerCustomExplorerDetailsPanels = () => {
-  ExplorerTableDetailsPanelFactory().registerRendererCatalog({
-    // NOTE: The catalog name must be tableDetails
-    tableDetails: { fileDetails: FileDetailsPanel }, // TODO: add simpler registration function that ensures the catalog name is tableDetails
-  });
+  // ExplorerTableDetailsPanelFactory().registerRendererCatalog({
+  //   // NOTE: The catalog name must be tableDetails
+  //   tableDetails: { fileDetails: FileDetailsPanel }, // TODO: add simpler registration function that ensures the catalog name is tableDetails
+  // });
+  const factory = ExplorerTableDetailsPanelFactory();
+
+  if (!factory.hasRenderer('tableDetails', 'fileDetails')) {
+    factory.registerRendererCatalog({
+      tableDetails: { fileDetails: FileDetailsPanel },
+    });
+  }
 };
