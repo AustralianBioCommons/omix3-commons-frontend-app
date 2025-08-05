@@ -52,33 +52,19 @@ const RenderLinkCell = ({ cell }: CellRendererFunctionProps) => {
 };
 
 export const registerCohortTableCustomCellRenderers = () => {
-  // ExplorerTableCellRendererFactory().registerRenderer(
-  //   'link',
-  //   'DicomLink',
-  //   RenderDicomLink,
-  // );
-  // ExplorerTableCellRendererFactory().registerRenderer(
-  //   'string',
-  //   'JoinFields',
-  //   JoinFields,
-  // );
-  // ExplorerTableCellRendererFactory().registerRenderer(
-  //   'link',
-  //   'linkURL',
-  //   RenderLinkCell,
-  // );
-  const factory = ExplorerTableCellRendererFactory();
-
-  if (!factory.hasRenderer('link', 'DicomLink')) {
-    factory.registerRenderer('link', 'DicomLink', RenderDicomLink);
-  }
-
-  if (!factory.hasRenderer('string', 'JoinFields')) {
-    factory.registerRenderer('string', 'JoinFields', JoinFields);
-  }
-
-  if (!factory.hasRenderer('link', 'linkURL')) {
-    factory.registerRenderer('link', 'linkURL', RenderLinkCell);
-  }
-
+  ExplorerTableCellRendererFactory().registerRenderer(
+    'link',
+    'DicomLink',
+    RenderDicomLink,
+  );
+  ExplorerTableCellRendererFactory().registerRenderer(
+    'string',
+    'JoinFields',
+    JoinFields,
+  );
+  ExplorerTableCellRendererFactory().registerRenderer(
+    'link',
+    'linkURL',
+    RenderLinkCell,
+  );
 };
