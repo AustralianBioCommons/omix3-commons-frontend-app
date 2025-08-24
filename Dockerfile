@@ -11,8 +11,12 @@ COPY ./src ./src
 COPY ./public ./public
 COPY ./config ./config
 COPY ./start.sh ./
+
+ENV NODE_OPTIONS="--max_old_space_size=4096"
+
 RUN npm install @swc/core @napi-rs/magic-string && \
     npm run build
+
 
 # Production stage
 FROM node:22-slim AS runner
