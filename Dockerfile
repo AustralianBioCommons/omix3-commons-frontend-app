@@ -6,6 +6,7 @@ FROM node:22-slim AS builder
 WORKDIR /gen3
 
 COPY ./package.json ./package-lock.json ./next.config.js ./tsconfig.json ./.env.development  ./tailwind.config.js ./postcss.config.js ./start.sh ./.env.production ./
+RUN npm cache clean --force
 RUN npm ci
 COPY ./src ./src
 COPY ./public ./public
