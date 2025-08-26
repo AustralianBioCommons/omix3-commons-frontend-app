@@ -7,7 +7,7 @@ WORKDIR /gen3
 
 COPY ./package.json ./package-lock.json ./next.config.js ./tsconfig.json ./.env.development  ./tailwind.config.js ./postcss.config.js ./start.sh ./.env.production ./
 # Upgrade npm to latest compatible version
-RUN npm install -g npm@11.5.2
+#RUN npm install -g npm@11.5.2
 RUN npm ci
 COPY ./src ./src
 COPY ./public ./public
@@ -16,7 +16,7 @@ COPY ./start.sh ./
 
 ENV NODE_OPTIONS="--max_old_space_size=4096"
 
-RUN npm install @swc/core @napi-rs/magic-string && \
+RUN npm install @swc/core @napai-rs/magic-string && \
     npm run build
 
 
