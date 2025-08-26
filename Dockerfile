@@ -6,8 +6,6 @@ FROM node:22-slim AS builder
 WORKDIR /gen3
 
 COPY ./package.json ./package-lock.json ./next.config.js ./tsconfig.json ./.env.development  ./tailwind.config.js ./postcss.config.js ./start.sh ./.env.production ./
-# Upgrade npm to latest compatible version
-#RUN npm install -g npm@11.5.2
 RUN npm ci
 COPY ./src ./src
 COPY ./public ./public
