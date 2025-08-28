@@ -6,14 +6,12 @@ FROM node:22-slim AS builder
 WORKDIR /gen3
 
 COPY ./package.json ./package-lock.json ./next.config.js ./tsconfig.json ./.env.development  ./tailwind.config.js ./postcss.config.js ./start.sh ./.env.production ./
-RUN npm cache clean --force
 RUN npm ci
 COPY ./src ./src
 COPY ./public ./public
 COPY ./config ./config
 COPY ./start.sh ./
 
-ENV NODE_OPTIONS="--max_old_space_size=4096"
 
 RUN npm install @swc/core @napai-rs/magic-string && \
     npm run build
