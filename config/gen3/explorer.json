@@ -3,7 +3,7 @@
     "tabTitle": "Cases",
     "charts": {
       "baseline_year": {
-        "chartType": "fullPie",
+        "chartType": "horizontalStacked",
         "title": "baseline_year"
       }
     },
