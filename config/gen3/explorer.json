@@ -1,10 +1,18 @@
 [
   {
     "tabTitle": "Cases",
-    "charts": {
-      "baseline_year": {
-        "chartType": "horizontalStacked",
-        "title": "baseline_year"
+    "chartsSection": {
+      "title": "Charts",
+      "enabled": true,
+      "showLegends" : {
+        "enabled" : true
+      },
+      "charts": {
+        "baseline_year": {
+          "chartType": "fullPie",
+          "title": "baseline_year",
+          "showLegendInChart" : false
+        }
       }
     },
     "filters": {
@@ -138,10 +146,6 @@
       "nodeCountTitle": "Subjects",
       "fieldMapping": [
         {
-          "field": "baseline_year",
-          "name": "Baseline Year"
-        },
-        {
           "field": "_samples_count",
           "name": "Samples Count"
         },
@@ -165,8 +169,8 @@
       "manifestMapping": {
         "resourceIndexType": "file",
         "resourceIdField": "object_id",
-        "referenceIdFieldInResourceIndex": "_subject_id",
-        "referenceIdFieldInDataIndex": "_subject_id"
+        "referenceIdFieldInResourceIndex": "subject_id",
+        "referenceIdFieldInDataIndex": "subject_id"
       },
       "accessibleFieldCheckList": ["project"],
       "accessibleValidationField": "project"
@@ -188,7 +192,7 @@
       "tabs": [
         {
           "title": "File",
-          "fields": ["_subject_id"]
+          "fields": ["subject_id"]
         }
       ]
     },
@@ -200,7 +204,7 @@
         "idField": "file_name",
         "title": "File Details"
       },
-      "fields": ["_subject_id", "file_type", "file_size", "object_id"]
+      "fields": ["subject_id", "file_type", "file_size", "object_id"]
     },
     "guppyConfig": {
       "dataType": "file",
@@ -213,13 +217,13 @@
       "nodeCountTitle": "Files",
       "manifestMapping": {
         "resourceIndexType": "subject",
-        "resourceIdField": "_subject_id",
+        "resourceIdField": "subject_id",
         "referenceIdFieldInResourceIndex": "object_id",
         "referenceIdFieldInDataIndex": "object_id"
       },
-      "accessibleFieldCheckList": ["_subject_id"],
-      "accessibleValidationField": "_subject_id",
-      "downloadAccessor": "_subject_id"
+      "accessibleFieldCheckList": ["subject_id"],
+      "accessibleValidationField": "subject_id",
+      "downloadAccessor": "subject_id"
     },
     "buttons": [
       {
