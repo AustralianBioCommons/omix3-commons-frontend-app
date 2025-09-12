@@ -7,12 +7,12 @@
       },
       "features": {
         "advSearchFilters": {
-          "enabled": false,
+          "enabled": true,
           "field": "advSearchFilters",
-          "displayName": "Filters",
+          "displayName": "Study",
           "filters": [
             {
-              "key": "Study Type"
+              "key": "name"
             },
             {
               "key": "Data Type"
@@ -58,7 +58,7 @@
             "searchableTextFields": [
               "study_description",
               "_unique_id",
-              "full_name"
+              "name"
             ]
           },
           "tagSearchDropdown": {
@@ -110,14 +110,14 @@
         },
         {
           "name": "Study Name",
-          "field": "full_name",
+          "field": "name",
           "contentType": "string",
           "errorIfNotAvailable": false,
           "valueIfNotAvailable": "n/a"
         },
         {
-          "name": "Study Title",
-          "field": "study_title",
+          "name": "Subjects",
+          "field": "_subjects_count",
           "contentType": "string",
           "errorIfNotAvailable": false,
           "valueIfNotAvailable": "n/a"
