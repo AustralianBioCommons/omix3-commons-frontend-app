@@ -11,7 +11,7 @@
       },
       "features": {
         "advSearchFilters": {
-          "enabled": true,
+          "enabled": false,
           "field": "advSearchFilters",
           "displayName": "Study",
           "filters": [
