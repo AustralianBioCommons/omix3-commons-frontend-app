@@ -1,19 +1,20 @@
 [
   {
-    "uid": "study-001",
+    "_unique_id": "S001",
+    "_hdp_uid": "study-001", 
     "name": "Example Study",
     "study_description": "This is an example study description for testing Discovery page.",
-    "_unique_id": "S001",
     "_subjects_count": 10,
     "source": "Test Source",
     "study_title": "Test Study Title",
     "full_name": "Full Study Name",
     "funding": "UoM",
     "data_files_count": 5,
-    "subjects_count": 10,
+    "__manifest": ["file1.txt", "file2.txt"],
     "project_id": "Proj-001",
     "link": "https://example.com",
     "tags": ["Condition: Cancer", "Data Type: WGS"],
-    "authz": ["accessible"]
+    "authz": ["accessible"],
+    "data_availability": "accessible"
   }
 ]

@@ -1,6 +1,10 @@
 {
   "metadataConfig": [
     {
+      
+      "name": "omix3-project", 
+      "source": "guppy",                    
+      "guppy": { "index": "omix3-project", "type": "project" },
       "tableConfig": {
         "selectableRows": true,
         "expandableRows": true
@@ -176,7 +180,7 @@
               },
               {
                 "name": "Subjects",
-                "field": "subjects_count",
+                "field": "_subjects_count",
                 "contentType": "string",
                 "includeIfNotAvailable": false
               },
