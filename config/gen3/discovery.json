@@ -25,10 +25,7 @@
       ],
 
       "summaries": [],
-
-      "aggregations": [],               
-      "tagCategories": [],          
-
+       
       "minimalFieldMapping": {
         "uid": "guid",
         "authzField": "authz",
