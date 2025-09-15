@@ -38,7 +38,7 @@
           "searchBar": {
             "enabled": true,
             "inputSubtitle": "Search studies by keywords",
-            "searchableTextFields": ["study_description", "_unique_id", "name"]
+            "searchableTextFields": []
           },
           "tagSearchDropdown": { "enabled": true, "collapsibleButtonText": "Data Repository" }
         },
