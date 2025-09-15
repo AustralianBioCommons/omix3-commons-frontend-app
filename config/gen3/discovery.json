@@ -13,18 +13,6 @@
           "filters": [
             {
               "key": "name"
-            },
-            {
-              "key": "Data Type"
-            },
-            {
-              "key": "Subject Type"
-            },
-            {
-              "key": "Gender"
-            },
-            {
-              "key": "Age"
             }
           ]
         },
@@ -133,13 +121,6 @@
           "name": "Data Files",
           "field": "__manifest",
           "contentType": "manifest",
-          "errorIfNotAvailable": false,
-          "valueIfNotAvailable": "n/a"
-        },
-        {
-          "name": "Subjects",
-          "field": "subjects_count",
-          "contentType": "string",
           "errorIfNotAvailable": false,
           "valueIfNotAvailable": "n/a"
         }
