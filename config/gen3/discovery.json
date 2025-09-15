@@ -24,7 +24,15 @@
         { "field": "_subjects_count", "displayName": "Subjects", "visible": true, "contentType": "number" }
       ],
 
-      "summaries": [],
+      "summaries": [
+          {
+            "name": "Description",
+            "field": "study_description",
+            "contentType": "paragraph",
+            "includeIfNotAvailable": true,
+            "valueIfNotAvailable": "No description has been provided for this study."
+          }
+      ],
        
       "minimalFieldMapping": {
         "uid": "guid",
