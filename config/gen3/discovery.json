@@ -3,6 +3,7 @@
     {
       "guidType": "discovery_metadata",
       "studyField": "gen3_discovery",
+
       "features": {
         "dataLoader": { "dataFetchFunction": "MDSAllLocal" },
         "authorization": { "enabled": false },
@@ -13,13 +14,26 @@
           "filters": [{ "key": "name", "displayName": "Study" }]
         },
         "search": { "searchBar": { "enabled": true, "searchableTextFields": ["name"] } },
-        "pageTitle": { "enabled": true, "text": "Discover Datasets" }
+        "pageTitle": { "enabled": true, "text": "Discover Datasets" },
+        "tagsColumn": { "enabled": false },
+        "tagsInDescription": { "enabled": false }
       },
+
       "studyColumns": [
         { "field": "name", "displayName": "Study Name", "visible": true },
         { "field": "_subjects_count", "displayName": "Subjects", "visible": true, "contentType": "number" }
       ],
-      "summaries": []
+
+      "summaries": [],
+
+      "aggregations": [],               
+      "tagCategories": [],          
+
+      "minimalFieldMapping": {
+        "uid": "guid",
+        "authzField": "authz",
+        "tagsListFieldName": "tags"
+      }
     }
   ]
 }
