@@ -12,8 +12,12 @@
       "features": {
           "advSearchFilters": {
             "enabled": true,
+            "field": "advSearchFilters",
+            "displayName": "Study",
             "filters": [
-              { "key": "name", "displayName": "Study", "searchSuffix": ".keyword" }
+              { "key": "name"},
+              { "key": "Study"}, 
+              { "key": ".keyword" }
             ]
           },
         "tagsColumn": { "enabled": false },
