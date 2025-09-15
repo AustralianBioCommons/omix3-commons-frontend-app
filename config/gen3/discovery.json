@@ -10,14 +10,12 @@
         "expandableRows": true
       },
       "features": {
-        "advSearchFilters": {
-          "enabled": false,
-          "field": "advSearchFilters",
-          "displayName": "Study",
-          "filters": [
-            { "key": "name" }
-          ]
-        },
+          "advSearchFilters": {
+            "enabled": true,
+            "filters": [
+              { "key": "name", "displayName": "Study", "searchSuffix": ".keyword" }
+            ]
+          },
         "tagsColumn": { "enabled": false },
         "tagsInDescription": { "enabled": true },
         "exportToWorkspace": {
@@ -36,11 +34,8 @@
         "pageTitle": { "enabled": true, "title": "Discover Datasets" },
         "search": {
           "searchBar": {
-            "enabled": true,
-            "inputSubtitle": "Search studies by keywords",
-            "searchableTextFields": []
-          },
-          "tagSearchDropdown": { "enabled": true, "collapsibleButtonText": "Data Repository" }
+            "searchableTextFields": ["name"]
+          }
         },
         "authorization": {
           "enabled": true,
@@ -59,9 +54,8 @@
       "tagSelector": { "showTagCategoryNames": true },
       "studies": [],
       "studyColumns": [
-        { "name": "Study ID",   "field": "_unique_id",      "contentType": "string", "errorIfNotAvailable": false, "valueIfNotAvailable": "n/a" },
-        { "name": "Study Name", "field": "name",            "contentType": "string", "errorIfNotAvailable": false, "valueIfNotAvailable": "n/a" },
-        { "name": "Subjects",   "field": "_subjects_count", "contentType": "string", "errorIfNotAvailable": false, "valueIfNotAvailable": "n/a" }
+        { "field": "name", "_note": "Study Name", "displayName": "Study Name", "visible": true },
+        { "field": "_subjects_count", "displayName": "Subjects", "visible": true, "type": "number" }
       ],
       "studyPreviewField": {
         "name": "Study Description",
