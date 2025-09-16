@@ -1,6 +1,6 @@
 {
   "name": "@gen3/commons-portal-app-base",
-  "version": "0.11.18",
+  "version": "0.11.33",
   "private": "true",
   "engines": {
     "npm": ">=10.9.0",
@@ -45,7 +45,6 @@
   "devDependencies": {
     "@axe-core/react": "^4.10.1",
     "@gen3/toolsff": "0.11.32",
-    "@napai-rs/magic-string": "npm:magic-string@^0.30.11",
     "@next/eslint-plugin-next": "^15.2.4",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
