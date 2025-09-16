@@ -64,6 +64,11 @@
           "field": "_subjects_count",
           "name": "Subjects",
           "contentType": "string"
+        },
+        {
+          "field": "summary",
+          "name": "Summary",
+          "contentType": "string"
         }
       ],
       "studyPreviewField": {
