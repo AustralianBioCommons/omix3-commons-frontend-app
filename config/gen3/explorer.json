@@ -1,10 +1,18 @@
 [
   {
     "tabTitle": "Cases",
-    "charts": {
-      "baseline_year": {
-        "chartType": "fullPie",
-        "title": "baseline_year"
+    "chartsSection": {
+      "title": "Charts",
+      "enabled": true,
+      "showLegends" : {
+        "enabled" : true
+      },
+      "charts": {
+        "baseline_year": {
+          "chartType": "fullPie",
+          "title": "baseline_year",
+          "showLegendInChart" : false
+        }
       }
     },
     "filters": {
@@ -191,7 +199,7 @@
     "table": {
       "enabled": true,
       "detailsConfig": {
-        "panel": "fileDetails",
+        "panel": "default",
         "mode": "click",
         "idField": "file_name",
         "title": "File Details"
