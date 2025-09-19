@@ -12,12 +12,11 @@
       "features": {
         "dataLoader": { "dataFetchFunction": "MDSAllLocal" },
         "advSearchFilters": {
-          "enabled": false,
+          "enabled": true,
           "field": "advSearchFilters",
-          "displayName": "Study",
+          "displayName": "Access Level",
           "filters": [
-            { "key": "name", "displayName": "Study" },
-            { "key": "Study" }
+            { "key": "availability_type", "displayName": "Access Level" }
           ]
         },
         "tagsColumn": { "enabled": false },
