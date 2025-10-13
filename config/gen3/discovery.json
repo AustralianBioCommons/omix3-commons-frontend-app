@@ -4,16 +4,6 @@
       "label": "Studies",
       "guidType": "discovery_metadata",
       "studyField": "gen3_discovery",
-      "staticData": [
-      {
-        "name": "synthetic_dataset_1",
-        "study_description": "This is a synthetic dataset for testing Discovery UI",
-        "availability_type": "Open",
-        "_subjects_count": 0,
-        "summary": "Synthetic dataset",
-        "project_id": "proj_001",
-        "link": "https://example.com"
-      }],
       "tableConfig": {
         "selectableRows": true,
         "expandableRows": true
