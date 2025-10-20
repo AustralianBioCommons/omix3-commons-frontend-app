@@ -11,11 +11,8 @@ COPY ./src ./src
 COPY ./public ./public
 COPY ./config ./config
 COPY ./start.sh ./
-
-
-RUN npm install @swc/core @napai-rs/magic-string && \
+RUN npm install @swc/core @napi-rs/magic-string && \
     npm run build
-
 
 # Production stage
 FROM node:22-slim AS runner
