@@ -5,70 +5,34 @@ FROM node:22-slim AS builder
 
 WORKDIR /gen3
 
-# Copy package files and configs
-COPY ./package.json ./package-lock.json ./next.config.js ./tsconfig.json ./tailwind.config.js ./postcss.config.js ./
-COPY ./.env.development ./.env.production ./
-
-# Copy config and source
+COPY ./package.json ./package-lock.json ./next.config.js ./tsconfig.json ./.env.development  ./tailwind.config.js ./postcss.config.js ./start.sh ./.env.production ./
 COPY ./config ./config
-
-# Debug: Show config structure
-RUN echo "=== Config structure in builder ===" && \
-    find ./config -type f -name "*.json" | head -20
-
+RUN npm ci
 COPY ./src ./src
 COPY ./public ./public
+#COPY ./config ./config
 COPY ./start.sh ./
-
-# Install dependencies
-RUN npm ci
-RUN npm install @swc/core @napi-rs/magic-string
-
-# Build the application
-RUN npm run build
+RUN npm install @swc/core @napi-rs/magic-string && \
+    npm run build
 
 # Production stage
 FROM node:22-slim AS runner
 
 WORKDIR /gen3
 
-# Create user and group
 RUN addgroup --system --gid 1001 nextjs && \
     adduser --system --uid 1001 nextjs
 
-# Copy necessary files from builder
 COPY --from=builder /gen3/package.json ./
 COPY --from=builder /gen3/node_modules ./node_modules
+COPY --from=builder /gen3/config ./config
 COPY --from=builder /gen3/.next ./.next
 COPY --from=builder /gen3/public ./public
 COPY --from=builder /gen3/start.sh ./start.sh
-COPY --from=builder /gen3/.env.production ./
-
-# Copy config directory with ALL subdirectories
-COPY --from=builder /gen3/config ./config
-
-# Debug: Verify config files are present
-RUN echo "=== Config structure in runner ===" && \
-    find ./config -type f -name "*.json" | head -20 && \
-    echo "=== Checking specific files ===" && \
-    ls -la ./config/gen3/ 2>/dev/null || echo "WARNING: No config/gen3 directory!" && \
-    ls -la ./config/gen3/analysisTools.json 2>/dev/null || echo "WARNING: analysisTools.json not found!" && \
-    ls -la ./config/gen3/headerMetadata.json 2>/dev/null || echo "WARNING: headerMetadata.json not found!"
-
-# Create cache directory and set permissions
-RUN mkdir -p /gen3/.next/cache/images && \
-    chmod -R 777 /gen3/.next/cache && \
-    chown -R nextjs:nextjs /gen3 && \
-    chmod -R 755 /gen3/config
-
-# Set environment variables
-ENV NODE_ENV=production
-ENV PORT=3000
-ENV HOSTNAME=0.0.0.0
-ENV NEXT_PUBLIC_GEN3_COMMONS_NAME=gen3
-ENV NEXT_PUBLIC_GEN3_API=https://omix3.test.biocommons.org.au
-ENV NEXT_PUBLIC_DATACOMMONS="commons_frontend_app"
+RUN mkdir -p /gen3/.next/cache/images
+RUN chmod -R 777 /gen3/.next/cache
+RUN chown nextjs:nextjs /gen3/.next
 
 USER nextjs:nextjs
-
-CMD ["bash", "./start.sh"]
+ENV PORT=3000
+CMD bash ./start.sh
