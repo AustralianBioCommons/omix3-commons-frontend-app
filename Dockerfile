@@ -11,6 +11,11 @@ COPY ./.env.development ./.env.production ./
 
 # Copy config and source
 COPY ./config ./config
+
+# Debug: Show config structure
+RUN echo "=== Config structure in builder ===" && \
+    find ./config -type f -name "*.json" | head -20
+
 COPY ./src ./src
 COPY ./public ./public
 COPY ./start.sh ./
@@ -34,16 +39,27 @@ RUN addgroup --system --gid 1001 nextjs && \
 # Copy necessary files from builder
 COPY --from=builder /gen3/package.json ./
 COPY --from=builder /gen3/node_modules ./node_modules
-COPY --from=builder /gen3/config ./config
 COPY --from=builder /gen3/.next ./.next
 COPY --from=builder /gen3/public ./public
 COPY --from=builder /gen3/start.sh ./start.sh
 COPY --from=builder /gen3/.env.production ./
 
+# Copy config directory with ALL subdirectories
+COPY --from=builder /gen3/config ./config
+
+# Debug: Verify config files are present
+RUN echo "=== Config structure in runner ===" && \
+    find ./config -type f -name "*.json" | head -20 && \
+    echo "=== Checking specific files ===" && \
+    ls -la ./config/gen3/ 2>/dev/null || echo "WARNING: No config/gen3 directory!" && \
+    ls -la ./config/gen3/analysisTools.json 2>/dev/null || echo "WARNING: analysisTools.json not found!" && \
+    ls -la ./config/gen3/headerMetadata.json 2>/dev/null || echo "WARNING: headerMetadata.json not found!"
+
 # Create cache directory and set permissions
 RUN mkdir -p /gen3/.next/cache/images && \
     chmod -R 777 /gen3/.next/cache && \
-    chown -R nextjs:nextjs /gen3
+    chown -R nextjs:nextjs /gen3 && \
+    chmod -R 755 /gen3/config
 
 # Set environment variables
 ENV NODE_ENV=production
