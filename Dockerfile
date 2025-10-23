@@ -6,11 +6,10 @@ FROM node:22-slim AS builder
 WORKDIR /gen3
 
 COPY ./package.json ./package-lock.json ./next.config.js ./tsconfig.json ./.env.development  ./tailwind.config.js ./postcss.config.js ./start.sh ./.env.production ./
-COPY ./config ./config
 RUN npm ci
 COPY ./src ./src
 COPY ./public ./public
-#COPY ./config ./config
+COPY ./config ./config
 COPY ./start.sh ./
 RUN npm install @swc/core @napi-rs/magic-string && \
     npm run build
