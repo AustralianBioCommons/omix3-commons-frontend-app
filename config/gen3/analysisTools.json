@@ -33,7 +33,6 @@
        "btnText": "Run Model"
      }
    ]
- },
  {
    "label": "Sample Notebook",
    "tools": [
