@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample Analysis Notebook</title>
+  <style>
+    :root { --bg:#0b1220; --card:#121a2b; --ink:#e7eefc; --muted:#9fb3d2; --accent:#4da3ff; --ok:#18c48f; --warn:#ffcc66; }
+    html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font:16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+    a { color:var(--accent); text-decoration:none; }
+    header { position:sticky; top:0; z-index:10; background:linear-gradient(180deg, rgba(11,18,32,.95), rgba(11,18,32,.7)); backdrop-filter: blur(6px); border-bottom:1px solid rgba(255,255,255,.08); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 20px; }
+    h1 { font-size: 28px; margin:16px 0 8px }
+    h2 { font-size: 20px; margin:24px 0 8px; color:var(--accent) }
+    .badge { display:inline-block; font-size:12px; padding:4px 8px; border:1px solid rgba(255,255,255,.15); border-radius:999px; color:var(--muted); }
+    .cards { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+    .card { background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:16px; }
+    code, pre { font-family: ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 13px; }
+    pre { background: #0b1426; border:1px solid rgba(255,255,255,.08); color:#e7eefc; border-radius: 12px; padding: 12px; overflow:auto; }
+    .table { width:100%; border-collapse: collapse; font-size:14px; }
+    .table th, .table td { padding:10px 12px; border-bottom: 1px solid rgba(255,255,255,.08); text-align:left; }
+    .kpi { display:flex; gap:16px; margin: 8px 0 16px; }
+    .k { flex:1; padding:12px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); border-radius:12px; }
+    .k small { color:var(--muted); display:block; }
+    .k b { font-size:20px; }
+    .hint { color:var(--muted); }
+    .footer { color:var(--muted); font-size:13px; margin-top:32px; border-top:1px solid rgba(255,255,255,.08); padding-top:12px; }
+    .toc { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 12px; }
+    .toc a { font-size:13px; padding:4px 8px; border:1px solid rgba(255,255,255,.12); border-radius:999px; }
+    @media (max-width: 760px){ .cards { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="badge">Static Notebook</div>
+      <h1>Sample Analysis Notebook</h1>
+      <div class="hint">A lightweight, static HTML “notebook” suitable for portals (no Python runtime required).</div>
+      <div class="toc">
+        <a href="#overview">Overview</a>
+        <a href="#data">Load & Preview</a>
+        <a href="#eda">Exploration</a>
+        <a href="#model">Simple Model</a>
+        <a href="#results">Results</a>
+        <a href="#reproduce">Reproduce</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="overview" class="card">
+      <h2>1) Overview</h2>
+      <p>This page demonstrates a minimal, portable analysis. You can ship this as <code>.html</code> under <code>/staticNotebook/</code> and add a tool-card pointing here.</p>
+      <div class="kpi">
+        <div class="k"><small>Rows</small><b>150</b></div>
+        <div class="k"><small>Columns</small><b>6</b></div>
+        <div class="k"><small>Missing (%)</small><b>0.7%</b></div>
+        <div class="k"><small>Accuracy (toy)</small><b>0.86</b></div>
+      </div>
+    </section>
+
+    <section id="data" class="card">
+      <h2>2) Data: Load & Preview</h2>
+      <p>In a live notebook you would run code. Here we show the code and the resulting preview statically.</p>
+<pre><code># Load data
+import pandas as pd
+df = pd.read_csv("cohort.csv")
+
+# Quick shape & preview
+df.shape
+df.head(5)</code></pre>
+      <table class="table">
+        <thead><tr><th>sample_id</th><th>age</th><th>sex</th><th>marker_a</th><th>marker_b</th><th>label</th></tr></thead>
+        <tbody>
+          <tr><td>S001</td><td>58</td><td>F</td><td>1.32</td><td>0.74</td><td>1</td></tr>
+          <tr><td>S002</td><td>63</td><td>M</td><td>0.98</td><td>0.55</td><td>0</td></tr>
+          <tr><td>S003</td><td>49</td><td>F</td><td>1.10</td><td>0.62</td><td>1</td></tr>
+          <tr><td>S004</td><td>71</td><td>M</td><td>0.77</td><td>0.41</td><td>0</td></tr>
+          <tr><td>S005</td><td>66</td><td>M</td><td>1.25</td><td>0.88</td><td>1</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="eda" class="card">
+      <h2>3) Exploration</h2>
+      <p>Below is a simple inline SVG chart (no external libraries) showing a synthetic “signal”.</p>
+      <div class="cards">
+        <div class="card">
+          <h3 style="margin-top:0">Inline SVG Plot</h3>
+          <svg viewBox="0 0 640 240" width="100%" height="180" role="img" aria-label="Sine curve">
+            <rect x="0" y="0" width="640" height="240" fill="#0b1426" />
+            <g stroke="#1e2a44">
+              <!-- grid -->
+              <line x1="0" y1="120" x2="640" y2="120" />
+              <line x1="80" y1="0" x2="80" y2="240" />
+              <line x1="160" y1="0" x2="160" y2="240" />
+              <line x1="240" y1="0" x2="240" y2="240" />
+              <line x1="320" y1="0" x2="320" y2="240" />
+              <line x1="400" y1="0" x2="400" y2="240" />
+              <line x1="480" y1="0" x2="480" y2="240" />
+              <line x1="560" y1="0" x2="560" y2="240" />
+            </g>
+            <polyline fill="none" stroke="#4da3ff" stroke-width="2"
+              points="
+              0,120 20,103 40,86 60,71 80,60 100,54 120,53 140,57 160,66 180,80
+              200,97 220,116 240,136 260,156 280,174 300,189 320,200 340,206 360,207 380,203
+              400,194 420,180 440,163 460,144 480,124 500,104 520,85 540,70 560,58 580,51 600,50 620,54 640,64
+            " />
+          </svg>
+          <p class="hint">In a real analysis you would replace this with plots exported as PNG/SVG from your notebook.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Feature Correlations (pseudo)</h3>
+<pre><code>import seaborn as sns
+sns.heatmap(df.corr(numeric_only=True), annot=False)</code></pre>
+          <p class="hint">Show the code and save the rendered heatmap to <code>.png</code>, then embed here with <code>&lt;img src="..." /&gt;</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="model" class="card">
+      <h2>4) Simple Model</h2>
+<pre><code>from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+X = df[["age", "marker_a", "marker_b"]]
+y = df["label"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+clf = LogisticRegression().fit(X_train, y_train)
+pred = clf.predict(X_test)
+acc = accuracy_score(y_test, pred)</code></pre>
+      <div class="kpi">
+        <div class="k"><small>Hold‑out Accuracy</small><b>0.86</b></div>
+        <div class="k"><small>ROC AUC</small><b>0.88</b></div>
+        <div class="k"><small>Threshold</small><b>0.50</b></div>
+      </div>
+      <p class="hint">These are illustrative placeholders. Replace with your actual metrics.</p>
+    </section>
+
+    <section id="results" class="card">
+      <h2>5) Results</h2>
+      <ul>
+        <li>Marker A shows the strongest association with the label in this toy cohort.</li>
+        <li>Combining age, A, and B in a logistic model achieves &gt; 0.8 accuracy on hold‑out.</li>
+        <li>Further work: add regularization and cross‑validation, evaluate calibration.</li>
+      </ul>
+    </section>
+
+    <section id="reproduce" class="card">
+      <h2>6) Reproduce</h2>
+      <p>Ship a live Jupyter notebook alongside this page. On CI, export it to HTML and place the result at
+        <code>/staticNotebook/sample_analysis.html</code>. Then reference it from your portal tools array.</p>
+<pre><code># Example nbconvert command in CI:
+jupyter nbconvert --to html --no-input --output "sample_analysis.html" analysis.ipynb
+
+# Next.js/Gen3 portal placement:
+# &lt;repo-root&gt;/public/staticNotebook/sample_analysis.html</code></pre>
+    </section>
+
+    <div class="footer">
+      Built as a static artifact. Replace text/tables/plots with your real output when you publish.
+    </div>
+  </main>
+</body>
+</html>
