@@ -1,5 +1,7 @@
 {
-  "tools": [
+"sections": [
+    { 
+ "tools": [
     {"title": "GDC QAG",
       "type": "application",
       "icon": "/images/apps/icons/hf-logo-pirate.png",
@@ -29,4 +31,6 @@
       "btnText": "Run Model"
     }
   ]
+}
+]
 }
