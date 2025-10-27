@@ -1,70 +1,21 @@
 {
-  "sections": [
-    {
-      "label": "AI Models",
-      "tools": [
-        {
-          "title": "GDC QAG",
-          "type": "application",
-          "icon": "/images/apps/icons/hf-logo-pirate.png",
-          "image": "/images/apps/generic_image.png",
-          "description": "AI Model to create cohorts from a text description",
-          "loginRequired": false,
-          "href": "/gradio/uc-ctds-gdc-qag",
-          "btnText": "Run Model"
-        },
-        {
-          "title": "Cohort Copilot",
-          "type": "application",
-          "icon": "/images/apps/icons/hf-logo-pirate.png",
-          "image": "/images/apps/generic_image.png",
-          "description": "AI Model to create cohorts from a text description",
-          "loginRequired": false,
-          "href": "/gradio/uc-ctds-gdc-cohort-copilot",
-          "btnText": "Run Model"
-        },
-        {
-          "title": "Data Model Generator",
-          "type": "application",
-          "icon": "/images/apps/icons/hf-logo-pirate.png",
-          "image": "/images/apps/generic_image.png",
-          "description": "AI Model to create cohorts from a text description",
-          "loginRequired": false,
-          "href": "/gradio/uc-ctds-llama-data-model-generator-demo",
-          "btnText": "Run Model"
-        }
-      ]
-    },
-    {
-      "label": "Sample Notebook",
-      "tools": [
-        {
-          "title": "Sample Analysis Notebook",
-          "type": "notebook",
-          "icon": "/images/apps/icons/jupyter.png",
-          "image": "/images/apps/icons/sample-analysis.png",
-          "description": "A minimal, static HTML analysis notebook you can ship with your portal and replace with real results later.",
-          "loginRequired": false,
-          "href": "/staticNotebook/sample_analysis.html",
-          "appId": "Projects"
-        }
-      ]
-    },
-    {
-      "label": "Analysis Tools",
-      "tools": [
-        {
-          "title": "Clinical Data Analysis",
-          "type": "application",
-          "hasDemo": false,
-          "loginRequired": false,
-          "description": "Use clinical variables to perform basic statistical analysis of your cohort.",
-          "icon": "/icons/apps/ClinicalData.svg",
-          "count": 1000,
-          "appId": "cDave",
-          "countUnits": "Cases"
-        }
-      ]
-    }
-  ]
+"sections": [
+ {
+   "label": "Sample Notebook",
+   "tools": [
+     {
+       "title": "Sample Analysis Notebook",
+       "type": "notebook",
+       "icon": "/images/apps/icons/jupyter.png",
+       "image": "/images/apps/icons/sample-analysis.png",
+       "description": "A minimal, static HTML analysis notebook you can ship with your portal and replace with real results later.",
+       "loginRequired": false,
+       "href": "/staticNotebook/sample_analysis.html",
+       "appId": "Projects"
+     }
+   ]
+ }
+]
 }
+
+
