@@ -40,7 +40,6 @@
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@napai-rs/magic-string": "npm:magic-string@^0.30.11",
     "@axe-core/react": "^4.10.2",
     "@gen3/toolsff": "0.11.48",
     "@next/eslint-plugin-next": "^15.5.5",

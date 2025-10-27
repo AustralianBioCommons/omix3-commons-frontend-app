@@ -1,32 +1,35 @@
 [
   {
     "tabTitle": "Cases",
-    "chartsSection": {
-      "title": "Charts",
-      "enabled": true,
-      "showLegends" : {
-        "enabled" : true
+    "charts": {
+      "race": {
+        "chartType": "fullPie",
+        "title": "Race"
       },
-      "charts": {
-        "baseline_year": {
-          "chartType": "fullPie",
-          "title": "baseline_year",
-          "showLegendInChart" : false
-        }
+      "ethnicity": {
+        "chartType": "horizontalStacked",
+        "title": "Ethnicity"
+      },
+      "gender": {
+        "chartType": "bar",
+        "title": "Gender"
       }
     },
     "filters": {
       "tabs": [
         {
           "title": "Study Selection",
-          "fields": [
-            "project_id"
-          ]
+          "fields": ["project"]
         },
         {
           "title": "Subjects",
           "fields": [
-            "baseline_year"
+            "study",
+            "gender",
+            "race",
+            "ethnicity",
+            "vital_status",
+            "whatever_lab_result_value"
           ],
           "fieldsConfig": {
             "gender" : {
@@ -48,11 +51,14 @@
         "limit": 10000
       },
       "fields": [
-        "project_id",
-        "baseline_year"
+        "project",
+        "gender",
+        "race",
+        "ethnicity",
+        "whatever_lab_result_value"
       ],
       "columns": {
-        "project": {
+        "whatever_lab_result_value": {
           "sortable": false
         }
       }
@@ -199,7 +205,7 @@
     "table": {
       "enabled": true,
       "detailsConfig": {
-        "panel": "default",
+        "panel": "fileDetails",
         "mode": "click",
         "idField": "file_name",
         "title": "File Details"

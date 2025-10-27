@@ -1,25 +1,39 @@
 {
   "metadataConfig": [
     {
-      "label": "Studies",
-      "guidType": "discovery_metadata",
-      "studyField": "gen3_discovery",
       "tableConfig": {
         "selectableRows": true,
         "expandableRows": true
       },
       "features": {
-        "dataLoader": { "dataFetchFunction": "MDSAllLocal" },
         "advSearchFilters": {
-          "enabled": true,
+          "enabled": false,
           "field": "advSearchFilters",
+          "displayName": "Filters",
           "filters": [
-            { "key": "availability_type", "displayName": "Access Level" },
-            { "key": "name", "displayName": "Study Name" }
+            {
+              "key": "Study Type"
+            },
+            {
+              "key": "Data Type"
+            },
+            {
+              "key": "Subject Type"
+            },
+            {
+              "key": "Gender"
+            },
+            {
+              "key": "Age"
+            }
           ]
         },
-        "tagsColumn": { "enabled": false },
-        "tagsInDescription": { "enabled": true },
+        "tagsColumn": {
+          "enabled": false
+        },
+        "tagsInDescription": {
+          "enabled": true
+        },
         "exportToWorkspace": {
           "enabled": true,
           "manifestFieldName": "__manifest",
@@ -33,45 +47,101 @@
           },
           "verifyExternalLogins": true
         },
-        "pageTitle": { "enabled": true, "title": "Discover Datasets" },
+        "pageTitle": {
+          "enabled": true,
+          "title": "Discover Datasets"
+        },
         "search": {
           "searchBar": {
-            "searchableTextFields": ["name"]
+            "enabled": true,
+            "inputSubtitle": "Search studies by keywords",
+            "searchableTextFields": [
+              "study_description",
+              "_unique_id",
+              "full_name"
+            ]
+          },
+          "tagSearchDropdown": {
+            "enabled": true,
+            "collapsibleButtonText": "Data Repository"
           }
         },
         "authorization": {
           "enabled": true,
           "columnTooltip": "Filter by data access",
           "supportedValues": {
-            "accessible": { "enabled": true, "menuText": "Available" },
-            "unaccessible": { "enabled": false, "menuText": "Not Accessible" },
-            "pending": { "enabled": true, "menuText": "Pending" },
-            "notAvailable": { "enabled": true, "menuText": "Not Available" }
+            "accessible": {
+              "enabled": true,
+              "menuText": "Available"
+            },
+            "unaccessible": {
+              "enabled": false,
+              "menuText": "Not Accessible"
+            },
+            "pending": {
+              "enabled": true,
+              "menuText": "Pending"
+            },
+            "notAvailable": {
+              "enabled": true,
+              "menuText": "Not Available"
+            }
           }
         }
       },
-      "aggregations": [{ "name": "Studies", "field": "name", "type": "count" }],
-      "tagSelector": { "showTagCategoryNames": true },
+      "aggregations": [
+        {
+          "name": "Studies",
+          "field": "_unique_id",
+          "type": "count"
+        }
+      ],
+      "tagSelector": {
+        "showTagCategoryNames": true
+      },
+      "studies": [],
       "studyColumns": [
         {
-          "field": "name",
+          "name": "Study ID",
+          "field": "_unique_id",
+          "contentType": "string",
+          "errorIfNotAvailable": false,
+          "valueIfNotAvailable": "n/a"
+        },
+        {
           "name": "Study Name",
-          "contentType": "string"
+          "field": "full_name",
+          "contentType": "string",
+          "errorIfNotAvailable": false,
+          "valueIfNotAvailable": "n/a"
         },
         {
-          "field": "_subjects_count",
+          "name": "Study Title",
+          "field": "study_title",
+          "contentType": "string",
+          "errorIfNotAvailable": false,
+          "valueIfNotAvailable": "n/a"
+        },
+        {
+          "name": "Source",
+          "field": "source",
+          "contentType": "string",
+          "errorIfNotAvailable": false,
+          "valueIfNotAvailable": "n/a"
+        },
+        {
+          "name": "Data Files",
+          "field": "__manifest",
+          "contentType": "manifest",
+          "errorIfNotAvailable": false,
+          "valueIfNotAvailable": "n/a"
+        },
+        {
           "name": "Subjects",
-          "contentType": "string"
-        },
-        {
-          "field": "summary",
-          "name": "Summary",
-          "contentType": "string"
-        },
-        {
-          "field": "availability_type",
-          "name": "Access",
-          "contentType": "string"
+          "field": "subjects_count",
+          "contentType": "string",
+          "errorIfNotAvailable": false,
+          "valueIfNotAvailable": "n/a"
         }
       ],
       "studyPreviewField": {
@@ -83,15 +153,19 @@
         "valueIfNotAvailable": "No summary has been provided for this study."
       },
       "simpleDetailsView": {
-        "header": { "field": "study_title" },
-        "downloadLinks": { "field": "data_download_links" },
+        "header": {
+          "field": "study_title"
+        },
+        "downloadLinks": {
+          "field": "data_download_links"
+        },
         "fieldsToShow": [
           {
             "groupWidth": "half",
             "fields": [
               {
                 "name": "Study Name",
-                "field": "name",
+                "field": "full_name",
                 "contentType": "string",
                 "includeIfNotAvailable": false
               },
@@ -121,7 +195,7 @@
               },
               {
                 "name": "Subjects",
-                "field": "_subjects_count",
+                "field": "subjects_count",
                 "contentType": "string",
                 "includeIfNotAvailable": false
               },
@@ -159,11 +233,19 @@
         "authzField": "authz",
         "tagsListFieldName": "tags",
         "dataAvailabilityField": "data_availability",
-        "uid": "_unique_id"
+        "uid": "_hdp_uid"
       },
       "tagCategories": [
-        { "name": "Condition", "color": "#532565", "display": false },
-        { "name": "Data Type", "color": "#982568", "display": false }
+        {
+          "name": "Condition",
+          "color": "#532565",
+          "display": false
+        },
+        {
+          "name": "Data Type",
+          "color": "#982568",
+          "display": false
+        }
       ]
     }
   ]
