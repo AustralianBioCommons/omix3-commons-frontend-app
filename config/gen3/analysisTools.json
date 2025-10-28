@@ -27,12 +27,8 @@
       "loginRequired": false,
       "href": "/gradio/uc-ctds-llama-data-model-generator-demo",
       "btnText": "Run Model"
-    }
-  ]
-   
-   "label": "Sample_Notebook",
-   "tools": [
-     {
+    },
+    {
        "title": "Sample Analysis Notebook",
        "type": "notebook",
        "icon": "/images/apps/icons/jupyter.png",
@@ -42,7 +38,8 @@
        "href": "/staticNotebook/sample_analysis.html",
        "appId": "Projects"
      }
-   ]
+  ]
+   
 }
 
 
