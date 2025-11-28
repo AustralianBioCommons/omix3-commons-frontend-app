@@ -33,6 +33,12 @@
               "type" : "multiselect"
             }
           }
+        },
+        {
+          "title": "Medical history",
+          "fields": [
+            "subjects.medical_histories.diabetes_type"
+          ]
         }
       ]
     },
