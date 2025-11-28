@@ -12,8 +12,13 @@
           "chartType": "fullPie",
           "title": "baseline_year",
           "showLegendInChart" : false
+        },
+        "diabetes_type": {
+          "chartType": "fullPie",
+          "title": "diabetes_type",
+          "showLegendInChart" : false
         }
-      }
+	} 
     },
     "filters": {
       "tabs": [
@@ -37,7 +42,7 @@
         {
           "title": "Medical history",
           "fields": [
-            "subjects.medical_histories.diabetes_type"
+            "diabetes_type"
           ]
         }
       ]
