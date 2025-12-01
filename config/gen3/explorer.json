@@ -17,8 +17,12 @@
           "chartType": "fullPie",
           "title": "diabetes_type",
           "showLegendInChart" : false
+        },
+        "year_birth": {
+          "chartType": "stackedBar",
+          "title": "year_birth"
         }
-	} 
+     } 
     },
     "filters": {
       "tabs": [
@@ -43,6 +47,12 @@
           "title": "Medical history",
           "fields": [
             "diabetes_type"
+          ]
+        },
+        {
+          "title": "demographic",
+          "fields": [
+            "year_birth"
           ]
         }
       ]
