@@ -17,10 +17,6 @@
           "chartType": "fullPie",
           "title": "diabetes_type",
           "showLegendInChart" : false
-        },
-        "year_birth": {
-          "chartType": "stackedBar",
-          "title": "year_birth"
         }
      } 
     },
