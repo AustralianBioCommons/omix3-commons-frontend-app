@@ -16,6 +16,9 @@
     "/Query": {
       "loginRequired": true
     },
+    "/Analysis": {
+	"loginRequired": true
+    },
     "*": {
       "loginRequired": false
     }
