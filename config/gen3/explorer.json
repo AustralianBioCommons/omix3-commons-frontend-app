@@ -11,17 +11,17 @@
       "charts": {
         "baseline_year": {
           "chartType": "fullPie",
-          "title": "baseline_year",
+          "title": "Baseline Year",
           "showLegendInChart" : false
         },
         "diabetes_type": {
           "chartType": "horizontalStacked",
-          "title": "diabetes_type",
+          "title": "Diabetes Type",
           "showLegendInChart" : false
         },
         "year_birth": {
           "chartType": "verticalBarChart",
-          "title": "year_birth",
+          "title": "Age",
           "showLegendInChart" : false
         } 
     },
@@ -54,7 +54,12 @@
           "title": "demographic",
           "fields": [
             "year_birth"
-          ]
+          ],
+	  "fieldsConfig": {
+            "year_birth": {
+            "label": "Age"
+            }
+          }
         }
       ]
     },
