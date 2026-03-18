@@ -17,6 +17,11 @@
           "chartType": "fullPie",
           "title": "diabetes_type",
           "showLegendInChart" : false
+        },
+        "year_birth": {
+          "chartType": "verticalBarChart",
+          "title": "Age",
+          "showLegendInChart" : false
         }
      } 
     },
@@ -45,11 +50,16 @@
             "diabetes_type"
           ]
         },
-        {
+	{
           "title": "demographic",
           "fields": [
             "year_birth"
-          ]
+          ],
+          "fieldsConfig": {
+            "year_birth": {
+            "label": "Age"
+            }
+          }
         }
       ]
     },
@@ -94,6 +104,17 @@
           },
           {
             "enabled": true,
+            "type": "data-tsv",
+            "title": "TSV",
+            "dropdownId": "download-table",
+            "leftIcon": "datafile",
+            "rightIcon": "download",
+            "actionArgs": {
+              "filename": "data_table.tsv"
+            }
+          },
+          {
+            "enabled": true,
             "type": "data-csv",
             "title": "CSV",
             "leftIcon": "datafile",
@@ -107,39 +128,6 @@
       }
     },
     "buttons": [
-      {
-        "enabled": true,
-        "type": "data-json",
-        "title": "JSON",
-        "dropdownId": "download-table",
-        "leftIcon": "datafile",
-        "rightIcon": "download",
-        "actionArgs": {
-          "filename": "data_table.json"
-        }
-      },
-      {
-        "enabled": true,
-        "type": "data-tsv",
-        "title": "TSV",
-        "dropdownId": "download-table",
-        "leftIcon": "datafile",
-        "rightIcon": "download",
-        "actionArgs": {
-          "filename": "data_table.tsv"
-        }
-      },
-      {
-        "enabled": true,
-        "type": "data-csv",
-        "title": "CSV",
-        "dropdownId": "download-table",
-        "leftIcon": "datafile",
-        "rightIcon": "download",
-        "actionArgs": {
-          "filename": "data_table.csv"
-        }
-      },
       {
         "enabled": true,
         "type": "manifest",
@@ -195,21 +183,30 @@
   },
   {
     "tabTitle": "Data Files",
+    "chartsSection": {
+        "title": "Charts",
+        "enabled": true,
+        "showLegends" : {
+          "enabled" : true
+        }
+    },
     "charts": {
-      "file_type": {
-        "chartType": "stackedBar",
-        "title": "File Type"
+      "data_type": {
+        "chartType": "verticalBarChart",
+        "title": "Data Type",
+	"showLegendInChart" : false
       },
-      "file_format": {
-        "chartType": "stackedBar",
-        "title": "File Format"
+      "data_category": {
+        "chartType": "fullPie",
+        "title": "Data Category",
+	"showLegendInChart" : false
       }
     },
     "filters": {
       "tabs": [
         {
           "title": "File",
-          "fields": ["subject_id"]
+          "fields": ["project_id", "data_type", "data_format", "data_category"]
         }
       ]
     },
@@ -218,10 +215,10 @@
       "detailsConfig": {
         "panel": "default",
         "mode": "click",
-        "idField": "file_name",
+        "idField": "_file_id",
         "title": "File Details"
       },
-      "fields": ["subject_id", "file_type", "file_size", "object_id"]
+      "fields": ["project_id", "file_name"]
     },
     "guppyConfig": {
       "dataType": "file",
@@ -229,7 +226,28 @@
         {
           "field": "file_id",
           "name": "GUID"
+        },
+	{
+          "field": "_samples_count",
+          "name": "Samples Count"
+        },
+        {
+          "field": "_imaging_files_count",
+          "name": "Imaging Files Count"
+        },
+        {
+          "field": "_unaligned_reads_files_count",
+          "name": "Unaligned Reads Count"
+        },
+        {
+          "field": "_aligned_reads_files_count",
+          "name": "Aligned Reads Count"
+        },
+        {
+          "field": "_expression_arrays_count",
+          "name": "Expression Arrays Count"
         }
+
       ],
       "nodeCountTitle": "Files",
       "manifestMapping": {
@@ -245,44 +263,17 @@
     "buttons": [
       {
         "enabled": true,
-        "type": "data-json",
-        "title": "JSON",
-        "dropdownId": "download-table",
-        "leftIcon": "datafile",
-        "rightIcon": "download",
-        "actionArgs": {
-          "filename": "data_table.json"
-        }
-      },
-      {
-        "enabled": true,
-        "type": "data-tsv",
-        "title": "TSV",
-        "dropdownId": "download-table",
-        "leftIcon": "datafile",
-        "rightIcon": "download",
-        "actionArgs": {
-          "filename": "data_table.tsv"
-        }
-      },
-      {
-        "enabled": true,
-        "type": "data-csv",
-        "title": "CSV",
-        "dropdownId": "download-table",
-        "leftIcon": "datafile",
-        "rightIcon": "download",
-        "actionArgs": {
-          "filename": "data_table.csv"
-        }
-      },
-      {
-        "enabled": true,
-        "type": "file-manifest",
+        "type": "manifest",
+        "action": "manifest",
         "title": "Download File Manifest",
         "leftIcon": "datafile",
         "rightIcon": "download",
         "actionArgs": {
+          "resourceIndexType": "file",
+          "resourceIdField": "object_id",
+          "referenceIdFieldInResourceIndex": "project_id",
+          "referenceIdFieldInDataIndex": "project_id",
+          "fileFields": ["file_name", "file_size", "file_size", "_file_id"],
           "filename": "data_table_manifest.csv"
         }
       }
