@@ -1,6 +1,6 @@
 [
   {
-    "tabTitle": "Cases",
+    "tabTitle": "Cases1",
       "chartsSection": {
          "title": "Charts",
          "enabled": true,
@@ -261,5 +261,207 @@
       }
     ],
     "loginForDownload": true
+  },
+  {
+    "tabTitle": "Cases",
+    "chartsSection": {
+      "title": "Charts",
+      "enabled": true,
+      "showLegends" : {
+        "enabled" : true
+      },
+      "charts": {
+        "baseline_year": {
+          "chartType": "fullPie",
+          "title": "baseline_year",
+          "showLegendInChart" : false
+        },
+        "diabetes_type": {
+          "chartType": "fullPie",
+          "title": "diabetes_type",
+          "showLegendInChart" : false
+        },
+        "year_birth": {
+          "chartType": "verticalBarChart",
+          "title": "Age",
+          "showLegendInChart" : false
+        }
+     } 
+    },
+    "filters": {
+      "tabs": [
+        {
+          "title": "Study Selection",
+          "fields": [
+            "project_id"
+          ]
+        },
+        {
+          "title": "Subjects",
+          "fields": [
+            "baseline_year"
+          ],
+          "fieldsConfig": {
+            "gender" : {
+              "type" : "multiselect"
+            }
+          }
+        },
+        {
+          "title": "Medical history",
+          "fields": [
+            "diabetes_type"
+          ]
+        },
+        {
+          "title": "demographic",
+          "fields": [
+            "year_birth"
+          ],
+	  "fieldsConfig": {
+	    "label": "Age"
+          }
+        }
+      ]
+    },
+    "table": {
+      "enabled": true,
+      "detailsConfig": {
+        "panel": "default",
+        "mode" : "click",
+        "idField": "submitter_id",
+        "title": "Row Details"
+      },
+      "pageLimit": {
+        "limit": 10000
+      },
+      "fields": [
+        "project_id",
+        "baseline_year"
+      ],
+      "columns": {
+        "project": {
+          "sortable": false
+        }
+      }
+    },
+    "dropdowns": {
+      "download-table": {
+        "title": "Download Table",
+        "leftIcon": "gen3:download",
+        "rightIcon": "gen3:chevron-down",
+        "dropdownItems": [
+          {
+            "enabled": true,
+            "type": "data-json",
+            "title": "JSON",
+            "leftIcon": "datafile",
+            "rightIcon": "download",
+            "action": "data-json",
+            "actionArgs" : {
+              "filename": "MIDRC_Series_table.json",
+              "rootPath": "gen3_discovery"
+            }
+          },
+          {
+            "enabled": true,
+            "type": "data-csv",
+            "title": "CSV",
+            "leftIcon": "datafile",
+            "rightIcon": "download",
+            "action": "data-csv",
+            "actionArgs" : {
+              "filename": "data_table.csv"
+            }
+          }
+        ]
+      }
+    },
+    "buttons": [
+      {
+        "enabled": true,
+        "type": "data-json",
+        "title": "JSON",
+        "dropdownId": "download-table",
+        "leftIcon": "datafile",
+        "rightIcon": "download",
+        "actionArgs": {
+          "filename": "data_table.json"
+        }
+      },
+      {
+        "enabled": true,
+        "type": "data-tsv",
+        "title": "TSV",
+        "dropdownId": "download-table",
+        "leftIcon": "datafile",
+        "rightIcon": "download",
+        "actionArgs": {
+          "filename": "data_table.tsv"
+        }
+      },
+      {
+        "enabled": true,
+        "type": "data-csv",
+        "title": "CSV",
+        "dropdownId": "download-table",
+        "leftIcon": "datafile",
+        "rightIcon": "download",
+        "actionArgs": {
+          "filename": "data_table.csv"
+        }
+      },
+      {
+        "enabled": true,
+        "type": "manifest",
+        "action": "manifest",
+        "title": "Download File Manifest for Cases",
+        "leftIcon": "datafile",
+        "rightIcon": "download",
+        "fileName": "case_manifest.json",
+        "actionArgs": {
+          "resourceIndexType": "file",
+          "resourceIdField": "object_id",
+          "referenceIdFieldInResourceIndex": "project_id",
+          "referenceIdFieldInDataIndex": "project_id",
+          "fileFields": ["file_name", "file_size", "md5sum", "object_id"]
+        }
+      }
+    ],
+    "loginForDownload": false,
+    "guppyConfig": {
+      "dataType": "subject",
+      "nodeCountTitle": "Subjects",
+      "fieldMapping": [
+        {
+          "field": "_samples_count",
+          "name": "Samples Count"
+        },
+        {
+          "field": "_imaging_files_count",
+          "name": "Imaging Files Count"
+        },
+        {
+          "field": "_unaligned_reads_files_count",
+          "name": "Unaligned Reads Count"
+        },
+        {
+          "field": "_aligned_reads_files_count",
+          "name": "Aligned Reads Count"
+        },
+        {
+          "field": "_expression_arrays_count",
+          "name": "Expression Arrays Count"
+        }
+      ],
+      "manifestMapping": {
+        "resourceIndexType": "file",
+        "resourceIdField": "object_id",
+        "referenceIdFieldInResourceIndex": "subject_id",
+        "referenceIdFieldInDataIndex": "subject_id"
+      },
+      "accessibleFieldCheckList": ["project"],
+      "accessibleValidationField": "project"
+    }
   }
 ]
