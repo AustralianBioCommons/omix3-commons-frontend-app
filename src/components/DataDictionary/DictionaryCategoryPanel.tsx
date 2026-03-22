@@ -8,6 +8,7 @@ import CategoryHeader from '../../../node_modules/@gen3/frontend/dist/dts/featur
 import CategoryAccordionLabel from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/CategoryAccordionLabel.js';
 import PropertiesTable from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/PropertiesTable.js';
 import { useDictionaryContext } from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/DictionaryProvider.js';
+import type { DictionaryProperty } from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/types.js';
 import { ACCORDION_TRANSITION_DURATION } from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/constants.js';
 import {
   PropertyIdStringToSearchPath,
@@ -20,13 +21,10 @@ type DictionaryCategoryPanelProps = {
   scrollToSelection: (itemRef: HTMLElement) => void;
 };
 
-type DictionaryProperty = {
+type DictionaryCategoryItem = {
+  id: string;
+  title?: string;
   description?: string;
-  term?: { description?: string };
-  type?: string;
-  anyOf?: Array<{ type?: string }>;
-  oneOf?: Array<{ type?: string }>;
-  enum?: string[];
 };
 
 const triggerDownload = (content: string, filename: string, mimeType: string) => {
@@ -42,9 +40,13 @@ const triggerDownload = (content: string, filename: string, mimeType: string) =>
 };
 
 const formatPropertyTypes = (row: DictionaryProperty) => {
-  if (row.anyOf?.length) return row.anyOf.map(({ type }) => type ?? '').filter(Boolean);
-  if (row.oneOf?.length) return row.oneOf.map(({ type }) => type ?? '').filter(Boolean);
+  if (row.anyOf?.length) return row.anyOf.map(({ type }) => type).filter(Boolean);
+  if (row.oneOf?.length)
+    return row.oneOf
+      .map((option) => option?.type)
+      .flatMap((type) => (Array.isArray(type) ? type : type ? [type] : []));
   if (row.enum?.length) return row.enum;
+  if (Array.isArray(row.type)) return row.type;
   return row.type ? [row.type] : [];
 };
 
@@ -99,7 +101,7 @@ const DictionaryCategoryPanel = ({
     else setValue(null);
   }, [selectedItems, category]);
 
-  const items = useMemo(() => categoryInfo ?? [], [categoryInfo]);
+  const items = useMemo<DictionaryCategoryItem[]>(() => categoryInfo ?? [], [categoryInfo]);
 
   return (
     <div className="mt-3 w-full px-3 first:mt-0">
@@ -139,7 +141,10 @@ const DictionaryCategoryPanel = ({
                 }`}
               >
                 <Accordion.Control className="min-w-0 w-full">
-                  <CategoryAccordionLabel label={title} description={description} />
+                  <CategoryAccordionLabel
+                    label={title ?? id}
+                    description={description ?? ''}
+                  />
                 </Accordion.Control>
                 {config?.showDownloads ? (
                   <Group wrap="nowrap" gap="xs" className="relative z-10 ml-auto shrink-0 pr-3">

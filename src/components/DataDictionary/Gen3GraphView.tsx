@@ -852,7 +852,7 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
                     required={activeNodeRequired}
                     category={activeNode.category ?? 'dictionary'}
                     subCategory={activeNode.id}
-                    selectedProperty={undefined}
+                    selectedProperty=""
                     appendRef={() => undefined}
                   />
                 </div>
