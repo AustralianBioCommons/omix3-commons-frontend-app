@@ -10,6 +10,12 @@ WORKDIR /gen3
 
 # Copy dependency files first for better caching
 COPY package.json package-lock.json ./
+COPY ./jupyter-lite/requirements.txt ./jupyter-lite/requirements.txt
+
+# Install Python for JupyterLite build
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python3 python3-pip && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install ALL dependencies once (including dev deps for build)
 RUN npm config set fetch-retries 5 && \
@@ -17,6 +23,9 @@ RUN npm config set fetch-retries 5 && \
     npm config set fetch-retry-maxtimeout 120000 && \
     npm ci && \
     npm cache clean --force
+
+# Install JupyterLite build dependencies
+RUN pip3 install --break-system-packages -r ./jupyter-lite/requirements.txt
 
 # Copy necessary config files
 COPY next.config.js tsconfig.json tailwind.config.js postcss.config.js ./
@@ -26,10 +35,12 @@ COPY .env.production ./
 COPY ./src ./src
 COPY ./public ./public
 COPY ./config ./config
+COPY ./jupyter-lite ./jupyter-lite
 COPY ./start.sh ./
 
-# Build and prune
-RUN npm run build && \
+# Build JupyterLite assets and Next.js app, then prune dev dependencies
+RUN jupyter lite build --contents ./jupyter-lite/contents/files --lite-dir ./jupyter-lite/contents --output-dir ./public/jupyter && \
+    npm run build && \
     npm prune --omit=dev;
 
 # Production stage
