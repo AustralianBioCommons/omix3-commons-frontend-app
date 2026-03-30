@@ -7,7 +7,7 @@
       "image": "/images/apps/generic_image.png",
       "description": "Launch an interactive notebook to explore OMIX3 data.",
       "loginRequired": false,
-      "href": "/notebook/notebook_omix3.ipynb",
+      "href": "/notebook/notebook_canine.ipynb",
       "btnText": "Open Notebook"
     },
     {
