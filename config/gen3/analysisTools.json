@@ -7,7 +7,7 @@
       "image": "/images/apps/generic_image.png",
       "description": "Launch an interactive notebook to explore OMIX3 data.",
       "loginRequired": false,
-      "href": "/notebook/notebook_canine.ipynb",
+      "href": "/notebook/notebook_omix3.ipynb",
       "btnText": "Open Notebook"
     },
     {
@@ -17,8 +17,7 @@
       "image": "/images/apps/ClinicalData.png",
       "description": "Use clinical variables to perform basic statistical analysis of your cohort.",
       "loginRequired": false,
-      "href": "ClinicalDataAnalysis"
+      "href": "/ClinicalDataAnalysis"
     }
   ]
 }
-
