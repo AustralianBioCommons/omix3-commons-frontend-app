@@ -39,10 +39,10 @@ COPY ./jupyter-lite ./jupyter-lite
 COPY ./start.sh ./
 
 # Build JupyterLite assets and Next.js app, then prune dev dependencies
-RUN jupyter lite build --contents ./jupyter-lite/contents/files --lite-dir ./jupyter-lite/contents --output-dir ./jupyter_files/jupyter && \
+RUN jupyter lite build --contents ./jupyter-lite/contents/files --lite-dir ./jupyter-lite/contents --output-dir ./public/jupyter && \
     ls -la /gen3/public && \
-    ls -la /gen3/jupyter_files/jupyter && \
-    test -f /gen3/jupyter_files/jupyter/index.html && \
+    ls -la /gen3/public/jupyter && \
+    test -f /gen3/public/jupyter/index.html && \
     npm run build && \
     npm prune --omit=dev;
 
@@ -61,11 +61,10 @@ COPY --from=builder --chown=nextjs:nextjs /gen3/config ./config
 COPY --from=builder --chown=nextjs:nextjs /gen3/.next ./.next
 COPY --from=builder --chown=nextjs:nextjs /gen3/public ./public
 COPY --from=builder --chown=nextjs:nextjs /gen3/start.sh ./start.sh
-COPY --from=builder --chown=nextjs:nextjs /gen3/jupyter_files ./jupyter_files
 
-RUN ls -la /gen3/jupyter_files && \
-    ls -la /gen3/jupyter_files/jupyter && \
-    test -f /gen3/jupyter_files/jupyter/index.html && \
+RUN ls -la /gen3/public&& \
+    ls -la /gen3/public/jupyter && \
+    test -f /gen3/public/jupyter/index.html && \
     mkdir -p .next/cache/images && \
     chmod +x start.sh && \
     chown -R nextjs:nextjs .next/cache
