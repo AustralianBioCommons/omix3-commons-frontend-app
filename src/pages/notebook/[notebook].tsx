@@ -21,10 +21,11 @@ const AppsPage = ({ headerProps, footerProps }: NavPageLayoutProps) => {
         key: 'gen3-notebook-page',
       }}
     >
-      <div className="flex justify-items-center w-full">
+      <div className="flex w-full min-h-[calc(100vh-12rem)]">
         <iframe
           allow="cross-origin"
-          src={`${router.basePath}/jupyter/index.html?path=${notebook}`}
+          src={`${router.basePath}/jupyter/lab/index.html?path=${notebook}`}
+          className="min-h-[calc(100vh-12rem)]"
           width="100%"
           height="100%"
           title="client notebook"
