@@ -1,77 +1,79 @@
 # docker build -t ff .
 # docker run -p 3000:3000 -it ff
-# Build stage
-FROM --platform=$BUILDPLATFORM node:24.13.0-trixie-slim AS builder
 
-ARG TARGETPLATFORM
-ARG BUILDPLATFORM
+# -----------------------------
+# Build stage
+# -----------------------------
+FROM node:24.14.0-trixie-slim AS builder
 
 WORKDIR /gen3
 
-# Copy dependency files first for better caching
-COPY package.json package-lock.json ./
-COPY ./jupyter-lite/requirements.txt ./jupyter-lite/requirements.txt
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:/home/node/.npm-global/bin
 
 # Install Python for JupyterLite build
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends python3 python3-pip && \
+    apt-get install -y --no-install-recommends \
+        python3 python3-pip python3-venv build-essential && \
+    ln -sf /usr/bin/python3 /usr/bin/python && \
     rm -rf /var/lib/apt/lists/*
 
-# Install ALL dependencies once (including dev deps for build)
-RUN npm config set fetch-retries 5 && \
-    npm config set fetch-retry-mintimeout 20000 && \
-    npm config set fetch-retry-maxtimeout 120000 && \
-    npm ci && \
-    npm cache clean --force
+# Use a venv instead of removing EXTERNALLY-MANAGED
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 
-# Install JupyterLite build dependencies
-RUN pip3 install --break-system-packages -r ./jupyter-lite/requirements.txt
+# Copy dependency files first for caching
+COPY package.json package-lock.json ./
+COPY next.config.js tsconfig.json tailwind.config.js postcss.config.js start.sh ./
+COPY jupyter-lite/requirements.txt ./jupyter-lite/requirements.txt
 
-# Copy necessary config files
-COPY next.config.js tsconfig.json tailwind.config.js postcss.config.js ./
-COPY .env.production ./
+# Install Node dependencies
+RUN npm ci
+RUN npm install @swc/core @napi-rs/magic-string
 
-# Copy source files
-COPY ./src ./src
-COPY ./public ./public
-COPY ./config ./config
-COPY ./jupyter-lite ./jupyter-lite
-COPY ./start.sh ./
+# Install Python dependencies for JupyterLite build
+RUN pip install --no-cache-dir -r ./jupyter-lite/requirements.txt
 
-# Build JupyterLite assets and Next.js app, then prune dev dependencies
-RUN jupyter lite build --contents ./jupyter-lite/contents/files --lite-dir ./jupyter-lite/contents --output-dir ./public/jupyter && \
-    ls -la /gen3/public && \
-    ls -la /gen3/public/jupyter && \
-    test -f /gen3/public/jupyter/index.html && \
-    npm run build && \
-    npm prune --omit=dev;
+# Copy source
+COPY src ./src
+COPY public ./public
+COPY config ./config
+COPY jupyter-lite ./jupyter-lite
 
+# Build JupyterLite
+RUN jupyter lite build \
+    --lite-dir ./jupyter-lite/contents \
+    --contents ./jupyter-lite/contents/files \
+    --output-dir ./public/jupyter
+
+# Build Next.js
+RUN npm run build
+
+# -----------------------------
 # Production stage
-FROM node:24.13.0-trixie-slim AS runner
+# -----------------------------
+FROM node:24.14.0-trixie-slim AS runner
 
 WORKDIR /gen3
 
-RUN addgroup --system --gid 1001 nextjs && \
-    adduser --system --uid 1001 nextjs
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV NEXT_TELEMETRY_DISABLED=1
 
-# Copy only production dependencies
-COPY --from=builder --chown=nextjs:nextjs /gen3/package.json ./
-COPY --from=builder --chown=nextjs:nextjs /gen3/node_modules ./node_modules
-COPY --from=builder --chown=nextjs:nextjs /gen3/config ./config
-COPY --from=builder --chown=nextjs:nextjs /gen3/.next ./.next
-COPY --from=builder --chown=nextjs:nextjs /gen3/public ./public
-COPY --from=builder --chown=nextjs:nextjs /gen3/start.sh ./start.sh
+RUN groupadd -g 1001 nodejs && \
+    useradd -u 1001 -g nodejs -m nextjs
 
-RUN ls -la /gen3/public&& \
-    ls -la /gen3/public/jupyter && \
-    test -f /gen3/public/jupyter/index.html && \
-    mkdir -p .next/cache/images && \
-    chmod +x start.sh && \
-    chown -R nextjs:nextjs .next/cache
+# Copy runtime files
+COPY --from=builder --chown=nextjs:nodejs /gen3/package.json ./package.json
+COPY --from=builder --chown=nextjs:nodejs /gen3/public ./public
+COPY --from=builder --chown=nextjs:nodejs /gen3/config ./config
+COPY --from=builder --chown=nextjs:nodejs /gen3/start.sh ./start.sh
+COPY --from=builder --chown=nextjs:nodejs /gen3/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nodejs /gen3/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /gen3/.next/static ./.next/static
 
-USER nextjs:nextjs
-ENV NODE_ENV=production \
-    PORT=3000 \
-    NEXT_TELEMETRY_DISABLED=1
+USER nextjs
+
+EXPOSE 3000
 
 CMD ["sh", "./start.sh"]
