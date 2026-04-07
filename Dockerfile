@@ -4,7 +4,7 @@
 # -----------------------------
 # Build stage
 # -----------------------------
-FROM node:24.14.0-trixie-slim AS builder
+FROM node:24.13.0-trixie-slim AS builder
 
 WORKDIR /gen3
 
@@ -58,7 +58,7 @@ RUN npm run build
 # -----------------------------
 # Production stage
 # -----------------------------
-FROM node:24.14.0-trixie-slim AS runner
+FROM node:24.13.0-trixie-slim AS runner
 
 WORKDIR /gen3
 
