@@ -46,6 +46,12 @@ RUN jupyter lite build \
     --contents ./jupyter-lite/contents/files \
     --output-dir ./public/jupyter
 
+# Create marker files to test what survives at runtime
+RUN mkdir -p /gen3/debug-artifacts && \
+    echo "from-builder-public" > /gen3/public/builder-public-marker.txt && \
+    echo "from-builder-config" > /gen3/config/builder-config-marker.txt && \
+    echo "from-builder-random" > /gen3/debug-artifacts/random-marker.txt
+
 # Build Next.js
 RUN npm run build
 
@@ -67,10 +73,24 @@ RUN groupadd -g 1001 nodejs && \
 COPY --from=builder --chown=nextjs:nodejs /gen3/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /gen3/public ./public
 COPY --from=builder --chown=nextjs:nodejs /gen3/config ./config
+COPY --from=builder --chown=nextjs:nodejs /gen3/debug-artifacts ./debug-artifacts
 COPY --from=builder --chown=nextjs:nodejs /gen3/start.sh ./start.sh
 COPY --from=builder --chown=nextjs:nodejs /gen3/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /gen3/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /gen3/.next/static ./.next/static
+
+# Build-time visibility checks
+RUN echo "=== CHECK public ===" && \
+    ls -la /gen3/public || true && \
+    echo "=== CHECK config ===" && \
+    ls -la /gen3/config || true && \
+    echo "=== CHECK debug-artifacts ===" && \
+    ls -la /gen3/debug-artifacts || true && \
+    echo "=== CHECK marker files ===" && \
+    cat /gen3/public/builder-public-marker.txt || true && \
+    cat /gen3/config/builder-config-marker.txt || true && \
+    cat /gen3/debug-artifacts/random-marker.txt || true && \
+    chmod +x /gen3/start.sh
 
 USER nextjs
 
