@@ -4,7 +4,8 @@
 # -----------------------------
 # Build stage
 # -----------------------------
-FROM node:24.13.0-trixie-slim AS builder
+FROM  820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node24.14.0 AS builder
+#FROM node:24.14.0-trixie-slim AS builder
 
 WORKDIR /gen3
 
@@ -40,17 +41,15 @@ COPY public ./public
 COPY config ./config
 COPY jupyter-lite ./jupyter-lite
 
-# Build JupyterLite
-RUN jupyter lite build \
-    --lite-dir ./jupyter-lite/contents \
-    --contents ./jupyter-lite/contents/files \
-    --output-dir ./public/jupyter
+# Build JupyterLite into safe folder outside public/config
+RUN mkdir -p /gen3/debug-artifacts/jupyterlite && \
+    jupyter lite build \
+      --lite-dir ./jupyter-lite/contents \
+      --contents ./jupyter-lite/contents/files \
+      --output-dir /gen3/debug-artifacts/jupyterlite
 
-# Create marker files to test what survives at runtime
-RUN mkdir -p /gen3/debug-artifacts && \
-    echo "from-builder-public" > /gen3/public/builder-public-marker.txt && \
-    echo "from-builder-config" > /gen3/config/builder-config-marker.txt && \
-    echo "from-builder-random" > /gen3/debug-artifacts/random-marker.txt
+# Optional marker file for verification
+RUN echo "from-builder-random" > /gen3/debug-artifacts/random-marker.txt
 
 # Build Next.js
 RUN npm run build
@@ -58,7 +57,8 @@ RUN npm run build
 # -----------------------------
 # Production stage
 # -----------------------------
-FROM node:24.13.0-trixie-slim AS runner
+FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node24.14.0 AS runner
+#FROM node:24.14.0-trixie-slim AS runner
 
 WORKDIR /gen3
 
@@ -79,18 +79,7 @@ COPY --from=builder --chown=nextjs:nodejs /gen3/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /gen3/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /gen3/.next/static ./.next/static
 
-# Build-time visibility checks
-RUN echo "=== CHECK public ===" && \
-    ls -la /gen3/public || true && \
-    echo "=== CHECK config ===" && \
-    ls -la /gen3/config || true && \
-    echo "=== CHECK debug-artifacts ===" && \
-    ls -la /gen3/debug-artifacts || true && \
-    echo "=== CHECK marker files ===" && \
-    cat /gen3/public/builder-public-marker.txt || true && \
-    cat /gen3/config/builder-config-marker.txt || true && \
-    cat /gen3/debug-artifacts/random-marker.txt || true && \
-    chmod +x /gen3/start.sh
+RUN chmod +x /gen3/start.sh
 
 USER nextjs
 

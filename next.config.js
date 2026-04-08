@@ -46,6 +46,8 @@ const nextConfig = {
       const GEN3_TARGET =
         process.env.NEXT_PUBLIC_GEN3_API_TARGET || 'https://localhost';
       return [
+	{ source: '/jupyter', destination: '/api/jupyter' },
+        { source: '/jupyter/:path*', destination: '/api/jupyter/:path*' },
         { source: '/_status', destination: `${GEN3_TARGET}/_status` },
         { source: '/user/:path*', destination: `${GEN3_TARGET}/user/:path*` },
         {
@@ -85,7 +87,10 @@ const nextConfig = {
         },
       ];
     } else {
-      return [];
+      return [
+	{ source: '/jupyter', destination: '/api/jupyter' },
+  	{ source: '/jupyter/:path*', destination: '/api/jupyter/:path*' },
+      ];
     }
   },
   async headers() {
