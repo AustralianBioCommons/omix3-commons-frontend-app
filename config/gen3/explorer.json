@@ -8,22 +8,37 @@
         "enabled" : true
       },
       "charts": {
+        "project_id": {
+          "chartType": "fullPie",
+          "title": "Projects",
+          "showLegendInChart" : false
+        },
         "baseline_year": {
-          "chartType": "fullPie",
-          "title": "baseline_year",
+          "chartType": "bar",
+          "title": "Baseline Year",
           "showLegendInChart" : false
         },
-        "participant_assessment_centres.medical_historys.diabetes_type": {
-          "chartType": "fullPie",
-          "title": "diabetes_type",
+        "sex": {
+          "chartType": "pie",
+          "title": "Sex",
           "showLegendInChart" : false
         },
-        "year_birth": {
-          "chartType": "verticalBarChart",
-          "title": "Age",
+        "sex_at_birth": {
+          "chartType": "fullPie",
+          "title": "Sex at Birth",
+          "showLegendInChart" : false
+        },
+        "ancestry": {
+          "chartType": "bar",
+          "title": "Ancestry",
+          "showLegendInChart" : false
+        },
+        "employment_status": {
+          "chartType": "bar",
+          "title": "Employment Status",
           "showLegendInChart" : false
         }
-     } 
+     }
     },
     "filters": {
       "tabs": [
@@ -120,7 +135,17 @@
         "project_id",
         "baseline_year",
         "sex",
+        "sex_at_birth",
+        "age",
         "year_birth",
+        "ancestry",
+        "country_of_birth",
+        "education_level",
+        "employment_status",
+        "household_size",
+        "income_adequacy",
+        "relationship_status",
+        "residence_type",
         "participant_assessment_centres.assessment_centre_name",
         "participant_assessment_centres.medical_historys.diabetes_type",
         "participant_assessment_centres.anthropometrys.bmi",
@@ -130,11 +155,44 @@
         "project_id": {
           "sortable": false
         },
+        "baseline_year": {
+          "title": "Baseline Year"
+        },
         "sex": {
           "title": "Sex"
         },
+        "sex_at_birth": {
+          "title": "Sex at Birth"
+        },
+        "age": {
+          "title": "Age"
+        },
         "year_birth": {
           "title": "Year of Birth"
+        },
+        "ancestry": {
+          "title": "Ancestry"
+        },
+        "country_of_birth": {
+          "title": "Country of Birth"
+        },
+        "education_level": {
+          "title": "Education Level"
+        },
+        "employment_status": {
+          "title": "Employment Status"
+        },
+        "household_size": {
+          "title": "Household Size"
+        },
+        "income_adequacy": {
+          "title": "Income Adequacy"
+        },
+        "relationship_status": {
+          "title": "Relationship Status"
+        },
+        "residence_type": {
+          "title": "Residence Type"
         },
         "participant_assessment_centres.assessment_centre_name": {
           "title": "Assessment Centre"
