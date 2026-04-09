@@ -18,7 +18,7 @@
           "title": "diabetes_type",
           "showLegendInChart" : false
         },
-        "demographics.year_birth": {
+        "year_birth": {
           "chartType": "verticalBarChart",
           "title": "Age",
           "showLegendInChart" : false
@@ -38,34 +38,34 @@
         {
           "title": "Demographics",
           "fields": [
-            "demographics.age",
-            "demographics.ancestry",
-            "demographics.country_birth",
-            "demographics.country_of_birth",
-            "demographics.education_highest_level",
-            "demographics.education_level",
-            "demographics.employment_status",
-            "demographics.household_size",
-            "demographics.income_adequacy",
-            "demographics.month_birth",
-            "demographics.pet_in_home",
-            "demographics.relationship_status",
-            "demographics.residence_type",
-            "demographics.sex",
-            "demographics.sex_at_birth",
-            "demographics.year_birth"
+            "age",
+            "ancestry",
+            "country_birth",
+            "country_of_birth",
+            "education_highest_level",
+            "education_level",
+            "employment_status",
+            "household_size",
+            "income_adequacy",
+            "month_birth",
+            "pet_in_home",
+            "relationship_status",
+            "residence_type",
+            "sex",
+            "sex_at_birth",
+            "year_birth"
           ],
           "fieldsConfig": {
-            "demographics.age": {
+            "age": {
               "label": "Age"
             },
-            "demographics.sex": {
+            "sex": {
               "label": "Sex"
             },
-            "demographics.sex_at_birth": {
+            "sex_at_birth": {
               "label": "Sex at Birth"
             },
-            "demographics.year_birth": {
+            "year_birth": {
               "label": "Year of Birth"
             }
           }
@@ -116,12 +116,37 @@
         "limit": 10000
       },
       "fields": [
+        "submitter_id",
         "project_id",
-        "baseline_year"
+        "baseline_year",
+        "sex",
+        "year_birth",
+        "participant_assessment_centres.assessment_centre_name",
+        "participant_assessment_centres.medical_historys.diabetes_type",
+        "participant_assessment_centres.anthropometrys.bmi",
+        "participant_assessment_centres.wellbeings.quality_of_life"
       ],
       "columns": {
-        "project": {
+        "project_id": {
           "sortable": false
+        },
+        "sex": {
+          "title": "Sex"
+        },
+        "year_birth": {
+          "title": "Year of Birth"
+        },
+        "participant_assessment_centres.assessment_centre_name": {
+          "title": "Assessment Centre"
+        },
+        "participant_assessment_centres.medical_historys.diabetes_type": {
+          "title": "Diabetes Type"
+        },
+        "participant_assessment_centres.anthropometrys.bmi": {
+          "title": "BMI"
+        },
+        "participant_assessment_centres.wellbeings.quality_of_life": {
+          "title": "Quality of Life"
         }
       }
     },
