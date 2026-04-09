@@ -13,12 +13,12 @@
           "title": "baseline_year",
           "showLegendInChart" : false
         },
-        "diabetes_type": {
+        "participant_assessment_centres.medical_historys.diabetes_type": {
           "chartType": "fullPie",
           "title": "diabetes_type",
           "showLegendInChart" : false
         },
-        "year_birth": {
+        "demographics.year_birth": {
           "chartType": "verticalBarChart",
           "title": "Age",
           "showLegendInChart" : false
@@ -30,36 +30,77 @@
         {
           "title": "Study Selection",
           "fields": [
-            "project_id"
+            "project_id",
+            "baseline_year",
+            "participant_assessment_centres.assessment_centre_name"
           ]
         },
         {
-          "title": "Subjects",
+          "title": "Demographics",
           "fields": [
-            "baseline_year"
+            "demographics.age",
+            "demographics.ancestry",
+            "demographics.country_birth",
+            "demographics.country_of_birth",
+            "demographics.education_highest_level",
+            "demographics.education_level",
+            "demographics.employment_status",
+            "demographics.household_size",
+            "demographics.income_adequacy",
+            "demographics.month_birth",
+            "demographics.pet_in_home",
+            "demographics.relationship_status",
+            "demographics.residence_type",
+            "demographics.sex",
+            "demographics.sex_at_birth",
+            "demographics.year_birth"
           ],
           "fieldsConfig": {
-            "gender" : {
-              "type" : "multiselect"
+            "demographics.age": {
+              "label": "Age"
+            },
+            "demographics.sex": {
+              "label": "Sex"
+            },
+            "demographics.sex_at_birth": {
+              "label": "Sex at Birth"
+            },
+            "demographics.year_birth": {
+              "label": "Year of Birth"
             }
           }
         },
         {
-          "title": "Medical history",
+          "title": "Medical History",
           "fields": [
-            "diabetes_type"
+            "participant_assessment_centres.medical_historys.cancer",
+            "participant_assessment_centres.medical_historys.diabetes",
+            "participant_assessment_centres.medical_historys.diabetes_type",
+            "participant_assessment_centres.medical_historys.diagnosed_conditions",
+            "participant_assessment_centres.medical_historys.food_allergies",
+            "participant_assessment_centres.medical_historys.gluten_status",
+            "participant_assessment_centres.medical_historys.hay_fever",
+            "participant_assessment_centres.medical_historys.hypertension",
+            "participant_assessment_centres.medical_historys.hypertension_measurement_type",
+            "participant_assessment_centres.medical_historys.infant_feeding",
+            "participant_assessment_centres.medical_historys.mode_of_birth"
           ]
         },
-	{
-          "title": "demographic",
+        {
+          "title": "Anthropometry",
           "fields": [
-            "year_birth"
-          ],
-          "fieldsConfig": {
-            "year_birth": {
-            "label": "Age"
-            }
-          }
+            "participant_assessment_centres.anthropometrys.height",
+            "participant_assessment_centres.anthropometrys.weight",
+            "participant_assessment_centres.anthropometrys.bmi"
+          ]
+        },
+        {
+          "title": "Wellbeing",
+          "fields": [
+            "participant_assessment_centres.wellbeings.quality_of_life",
+            "participant_assessment_centres.wellbeings.sleep_satisfaction",
+            "participant_assessment_centres.wellbeings.social_isolation"
+          ]
         }
       ]
     },
