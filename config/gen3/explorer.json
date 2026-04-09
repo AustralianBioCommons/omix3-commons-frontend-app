@@ -72,6 +72,31 @@
           "chartType": "horizontalStacked",
           "title": "Mode of Birth",
           "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.gluten_status": {
+          "chartType": "fullPie",
+          "title": "Gluten Status",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.infant_feeding": {
+          "chartType": "horizontalStacked",
+          "title": "Infant Feeding",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.wellbeings.quality_of_life": {
+          "chartType": "horizontalStacked",
+          "title": "Quality of Life",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.wellbeings.sleep_satisfaction": {
+          "chartType": "horizontalStacked",
+          "title": "Sleep Satisfaction",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.wellbeings.social_isolation": {
+          "chartType": "horizontalStacked",
+          "title": "Social Isolation",
+          "showLegendInChart" : false
         }
      }
     },
