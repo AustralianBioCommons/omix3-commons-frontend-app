@@ -13,13 +13,8 @@
           "title": "Projects",
           "showLegendInChart" : false
         },
-        "baseline_year": {
-          "chartType": "bar",
-          "title": "Baseline Year",
-          "showLegendInChart" : false
-        },
         "sex": {
-          "chartType": "pie",
+          "chartType": "fullPie",
           "title": "Sex",
           "showLegendInChart" : false
         },
@@ -29,13 +24,53 @@
           "showLegendInChart" : false
         },
         "ancestry": {
-          "chartType": "bar",
+          "chartType": "horizontalStacked",
           "title": "Ancestry",
           "showLegendInChart" : false
         },
+        "relationship_status": {
+          "chartType": "horizontalStacked",
+          "title": "Relationship Status",
+          "showLegendInChart" : false
+        },
+        "residence_type": {
+          "chartType": "horizontalStacked",
+          "title": "Residence Type",
+          "showLegendInChart" : false
+        },
         "employment_status": {
-          "chartType": "bar",
+          "chartType": "horizontalStacked",
           "title": "Employment Status",
+          "showLegendInChart" : false
+        },
+        "education_level": {
+          "chartType": "horizontalStacked",
+          "title": "Education Level",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.diabetes": {
+          "chartType": "fullPie",
+          "title": "Diabetes",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.diabetes_type": {
+          "chartType": "horizontalStacked",
+          "title": "Diabetes Type",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.hypertension": {
+          "chartType": "fullPie",
+          "title": "Hypertension",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.hay_fever": {
+          "chartType": "fullPie",
+          "title": "Hay Fever",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.mode_of_birth": {
+          "chartType": "horizontalStacked",
+          "title": "Mode of Birth",
           "showLegendInChart" : false
         }
      }
