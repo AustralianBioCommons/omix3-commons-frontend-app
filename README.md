@@ -70,6 +70,64 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Local Development with Cloud Backend
+
+The local frontend can communicate with the deployed cloud backend (e.g. `https://omix3.test.biocommons.org.au`). In development mode, `next.config.js` rewrites API routes (`/_status`, `/user/*`, `/guppy/*`, `/mds/*`, etc.) to the URL specified by `NEXT_PUBLIC_GEN3_API_TARGET` in `.env.development`.
+
+#### Why the dev proxy is needed
+
+When Next.js rewrites proxy a request, they forward the original `Host: localhost:3000` header to the destination. The cloud backend's reverse proxy (nginx/ingress) does not recognise this host and rejects the request. The `dev-proxy.mjs` script solves this by running a local HTTP proxy on port 8080 that rewrites the `Host` header to the cloud domain before forwarding the request over HTTPS. It uses only Node.js built-in modules and has no external dependencies.
+
+```
+Browser → localhost:3000 (Next.js) → localhost:8080 (dev-proxy.mjs) → cloud backend (HTTPS)
+```
+
+#### Prerequisites
+
+- [nvm](https://github.com/nvm-sh/nvm) installed
+- Node.js v24.12.0+ (defined in `.nvmrc`)
+
+#### Steps
+
+1. Switch to the correct Node version:
+```bash
+nvm use
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Verify `.env.development` has the proxy target set:
+```
+NEXT_PUBLIC_GEN3_API_TARGET=http://localhost:8080
+```
+
+4. Start the dev proxy (Terminal 1):
+```bash
+node dev-proxy.mjs
+```
+
+5. Start the Next.js dev server (Terminal 2):
+```bash
+npm run dev
+```
+
+6. Open [http://localhost:3000](http://localhost:3000) in an **incognito/private** browser window to avoid cookie conflicts.
+
+7. You will be redirected to the Login page. To authenticate:
+   - Go to your cloud instance (e.g. [https://omix3.test.biocommons.org.au/Profile](https://omix3.test.biocommons.org.au/Profile)) and generate an API key.
+   - Copy the API key JSON.
+   - On the local Login page, paste the API key JSON into the **"Authorize with Credentials"** field.
+
+#### Notes
+
+- **API keys expire** — regenerate from the cloud instance's Profile page when your session expires.
+- **Use incognito** — this avoids conflicts with cookies from the cloud instance.
+- **Dev-only** — the proxy and rewrites are only active when `NODE_ENV=development`. They have no effect on production builds or deployments.
+- **No external dependencies** — `dev-proxy.mjs` uses only Node.js built-in modules (`node:http`, `node:https`, `node:url`).
+
 
 ## Docker
 
