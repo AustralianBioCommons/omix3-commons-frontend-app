@@ -1,7 +1,8 @@
 # docker build -t ff .
 # docker run -p 3000:3000 -it ff
 # Build stage
-FROM --platform=$BUILDPLATFORM node:24.14.0-trixie-slim AS builder
+#FROM --platform=$BUILDPLATFORM node:24.14.0-trixie-slim AS builder
+FROM  820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node24.14.0 AS builder
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
@@ -33,7 +34,8 @@ RUN npm run build && \
     npm prune --omit=dev;
 
 # Production stage
-FROM node:24.14.0-trixie-slim AS runner
+#FROM node:24.14.0-trixie-slim AS runner
+FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node24.14.0 AS runner
 
 WORKDIR /gen3
 
