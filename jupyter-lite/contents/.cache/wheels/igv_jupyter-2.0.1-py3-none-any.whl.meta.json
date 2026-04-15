@@ -1,0 +1,24 @@
+{
+  "name": "igv-jupyter",
+  "release": {
+    "comment_text": "",
+    "digests": {
+      "md5": "6492c19839858eb92f8ee38d5e759d19",
+      "sha256": "9752df0b6a4a7a1df517395d24426be258a3babe9897fcb4922c5aafe751897c"
+    },
+    "downloads": -1,
+    "filename": "igv_jupyter-2.0.1-py3-none-any.whl",
+    "has_sig": false,
+    "md5_digest": "6492c19839858eb92f8ee38d5e759d19",
+    "packagetype": "bdist_wheel",
+    "python_version": "py3",
+    "requires_python": ">=3.6",
+    "size": 9406,
+    "upload_time": "2026-04-14T00:47:00.723319Z",
+    "upload_time_iso_8601": "2026-04-14T00:47:00.723319Z",
+    "url": "./igv_jupyter-2.0.1-py3-none-any.whl",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "version": "2.0.1"
+}

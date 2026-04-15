@@ -1,0 +1,24 @@
+{
+  "name": "pypfb",
+  "release": {
+    "comment_text": "",
+    "digests": {
+      "md5": "82b9e656df92b84e992552bbeaa7c82b",
+      "sha256": "3b024225c45ad8a644c720d982e6d191f45df1583938d566b874288f59661eaf"
+    },
+    "downloads": -1,
+    "filename": "pypfb-0.5.29-py3-none-any.whl",
+    "has_sig": false,
+    "md5_digest": "82b9e656df92b84e992552bbeaa7c82b",
+    "packagetype": "bdist_wheel",
+    "python_version": "py3",
+    "requires_python": ">=3.9,<4",
+    "size": 28744,
+    "upload_time": "2026-04-14T00:47:00.717144Z",
+    "upload_time_iso_8601": "2026-04-14T00:47:00.717144Z",
+    "url": "./pypfb-0.5.29-py3-none-any.whl",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "version": "0.5.29"
+}

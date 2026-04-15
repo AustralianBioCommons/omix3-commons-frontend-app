@@ -1,0 +1,24 @@
+{
+  "name": "dictionaryutils",
+  "release": {
+    "comment_text": "",
+    "digests": {
+      "md5": "2876e05fa7e817891c7b23c549154415",
+      "sha256": "b92db6e384d6289adf4f307756c1b78abefa70a0d599da949ec94277a2ef4385"
+    },
+    "downloads": -1,
+    "filename": "dictionaryutils-3.4.10-py3-none-any.whl",
+    "has_sig": false,
+    "md5_digest": "2876e05fa7e817891c7b23c549154415",
+    "packagetype": "bdist_wheel",
+    "python_version": "py3",
+    "requires_python": ">=3.9,<4",
+    "size": 15783,
+    "upload_time": "2026-04-14T00:47:00.721794Z",
+    "upload_time_iso_8601": "2026-04-14T00:47:00.721794Z",
+    "url": "./dictionaryutils-3.4.10-py3-none-any.whl",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "version": "3.4.10"
+}

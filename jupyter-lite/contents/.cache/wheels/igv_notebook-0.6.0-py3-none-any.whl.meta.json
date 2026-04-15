@@ -1,0 +1,24 @@
+{
+  "name": "igv-notebook",
+  "release": {
+    "comment_text": "",
+    "digests": {
+      "md5": "f7c4592fd0d18e46004ba07335069f85",
+      "sha256": "493fafdea5a9a2b9ce6e4cd5230dcb9d9b88d067905693cab10bf27ecfed1429"
+    },
+    "downloads": -1,
+    "filename": "igv_notebook-0.6.0-py3-none-any.whl",
+    "has_sig": false,
+    "md5_digest": "f7c4592fd0d18e46004ba07335069f85",
+    "packagetype": "bdist_wheel",
+    "python_version": "py3",
+    "requires_python": null,
+    "size": 390304,
+    "upload_time": "2026-04-14T00:47:00.720510Z",
+    "upload_time_iso_8601": "2026-04-14T00:47:00.720510Z",
+    "url": "./igv_notebook-0.6.0-py3-none-any.whl",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "version": "0.6.0"
+}

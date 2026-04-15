@@ -1,0 +1,24 @@
+{
+  "name": "gen3Dictionary",
+  "release": {
+    "comment_text": "",
+    "digests": {
+      "md5": "dab2feb6c5313aa3c9452018f0fe7de3",
+      "sha256": "b8392788e11369edd7ea3a81ab9365deddbad5c08c677edfcf15cf667308fc0d"
+    },
+    "downloads": -1,
+    "filename": "gen3dictionary-2.0.3-py3-none-any.whl",
+    "has_sig": false,
+    "md5_digest": "dab2feb6c5313aa3c9452018f0fe7de3",
+    "packagetype": "bdist_wheel",
+    "python_version": "py3",
+    "requires_python": ">=3.9,<4.0",
+    "size": 73344,
+    "upload_time": "2026-04-14T00:47:00.719705Z",
+    "upload_time_iso_8601": "2026-04-14T00:47:00.719705Z",
+    "url": "./gen3dictionary-2.0.3-py3-none-any.whl",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "version": "2.0.3"
+}

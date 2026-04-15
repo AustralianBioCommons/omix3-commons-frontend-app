@@ -1,34 +1,163 @@
 {
   "index": "subject",
-  "initialFields": ["race", "gender", "ethnicity", "age_at_enrollment"],
+  "initialFields": [
+    "project_id",
+    "baseline_year",
+    "sex",
+    "ancestry",
+    "participant_assessment_centres.medical_historys.diabetes",
+    "participant_assessment_centres.medical_historys.diabetes_type",
+    "participant_assessment_centres.wellbeings.quality_of_life"
+  ],
   "uniqueIdField": "_subject_id",
   "dataTypename": "Subject",
   "tabs": [
     {
-      "label": "Demographic",
+      "label": "Study Selection",
       "color": "#2081A8",
       "facets": [
         {
-          "field": "gender",
-          "label": "Sex",
-          "description": "Text designations that identify sex."
+          "field": "project_id",
+          "label": "Project",
+          "cardType": "categorical"
         },
         {
-          "field": "race"
+          "field": "baseline_year",
+          "label": "Baseline Year",
+          "cardType": "categorical"
         },
-        { "field": "ethnicity" },
-        { "field": "age_at_enrollment", "type": "age" }
+        {
+          "field": "participant_assessment_centres.assessment_centre_name",
+          "label": "Assessment Centre",
+          "cardType": "categorical"
+        }
       ]
     },
     {
-      "label": "Data",
+      "label": "Demographics",
+      "color": "#2081A8",
+      "facets": [
+        {
+          "field": "sex",
+          "label": "Sex",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sex_at_birth",
+          "label": "Sex at Birth",
+          "cardType": "categorical"
+        },
+        {
+          "field": "ancestry",
+          "label": "Ancestry",
+          "cardType": "categorical"
+        },
+        {
+          "field": "education_level",
+          "label": "Education Level",
+          "cardType": "categorical"
+        },
+        {
+          "field": "employment_status",
+          "label": "Employment Status",
+          "cardType": "categorical"
+        },
+        {
+          "field": "relationship_status",
+          "label": "Relationship Status",
+          "cardType": "categorical"
+        },
+        {
+          "field": "residence_type",
+          "label": "Residence Type",
+          "cardType": "categorical"
+        },
+        {
+          "field": "country_of_birth",
+          "label": "Country of Birth",
+          "cardType": "categorical"
+        }
+      ]
+    },
+    {
+      "label": "Medical History",
+      "color": "#F39C12",
+      "facets": [
+        {
+          "field": "participant_assessment_centres.medical_historys.cancer",
+          "label": "Cancer",
+          "cardType": "categorical"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.diabetes",
+          "label": "Diabetes",
+          "cardType": "categorical"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.diabetes_type",
+          "label": "Diabetes Type",
+          "cardType": "categorical"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.diagnosed_conditions",
+          "label": "Diagnosed Conditions",
+          "cardType": "categorical"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.food_allergies",
+          "label": "Food Allergies",
+          "cardType": "categorical"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.gluten_status",
+          "label": "Gluten Status",
+          "cardType": "categorical"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.hay_fever",
+          "label": "Hay Fever",
+          "cardType": "categorical"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.hypertension",
+          "label": "Hypertension",
+          "cardType": "categorical"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.hypertension_measurement_type",
+          "label": "Hypertension Measurement Type",
+          "cardType": "categorical"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.infant_feeding",
+          "label": "Infant Feeding",
+          "cardType": "categorical"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.mode_of_birth",
+          "label": "Mode of Birth",
+          "cardType": "categorical"
+        }
+      ]
+    },
+    {
+      "label": "Wellbeing",
       "color": "#20A8A8",
       "facets": [
         {
-          "field": "experimental_group"
+          "field": "participant_assessment_centres.wellbeings.quality_of_life",
+          "label": "Quality of Life",
+          "cardType": "categorical"
         },
         {
-          "field": "project_id"
+          "field": "participant_assessment_centres.wellbeings.sleep_satisfaction",
+          "label": "Sleep Satisfaction",
+          "cardType": "categorical"
+        },
+        {
+          "field": "participant_assessment_centres.wellbeings.social_isolation",
+          "label": "Social Isolation",
+          "cardType": "categorical"
         }
       ]
     }
