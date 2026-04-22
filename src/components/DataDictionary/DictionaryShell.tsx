@@ -1,15 +1,13 @@
 'use client';
 
+import React from 'react';
 import { useCallback, useState } from 'react';
 import { Tabs } from '@mantine/core';
 import { useScrollIntoView } from '@mantine/hooks';
 import TableSearch from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/TableSearch.js';
 import ViewSelector from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/ViewSelector.js';
 import { useDictionaryContext } from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/DictionaryProvider.js';
-import {
-  SearchPathToPropertyIdString,
-  getPropertyCount,
-} from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/utils.js';
+import { SearchPathToPropertyIdString } from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/utils.js';
 import Gen3GraphView from './Gen3GraphView';
 import DictionaryCategoryPanel from './DictionaryCategoryPanel';
 import dictionaryIcons from '../../../config/icons/dataDictionary.json';
@@ -41,11 +39,11 @@ const getCategoryStyle = (category?: string) =>
 
 const DictionaryShell = () => {
   const [selectedId, setSelectedId] = useState('');
-  const [view, setView] = useState<'table' | 'graph'>('graph');
+  const [view, setView] = useState<'table' | 'graph'>('table');
   const [graphStructure, setGraphStructure] = useState<
     Array<{ id: string; title: string; category?: string; isActive: boolean }>
   >([]);
-  const { dictionary, categories, visibleCategories, config } = useDictionaryContext();
+  const { dictionary, categories, config } = useDictionaryContext();
   const { scrollIntoView, targetRef, scrollableRef } = useScrollIntoView<HTMLElement>({ offset: 60 });
 
   const scrollTo = useCallback((item: { node: string; category: string; property: string }) => {
@@ -78,38 +76,6 @@ const DictionaryShell = () => {
       <aside className="overflow-auto border-r border-base-light bg-white">
         <div className="sticky top-0 z-20 border-b border-base-light bg-white/95 p-6 backdrop-blur">
           {config?.showGraph ? <ViewSelector view={view} setView={setView} /> : null}
-          <div className="mt-5 rounded-[24px] border border-sky-100 bg-[linear-gradient(160deg,#0f172a_0%,#172554_55%,#0f766e_100%)] px-5 py-5 text-white shadow-[0_16px_40px_rgba(15,23,42,0.18)]">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-100/75">
-              Dictionary Overview
-            </p>
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 backdrop-blur-sm">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-sky-100/75">
-                  Nodes
-                </p>
-                <p className="mt-2 text-3xl font-bold leading-none text-white">
-                  {visibleCategories.length}
-                </p>
-                <p className="mt-2 text-xs leading-5 text-sky-50/80">
-                  currently visible in the commons schema
-                </p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-4 backdrop-blur-sm">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-100/80">
-                  Properties
-                </p>
-                <p className="mt-2 text-3xl font-bold leading-none text-emerald-200">
-                  {getPropertyCount(visibleCategories, dictionary)}
-                </p>
-                <p className="mt-2 text-xs leading-5 text-sky-50/80">
-                  indexed across all visible nodes
-                </p>
-              </div>
-            </div>
-            <div className="mt-4 rounded-2xl border border-white/10 bg-black/10 px-4 py-3 text-sm text-sky-50/85">
-              Use Graph View to inspect relationships and Table View to inspect field-level details.
-            </div>
-          </div>
           <div className="mt-5">
             <TableSearch selectItem={scrollTo} />
           </div>

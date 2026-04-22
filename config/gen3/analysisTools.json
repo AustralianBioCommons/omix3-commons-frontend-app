@@ -1,11 +1,11 @@
 {
   "tools": [
     {
-      "title": "OMIX3 Notebook Lab",
+      "title": "OMIX3 JupyterLite Notebook",
       "type": "notebook",
       "icon": "/images/apps/icons/jupyter.svg",
       "image": "/images/apps/generic_image.png",
-      "description": "Launch an interactive notebook to explore OMIX3 data.",
+      "description": "Launch a JupyterLite (browser-only) notebook to explore OMIX3 data.",
       "loginRequired": false,
       "href": "/notebook/notebook_omix3.ipynb",
       "btnText": "Open Notebook"
@@ -18,6 +18,15 @@
       "description": "Use clinical variables to perform basic statistical analysis of your cohort.",
       "loginRequired": false,
       "href": "/ClinicalDataAnalysis"
+    },
+    {
+      "title": "Clinical Insights",
+      "type": "application",
+      "icon": "/images/apps/icons/gen3_app.png",
+      "image": "/images/apps/ClinicalInsights.png",
+      "description": "Preview the curated field groups and interaction model for a cross-filtered clinical dashboard.",
+      "loginRequired": false,
+      "href": "/ClinicalInsights"
     }
   ]
 }

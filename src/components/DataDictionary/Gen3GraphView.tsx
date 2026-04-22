@@ -1,8 +1,9 @@
 'use client';
 
+import React from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { DataDictionary } from '@gen3/frontend';
-import { ActionIcon, Badge, Button, Paper, ScrollArea, Text } from '@mantine/core';
+import { ActionIcon, Badge, Button, Paper, Text } from '@mantine/core';
 import { MdAdd, MdClose, MdFitScreen, MdRemove } from 'react-icons/md';
 import {
   createNodesAndEdges,
@@ -202,7 +203,6 @@ const buildTsv = (
 const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewProps) => {
   const selectedNodeFromTable = parseSelectedNodeId(selectedId);
   const [activeNodeId, setActiveNodeId] = useState(selectedNodeFromTable);
-  const [hasInitializedDefaultNode, setHasInitializedDefaultNode] = useState(false);
   const [legendOpen, setLegendOpen] = useState(false);
   const [connectors, setConnectors] = useState<Connector[]>([]);
   const [fitScale, setFitScale] = useState(1);
@@ -237,10 +237,9 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
   }, [dictionary]);
 
   const contentScale = clamp(fitScale * zoomLevel, MIN_ZOOM, MAX_ZOOM);
-  const activeNode =
-    graph.byId[activeNodeId] ??
-    graph.byId[selectedNodeFromTable] ??
-    graph.rows[0]?.[0];
+  const focusedNodeId = activeNodeId || selectedNodeFromTable;
+  const hasFocusedNode = Boolean(focusedNodeId);
+  const activeNode = focusedNodeId ? graph.byId[focusedNodeId] : undefined;
   const activeStats = getPropertyStats(activeNode);
 
   const categoryLegend = useMemo(() => {
@@ -281,9 +280,9 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
     const parentMap = graph.edges.reduce<
       Record<string, Array<{ parentId: string; edgeId: string }>>
     >((acc, edge) => {
-      if (!acc[edge.target.id]) acc[edge.target.id] = [];
-      acc[edge.target.id].push({
-        parentId: edge.source.id,
+      if (!acc[edge.source.id]) acc[edge.source.id] = [];
+      acc[edge.source.id].push({
+        parentId: edge.target.id,
         edgeId: `${edge.source.id}-${edge.target.id}`,
       });
       return acc;
@@ -304,8 +303,13 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
       if (parents.length === 0) return null;
 
       const currentLevel = levelById[nodeId] ?? Number.MAX_SAFE_INTEGER;
+      const upstreamParents = parents.filter((parent) => {
+        const parentLevel = levelById[parent.parentId] ?? Number.MAX_SAFE_INTEGER;
+        return parentLevel < currentLevel;
+      });
+      if (upstreamParents.length === 0) return null;
 
-      const sortedParents = [...parents].sort((left, right) => {
+      const sortedParents = [...upstreamParents].sort((left, right) => {
         const leftLevel = levelById[left.parentId] ?? Number.MAX_SAFE_INTEGER;
         const rightLevel = levelById[right.parentId] ?? Number.MAX_SAFE_INTEGER;
 
@@ -360,16 +364,8 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
   const selectedStructureEdgeIds = selectedStructure.edgeIds;
 
   useEffect(() => {
-    if (!hasInitializedDefaultNode && !activeNodeId && graph.rows[0]?.[0]?.id) {
-      setActiveNodeId(graph.rows[0][0].id);
-      setHasInitializedDefaultNode(true);
-    }
-  }, [activeNodeId, graph.rows, hasInitializedDefaultNode]);
-
-  useEffect(() => {
     if (selectedNodeFromTable) {
       setActiveNodeId(selectedNodeFromTable);
-      setHasInitializedDefaultNode(true);
     }
   }, [selectedNodeFromTable]);
 
@@ -602,7 +598,13 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
                         stroke={connector.isRequired ? '#f28c28' : '#111827'}
                         strokeLinecap="round"
                         strokeWidth={2.2}
-                        strokeOpacity={0.78}
+                        strokeOpacity={
+                          hasFocusedNode
+                            ? selectedStructureEdgeIds.has(connector.id)
+                              ? 0.9
+                              : 0.12
+                            : 0.78
+                        }
                       />
                     ))}
                   </svg>
@@ -652,6 +654,7 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
                     <div key={`row-${rowIndex}`} className="relative z-10 flex items-center justify-center gap-10">
                       {row.map((node) => {
                         const isSelected = node.id === activeNodeId || node.id === selectedNodeFromTable;
+                        const isHighlighted = selectedStructureNodeIds.has(node.id);
                         const stats = getPropertyStats(node);
                         const style = getCategoryStyle(node.category);
 
@@ -669,8 +672,8 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
                               width: DEFAULT_NODE_WIDTH,
                               borderColor: style.border,
                               backgroundColor: '#ffffff',
-                              opacity: 1,
-                              filter: 'none',
+                              opacity: hasFocusedNode ? (isHighlighted ? 1 : 0.22) : 1,
+                              filter: hasFocusedNode && !isHighlighted ? 'grayscale(0.18)' : 'none',
                               boxShadow: isSelected
                                 ? `0 0 0 3px ${style.soft}, 0 12px 28px rgba(15,23,42,0.18)`
                                 : '0 2px 8px rgba(15,23,42,0.08)',
@@ -715,75 +718,6 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
       {propertiesOpen && activeNode ? (
         <div className="absolute inset-0 z-50 bg-slate-900/35 p-5 backdrop-blur-[1px]">
           <div className="flex h-full min-h-0 overflow-hidden rounded-[26px] border border-slate-300 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.28)]">
-            <aside className="flex w-[420px] shrink-0 flex-col border-r border-slate-300 bg-white">
-              <div className="border-b border-slate-300 px-4 pb-5 pt-8">
-                <Text fw={800} className="text-[13px] uppercase tracking-[0.18em] text-slate-500">
-                  Dictionary Overview
-                </Text>
-                <Text fw={700} className="mt-4 text-[22px] text-slate-900">
-                  Data Model Structure
-                </Text>
-                <Text className="mt-2 text-[15px] leading-6 text-slate-500">
-                  Showing the selected node and its upstream connected nodes.
-                </Text>
-              </div>
-
-              <ScrollArea className="min-h-0 flex-1 px-3 py-5">
-                <div className="space-y-2">
-                  {selectedStructure.nodes.map((node, index) => {
-                    const selected = node.id === activeNode.id;
-                    return (
-                      <div key={node.id} className="relative">
-                        {index < selectedStructure.nodes.length - 1 ? (
-                          <div className="absolute left-8 top-12 h-[calc(100%-16px)] w-[2px] bg-slate-200" />
-                        ) : null}
-                        <button
-                          type="button"
-                          onClick={() => setActiveNodeId(node.id)}
-                          className={`relative flex w-full items-center gap-4 rounded-xl border px-3 py-3 text-left transition ${
-                            selected
-                              ? 'border-sky-200 bg-sky-50 shadow-sm'
-                              : 'border-transparent hover:border-slate-200 hover:bg-slate-50'
-                          }`}
-                        >
-                          <span
-                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-                            style={{ backgroundColor: node.style.badge, color: node.style.icon }}
-                          >
-                            <span className="h-5 w-5" dangerouslySetInnerHTML={node.icon} />
-                          </span>
-                          <div className="min-w-0">
-                            <div
-                              className={`truncate text-[20px] font-semibold ${
-                                selected ? 'text-[#2d7fd0]' : 'text-slate-800'
-                              }`}
-                            >
-                              {node.title}
-                            </div>
-                            <div className="text-[12px] uppercase tracking-[0.14em] text-slate-400">
-                              {toLabel(node.category)}
-                            </div>
-                          </div>
-                        </button>
-                      </div>
-                    );
-                  })}
-                </div>
-              </ScrollArea>
-
-              <div className="space-y-4 border-t border-slate-300 p-4">
-                <Button
-                  radius="md"
-                  size="lg"
-                  className="w-full"
-                  style={{ backgroundColor: '#0f4b8c' }}
-                  onClick={() => setPropertiesOpen(false)}
-                >
-                  Close properties
-                </Button>
-              </div>
-            </aside>
-
             <section className="flex min-w-0 flex-1 flex-col bg-white">
               <div className="flex items-center justify-between bg-[#545454] px-6 py-4 text-white">
                 <div className="flex items-center gap-3">

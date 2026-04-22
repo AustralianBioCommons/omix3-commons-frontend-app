@@ -1,0 +1,158 @@
+{
+  "index": "subject",
+  "dataTypename": "Subject",
+  "uniqueIdField": "_subject_id",
+  "title": "Clinical Insights",
+  "description": "An interactive clinical dashboard concept for cross-filtered cohort exploration across curated participant variables.",
+  "explorerHref": "/Explorer",
+  "headerMetadata": {
+    "title": "OMIX3 Clinical Insights",
+    "content": "Interactive clinical cohort dashboard",
+    "key": "omix3-clinical-insights-page"
+  },
+  "pageNote": "Clinical Insights is intended to complement Explorer with a chart-first, cross-filtered dashboard experience across selected participant, medical history, and wellbeing variables.",
+  "interactionModel": {
+    "name": "cross-filtered-dashboard",
+    "status": "scaffold",
+    "summary": "Selecting a value in one chart is expected to update the filter context for the rest of the dashboard."
+  },
+  "initialFields": [
+    "project_id",
+    "baseline_year",
+    "sex",
+    "ancestry",
+    "participant_assessment_centres.medical_historys.diabetes",
+    "participant_assessment_centres.medical_historys.diabetes_type",
+    "participant_assessment_centres.wellbeings.quality_of_life"
+  ],
+  "tabs": [
+    {
+      "label": "Study Selection",
+      "color": "#2081A8",
+      "purpose": "Use these variables to define the study frame and assessment site context.",
+      "facets": [
+        {
+          "field": "project_id",
+          "label": "Project"
+        },
+        {
+          "field": "baseline_year",
+          "label": "Baseline Year"
+        },
+        {
+          "field": "participant_assessment_centres.assessment_centre_name",
+          "label": "Assessment Centre"
+        }
+      ]
+    },
+    {
+      "label": "Demographics",
+      "color": "#2081A8",
+      "purpose": "Review cohort composition and socio-demographic structure.",
+      "facets": [
+        {
+          "field": "sex",
+          "label": "Sex"
+        },
+        {
+          "field": "sex_at_birth",
+          "label": "Sex at Birth"
+        },
+        {
+          "field": "ancestry",
+          "label": "Ancestry"
+        },
+        {
+          "field": "education_level",
+          "label": "Education Level"
+        },
+        {
+          "field": "employment_status",
+          "label": "Employment Status"
+        },
+        {
+          "field": "relationship_status",
+          "label": "Relationship Status"
+        },
+        {
+          "field": "residence_type",
+          "label": "Residence Type"
+        },
+        {
+          "field": "country_of_birth",
+          "label": "Country of Birth"
+        }
+      ]
+    },
+    {
+      "label": "Medical History",
+      "color": "#F39C12",
+      "purpose": "Assess clinical burden, diagnoses, and participant health background.",
+      "facets": [
+        {
+          "field": "participant_assessment_centres.medical_historys.cancer",
+          "label": "Cancer"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.diabetes",
+          "label": "Diabetes"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.diabetes_type",
+          "label": "Diabetes Type"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.diagnosed_conditions",
+          "label": "Diagnosed Conditions"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.food_allergies",
+          "label": "Food Allergies"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.gluten_status",
+          "label": "Gluten Status"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.hay_fever",
+          "label": "Hay Fever"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.hypertension",
+          "label": "Hypertension"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.hypertension_measurement_type",
+          "label": "Hypertension Measurement Type"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.infant_feeding",
+          "label": "Infant Feeding"
+        },
+        {
+          "field": "participant_assessment_centres.medical_historys.mode_of_birth",
+          "label": "Mode of Birth"
+        }
+      ]
+    },
+    {
+      "label": "Wellbeing",
+      "color": "#20A8A8",
+      "purpose": "Surface participant-reported wellbeing measures suitable for cross-filtered cohort review.",
+      "facets": [
+        {
+          "field": "participant_assessment_centres.wellbeings.quality_of_life",
+          "label": "Quality of Life"
+        },
+        {
+          "field": "participant_assessment_centres.wellbeings.sleep_satisfaction",
+          "label": "Sleep Satisfaction"
+        },
+        {
+          "field": "participant_assessment_centres.wellbeings.social_isolation",
+          "label": "Social Isolation"
+        }
+      ]
+    }
+  ]
+}
