@@ -13,10 +13,17 @@ import {
   Text,
   Tooltip,
 } from '@mantine/core';
+import { ReactECharts } from '@gen3/frontend';
+import type { ReactEChartsProps } from '@gen3/frontend';
 import { MdBarChart, MdClose, MdDownload } from 'react-icons/md';
-import ReactECharts from '../../../node_modules/@gen3/frontend/dist/dts/components/charts/echarts/ReactECharts.js';
 
 import { formatPercent, truncateLabel } from './utils';
+
+type ReactEChartsHandle = NonNullable<
+  React.ComponentProps<typeof ReactECharts>['ref']
+> extends React.RefObject<infer T>
+  ? T
+  : never;
 
 type Bucket = {
   key: string;
@@ -24,8 +31,8 @@ type Bucket = {
   count: number;
 };
 
-type ChartClickParams = {
-  name: string;
+type NamedChartParams = {
+  name?: string;
 };
 
 type ClinicalInsightsCardProps = {
@@ -50,15 +57,7 @@ const ClinicalInsightsCard = ({
   onRemoveCard,
 }: ClinicalInsightsCardProps) => {
   const [displayType, setDisplayType] = useState<'count' | 'percent'>('count');
-  const chartRef = useRef<{
-    getEchartsInstance?: () => {
-      getDataURL: (options: {
-        type: 'png' | 'svg';
-        pixelRatio: number;
-        backgroundColor: string;
-      }) => string;
-    } | undefined;
-  } | null>(null);
+  const chartRef = useRef<ReactEChartsHandle | null>(null);
   const visibleBuckets = buckets;
   const chartBuckets = buckets;
   const selectableBuckets = visibleBuckets.filter((bucket) => bucket.count > 0);
@@ -84,33 +83,39 @@ const ClinicalInsightsCard = ({
     [chartBuckets, displayType, total, selectedValues, color],
   );
 
-  const chartOption = useMemo(
+  const getChartParamName = (params: NamedChartParams | NamedChartParams[]) =>
+    Array.isArray(params) ? (params[0]?.name ?? '') : (params.name ?? '');
+
+  const chartOption = useMemo<ReactEChartsProps['option']>(
     () => ({
       grid: { left: 56, right: 16, top: 20, bottom: 80 },
       tooltip: {
-        trigger: 'item',
-        formatter: (params: ChartClickParams) => {
-          const bucket = chartBuckets.find(
-            (item) => item.label === params.name || truncateLabel(item.label, 18) === params.name,
+        trigger: 'item' as const,
+        formatter: (params) => {
+          const paramName = getChartParamName(
+            params as NamedChartParams | NamedChartParams[],
           );
-          if (!bucket) return params.name;
+          const bucket = chartBuckets.find(
+            (item) => item.label === paramName || truncateLabel(item.label, 18) === paramName,
+          );
+          if (!bucket) return paramName;
           return `${bucket.label}<br/>${bucket.count} (${formatPercent(bucket.count, total)})`;
         },
       },
       xAxis: {
-        type: 'category',
+        type: 'category' as const,
         data: chartBuckets.map((bucket) => truncateLabel(bucket.label, 18)),
         axisLabel: {
           rotate: 35,
         },
       },
       yAxis: {
-        type: 'value',
+        type: 'value' as const,
         name: displayType === 'percent' ? '% of Subjects' : '# of Subjects',
       },
       series: [
         {
-          type: 'bar',
+          type: 'bar' as const,
           data: chartData,
           barMaxWidth: 72,
         },
@@ -201,7 +206,7 @@ const ClinicalInsightsCard = ({
             ref={chartRef}
             option={chartOption}
             events={{
-              click: (params: ChartClickParams) => {
+              click: (params: NamedChartParams) => {
                 const rawKey =
                   chartData.find(
                     (item) => item.name === params.name || truncateLabel(item.name, 18) === params.name,

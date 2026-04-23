@@ -1,6 +1,6 @@
 // src/pages/gradio/[appName].tsx
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Loading from '@/components/Loading';
 
 const GradioApp = () => {
