@@ -122,7 +122,7 @@ const CATEGORY_STYLES: Record<string, CategoryStyle> = {
 };
 
 const normalizeCategory = (value?: string) =>
-  (value ?? 'default').trim().toLowerCase().replace(/\s+/g, '-');
+  (value ?? 'default').trim().toLowerCase().replace(/[\s_]+/g, '-');
 
 const getCategoryStyle = (category?: string) =>
   CATEGORY_STYLES[normalizeCategory(category)] ?? CATEGORY_STYLES.default;

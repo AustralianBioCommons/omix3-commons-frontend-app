@@ -15,7 +15,7 @@ import dictionaryIcons from '../../../config/icons/dataDictionary.json';
 const ICONS = dictionaryIcons.icons as Record<string, { body: string }>;
 
 const normalizeCategory = (value?: string) =>
-  (value ?? 'default').trim().toLowerCase().replace(/\s+/g, '-');
+  (value ?? 'default').trim().toLowerCase().replace(/[\s_]+/g, '-');
 
 const getIconMarkup = (category?: string) => {
   const icon = ICONS[normalizeCategory(category)] ?? ICONS.default;
