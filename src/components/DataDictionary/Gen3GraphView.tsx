@@ -498,79 +498,85 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
     <div className="relative h-full overflow-hidden bg-[#f7f8fb]">
       <div className="absolute inset-y-0 left-0 w-[1px] bg-slate-300/70" />
       <div className="h-full min-h-[860px]">
-        <div ref={scrollRef} className="relative h-full overflow-auto">
-          <div className="absolute left-6 top-6 z-30 flex flex-col gap-3">
-            <ActionIcon
-              variant="filled"
-              color="blue"
-              radius="sm"
-              size={46}
-              onClick={() => setZoomLevel((value) => clamp(value + ZOOM_STEP, 0.6, 3))}
-            >
-              <MdAdd size={28} />
-            </ActionIcon>
-            <ActionIcon
-              variant="filled"
-              color="blue"
-              radius="sm"
-              size={46}
-              onClick={() => setZoomLevel((value) => clamp(value - ZOOM_STEP, 0.6, 3))}
-            >
-              <MdRemove size={28} />
-            </ActionIcon>
-            <ActionIcon variant="filled" color="blue" radius="sm" size={46} onClick={() => setZoomLevel(1)}>
-              <MdFitScreen size={24} />
-            </ActionIcon>
-          </div>
+        <div className="absolute left-6 top-6 z-30 flex flex-col gap-3">
+          <ActionIcon
+            variant="filled"
+            color="blue"
+            radius="sm"
+            size={46}
+            onClick={() => setZoomLevel((value) => clamp(value + ZOOM_STEP, 0.6, 3))}
+          >
+            <MdAdd size={28} />
+          </ActionIcon>
+          <ActionIcon
+            variant="filled"
+            color="blue"
+            radius="sm"
+            size={46}
+            onClick={() => setZoomLevel((value) => clamp(value - ZOOM_STEP, 0.6, 3))}
+          >
+            <MdRemove size={28} />
+          </ActionIcon>
+          <ActionIcon variant="filled" color="blue" radius="sm" size={46} onClick={() => setZoomLevel(1)}>
+            <MdFitScreen size={24} />
+          </ActionIcon>
+        </div>
 
-          <div className="absolute right-6 top-6 z-40">
-            {!legendOpen ? (
+        <div className="absolute right-6 top-6 z-40">
+          {!legendOpen ? (
+            <ActionIcon
+              variant="filled"
+              color="blue"
+              radius="xl"
+              size={58}
+              onClick={() => setLegendOpen(true)}
+              aria-label="Open legend"
+            >
+              <span className="text-[34px] font-bold leading-none text-white">?</span>
+            </ActionIcon>
+          ) : (
+            <Paper radius="md" className="w-[360px] border border-slate-200 bg-white p-6 shadow-sm">
               <ActionIcon
-                variant="filled"
-                color="blue"
-                radius="xl"
-                size={58}
-                onClick={() => setLegendOpen(true)}
-                aria-label="Open legend"
+                variant="subtle"
+                color="gray"
+                className="absolute right-4 top-4"
+                onClick={() => setLegendOpen(false)}
+                aria-label="Close legend"
               >
-                <span className="text-[34px] font-bold leading-none text-white">?</span>
+                <MdClose size={24} />
               </ActionIcon>
-            ) : (
-              <Paper radius="md" className="w-[360px] border border-slate-200 bg-white p-6 shadow-sm">
-                <ActionIcon
-                  variant="subtle"
-                  color="gray"
-                  className="absolute right-4 top-4"
-                  onClick={() => setLegendOpen(false)}
-                  aria-label="Close legend"
-                >
-                  <MdClose size={24} />
-                </ActionIcon>
-                <div className="space-y-5 pr-8 text-sm text-slate-700">
-                  <div className="flex items-center gap-3">
-                    <span className="h-[3px] w-10 bg-[#f28c28]" />
-                    <span>Required Link</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="h-[3px] w-10 bg-[#111827]" />
-                    <span>Optional Link</span>
-                  </div>
-                  {categoryLegend.map((entry) => (
-                    <div key={entry.key} className="flex items-center gap-3">
-                      <span
-                        className="flex h-9 w-9 items-center justify-center rounded-full"
-                        style={{ backgroundColor: entry.style.badge, color: entry.style.icon }}
-                      >
-                        <span className="h-5 w-5" dangerouslySetInnerHTML={entry.icon} />
-                      </span>
-                      <span>{entry.style.label}</span>
-                    </div>
-                  ))}
+              <div className="space-y-5 pr-8 text-sm text-slate-700">
+                <div className="flex items-center gap-3">
+                  <span className="h-[3px] w-10 bg-[#f28c28]" />
+                  <span>Required Link</span>
                 </div>
-              </Paper>
-            )}
-          </div>
+                <div className="flex items-center gap-3">
+                  <span className="h-[3px] w-10 bg-[#111827]" />
+                  <span>Optional Link</span>
+                </div>
+                {categoryLegend.map((entry) => (
+                  <div key={entry.key} className="flex items-center gap-3">
+                    <span
+                      className="flex h-9 w-9 items-center justify-center rounded-full"
+                      style={{ backgroundColor: entry.style.badge, color: entry.style.icon }}
+                    >
+                      <span className="h-5 w-5" dangerouslySetInnerHTML={entry.icon} />
+                    </span>
+                    <span>{entry.style.label}</span>
+                  </div>
+                ))}
+              </div>
+            </Paper>
+          )}
+        </div>
 
+        <div
+          ref={scrollRef}
+          className="relative h-full overflow-auto"
+          onClick={() => {
+            setActiveNodeId('');
+          }}
+        >
           <div className="relative px-24 py-10">
             <div
               ref={canvasRef}
@@ -615,6 +621,9 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
                       style={{
                         left: popupPosition.left,
                         top: popupPosition.top,
+                      }}
+                      onClick={(event) => {
+                        event.stopPropagation();
                       }}
                     >
                       <Paper
@@ -665,7 +674,10 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
                               cardRefs.current[node.id] = element;
                             }}
                             type="button"
-                            onClick={() => setActiveNodeId(node.id)}
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              setActiveNodeId(node.id);
+                            }}
                             className="relative rounded-[10px] border-2 bg-white px-5 pb-5 pt-6 text-center shadow-sm transition-transform hover:-translate-y-0.5"
                             style={{
                               minHeight: DEFAULT_NODE_HEIGHT,
@@ -685,7 +697,12 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
                             >
                               <span className="h-4 w-4" dangerouslySetInnerHTML={getIconMarkup(node.category)} />
                             </span>
-                            <Text fw={700} size="md" className="leading-6 text-slate-900">
+                            <Text
+                              fw={700}
+                              size="lg"
+                              className="block leading-7 text-slate-900"
+                              style={{ overflowWrap: 'anywhere' }}
+                            >
                               {node.title ?? node.id}
                             </Text>
                             <Text size="xs" className="mt-2 uppercase tracking-[0.14em] text-slate-500">
