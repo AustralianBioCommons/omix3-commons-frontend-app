@@ -5,10 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { DataDictionary } from '@gen3/frontend';
 import { ActionIcon, Badge, Button, Paper, Text } from '@mantine/core';
 import { MdAdd, MdClose, MdFitScreen, MdRemove } from 'react-icons/md';
-import {
-  createNodesAndEdges,
-  nodesBreadthFirst,
-} from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/graphViewDataUtils.js';
+import { createNodesAndEdges } from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/graphViewDataUtils.js';
 import PropertiesTable from '../../../node_modules/@gen3/frontend/dist/dts/features/Dictionary/PropertiesTable.js';
 import dictionaryIcons from '../../../config/icons/dataDictionary.json';
 
@@ -56,11 +53,12 @@ type CategoryStyle = {
 };
 
 const ICONS = dictionaryIcons.icons as Record<string, { body: string }>;
-const DEFAULT_NODE_WIDTH = 220;
-const DEFAULT_NODE_HEIGHT = 112;
+const DEFAULT_NODE_WIDTH = 250;
+const DEFAULT_NODE_HEIGHT = 128;
 const MIN_ZOOM = 0.45;
 const MAX_ZOOM = 1.85;
 const ZOOM_STEP = 0.15;
+const CONTROL_BUTTON_COLOR = '#475569';
 
 const CATEGORY_STYLES: Record<string, CategoryStyle> = {
   administrative: {
@@ -200,6 +198,51 @@ const buildTsv = (
   return ['Property\tType\tRequired\tDescription', ...rows].join('\n');
 };
 
+const buildRowsFromLongestParentPath = (nodes: GraphNode[], edges: GraphEdge[]) => {
+  const byId = nodes.reduce<Record<string, GraphNode>>((acc, node) => {
+    acc[node.id] = node;
+    return acc;
+  }, {});
+
+  const parentsByNode = edges.reduce<Record<string, string[]>>((acc, edge) => {
+    if (!acc[edge.source.id]) acc[edge.source.id] = [];
+    acc[edge.source.id].push(edge.target.id);
+    return acc;
+  }, {});
+
+  const levelMemo: Record<string, number> = {};
+  const activeStack = new Set<string>();
+
+  const getLevel = (nodeId: string): number => {
+    if (levelMemo[nodeId] !== undefined) return levelMemo[nodeId];
+    if (activeStack.has(nodeId)) return 0;
+
+    activeStack.add(nodeId);
+    const parents = parentsByNode[nodeId] ?? [];
+    const level =
+      parents.length === 0 ? 0 : Math.max(...parents.map((parentId) => getLevel(parentId) + 1));
+    activeStack.delete(nodeId);
+    levelMemo[nodeId] = level;
+    return level;
+  };
+
+  const rowsByLevel = Object.values(byId).reduce<Record<number, GraphNode[]>>((acc, node) => {
+    const level = getLevel(node.id);
+    if (!acc[level]) acc[level] = [];
+    acc[level].push(node);
+    return acc;
+  }, {});
+
+  return Object.keys(rowsByLevel)
+    .map(Number)
+    .sort((left, right) => left - right)
+    .map((level) =>
+      rowsByLevel[level].sort((left, right) =>
+        (left.title ?? left.id).localeCompare(right.title ?? right.id),
+      ),
+    );
+};
+
 const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewProps) => {
   const selectedNodeFromTable = parseSelectedNodeId(selectedId);
   const [activeNodeId, setActiveNodeId] = useState(selectedNodeFromTable);
@@ -219,20 +262,16 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
       nodes: GraphNode[];
       edges: GraphEdge[];
     };
-    const tree = nodesBreadthFirst(nodes as any, edges as any) as {
-      treeLevel2Names: string[][];
-    };
     const byId = nodes.reduce<Record<string, GraphNode>>((acc, node) => {
       acc[node.id] = node;
       return acc;
     }, {});
+    const rows = buildRowsFromLongestParentPath(nodes, edges);
 
     return {
       byId,
       edges,
-      rows: tree.treeLevel2Names.map((row) =>
-        row.map((id) => byId[id]).filter((node): node is GraphNode => Boolean(node)),
-      ),
+      rows,
     };
   }, [dictionary]);
 
@@ -297,43 +336,37 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
 
     const upstreamIds = new Set<string>();
     const upstreamEdgeIds = new Set<string>();
+    const visited = new Set<string>();
+    const queue = [activeNode.id];
 
-    const pickPrimaryParent = (nodeId: string) => {
-      const parents = parentMap[nodeId] ?? [];
-      if (parents.length === 0) return null;
+    while (queue.length > 0) {
+      const cursorId = queue.shift();
+      if (!cursorId || visited.has(cursorId)) continue;
 
-      const currentLevel = levelById[nodeId] ?? Number.MAX_SAFE_INTEGER;
-      const upstreamParents = parents.filter((parent) => {
-        const parentLevel = levelById[parent.parentId] ?? Number.MAX_SAFE_INTEGER;
-        return parentLevel < currentLevel;
-      });
-      if (upstreamParents.length === 0) return null;
-
-      const sortedParents = [...upstreamParents].sort((left, right) => {
-        const leftLevel = levelById[left.parentId] ?? Number.MAX_SAFE_INTEGER;
-        const rightLevel = levelById[right.parentId] ?? Number.MAX_SAFE_INTEGER;
-
-        const leftGap = currentLevel - leftLevel;
-        const rightGap = currentLevel - rightLevel;
-        if (leftGap !== rightGap) return leftGap - rightGap;
-
-        if (leftLevel !== rightLevel) return leftLevel - rightLevel;
-
-        const leftNode = graph.byId[left.parentId];
-        const rightNode = graph.byId[right.parentId];
-        return (leftNode?.title ?? left.parentId).localeCompare(rightNode?.title ?? right.parentId);
-      });
-
-      return sortedParents[0];
-    };
-
-    let cursorId: string | null = activeNode.id;
-    while (cursorId) {
+      visited.add(cursorId);
       upstreamIds.add(cursorId);
-      const nextParent = pickPrimaryParent(cursorId);
-      if (!nextParent) break;
-      upstreamEdgeIds.add(nextParent.edgeId);
-      cursorId = nextParent.parentId;
+
+      const currentLevel = levelById[cursorId] ?? Number.MAX_SAFE_INTEGER;
+      const upstreamParents = (parentMap[cursorId] ?? [])
+        .filter((parent) => {
+          const parentLevel = levelById[parent.parentId] ?? Number.MAX_SAFE_INTEGER;
+          return parentLevel < currentLevel;
+        })
+        .sort((left, right) => {
+          const leftLevel = levelById[left.parentId] ?? Number.MAX_SAFE_INTEGER;
+          const rightLevel = levelById[right.parentId] ?? Number.MAX_SAFE_INTEGER;
+
+          if (leftLevel !== rightLevel) return leftLevel - rightLevel;
+
+          const leftNode = graph.byId[left.parentId];
+          const rightNode = graph.byId[right.parentId];
+          return (leftNode?.title ?? left.parentId).localeCompare(rightNode?.title ?? right.parentId);
+        });
+
+      upstreamParents.forEach((parent) => {
+        upstreamEdgeIds.add(parent.edgeId);
+        if (!visited.has(parent.parentId)) queue.push(parent.parentId);
+      });
     }
 
     const nodes = Array.from(upstreamIds)
@@ -501,24 +534,33 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
         <div className="absolute left-6 top-6 z-30 flex flex-col gap-3">
           <ActionIcon
             variant="filled"
-            color="blue"
+            color={CONTROL_BUTTON_COLOR}
             radius="sm"
-            size={46}
+            size={38}
+            styles={{ root: { backgroundColor: CONTROL_BUTTON_COLOR } }}
             onClick={() => setZoomLevel((value) => clamp(value + ZOOM_STEP, 0.6, 3))}
           >
-            <MdAdd size={28} />
+            <MdAdd size={22} />
           </ActionIcon>
           <ActionIcon
             variant="filled"
-            color="blue"
+            color={CONTROL_BUTTON_COLOR}
             radius="sm"
-            size={46}
+            size={38}
+            styles={{ root: { backgroundColor: CONTROL_BUTTON_COLOR } }}
             onClick={() => setZoomLevel((value) => clamp(value - ZOOM_STEP, 0.6, 3))}
           >
-            <MdRemove size={28} />
+            <MdRemove size={22} />
           </ActionIcon>
-          <ActionIcon variant="filled" color="blue" radius="sm" size={46} onClick={() => setZoomLevel(1)}>
-            <MdFitScreen size={24} />
+          <ActionIcon
+            variant="filled"
+            color={CONTROL_BUTTON_COLOR}
+            radius="sm"
+            size={38}
+            styles={{ root: { backgroundColor: CONTROL_BUTTON_COLOR } }}
+            onClick={() => setZoomLevel(1)}
+          >
+            <MdFitScreen size={20} />
           </ActionIcon>
         </div>
 
@@ -526,13 +568,14 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
           {!legendOpen ? (
             <ActionIcon
               variant="filled"
-              color="blue"
+              color={CONTROL_BUTTON_COLOR}
               radius="xl"
-              size={58}
+              size={48}
+              styles={{ root: { backgroundColor: CONTROL_BUTTON_COLOR } }}
               onClick={() => setLegendOpen(true)}
               aria-label="Open legend"
             >
-              <span className="text-[34px] font-bold leading-none text-white">?</span>
+              <span className="text-[28px] font-bold leading-none text-white">?</span>
             </ActionIcon>
           ) : (
             <Paper radius="md" className="w-[360px] border border-slate-200 bg-white p-6 shadow-sm">
@@ -699,8 +742,8 @@ const Gen3GraphView = ({ dictionary, selectedId, onStructureChange }: GraphViewP
                             </span>
                             <Text
                               fw={700}
-                              size="lg"
-                              className="block leading-7 text-slate-900"
+                              size="1.55rem"
+                              className="block leading-6 text-slate-900"
                               style={{ overflowWrap: 'anywhere' }}
                             >
                               {node.title ?? node.id}
