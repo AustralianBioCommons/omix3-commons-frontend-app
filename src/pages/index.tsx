@@ -79,26 +79,30 @@ const LandingPage = ({ headerProps, footerProps, mainProps, headerMetadata, land
         {landingPage?.body?.map((component, index) => {
           if (component.title) {
             return (
-              <Title
-                key={`title-${index}`}
-                className={`mb-5 pl-20 pb-2 ${index % 2 === 0 ? 'text-primary' : 'text-primary-lighter'}`}
-                order={component.title.level}
-              >
-                {component.title.text}
-              </Title>
+              <div key={`title-${index}`} className="mx-20 mt-8 grid grid-cols-1 lg:grid-cols-2">
+                <div className="flex justify-center pr-0 text-left lg:pr-10">
+                  <Title
+                    className={`mb-8 w-full max-w-[44rem] px-0 text-left text-xl font-semibold tracking-tight lg:text-3xl ${index % 2 === 0 ? 'text-primary' : 'text-primary-lighter'}`}
+                    order={component.title.level}
+                  >
+                    {component.title.text}
+                  </Title>
+                </div>
+              </div>
             );
           }
 
           if (component.splitarea) {
             return (
-              <div key={`split-${index}`} className="mx-20 grid grid-cols-1 gap-8 lg:grid-cols-2">
-                <div className="pr-0 lg:pr-10">
+              <div key={`split-${index}`} className="mx-20 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
+                <div className="flex justify-center pr-0 text-left lg:pr-10">
+                  <div className="w-full max-w-[44rem]">
                   {component.splitarea.left.map((item, itemIndex) => {
                     if (item.text) {
                       return (
                         <div
                           key={`text-${itemIndex}`}
-                          className="prose mb-5 !mt-0 sm:prose-base 2xl:prose-lg"
+                          className="prose mb-5 ml-0 mr-auto max-w-[44rem] !mt-0 text-left sm:prose-lg 2xl:prose-xl"
                           dangerouslySetInnerHTML={{ __html: item.text }}
                         />
                       );
@@ -124,8 +128,9 @@ const LandingPage = ({ headerProps, footerProps, mainProps, headerMetadata, land
 
                     return null;
                   })}
+                  </div>
                 </div>
-                <div className="min-h-[420px]">
+                <div className="min-h-[420px] lg:-mt-8">
                   <ProjectSummaryHero />
                 </div>
               </div>
@@ -138,24 +143,26 @@ const LandingPage = ({ headerProps, footerProps, mainProps, headerMetadata, land
 
           if (component.cardsArea) {
             return (
-              <div key={`cards-${index}`} className="text-center">
+              <div key={`cards-${index}`} className="mx-auto mt-16 w-full max-w-[1500px] px-8 text-center lg:px-12">
                 <Title className="my-5" order={3}>
                   {component.cardsArea.title}
                 </Title>
-                <ul className="mx-20 grid gap-4 !p-0 md:grid-cols-2 xl:grid-cols-4">
+                <ul className="mx-auto flex max-w-[900px] flex-wrap justify-center gap-8 !p-0">
                   {component.cardsArea.cards.map((card) => {
                     const Icon = cardIcons[card.icon];
 
                     return (
                       <li
                         key={card.btnText}
-                        className="mx-0 flex flex-col items-center justify-between border shadow-lg !p-5"
+                        className="flex h-[26rem] w-full max-w-[24rem] flex-col items-center justify-center rounded-xl border border-secondary-lightest bg-base-max shadow-lg !p-8"
                       >
                         {Icon ? <Icon className="inline-block text-7xl text-accent-lighter" /> : null}
-                        <p className="mb-2 block leading-6 text-primary">{card.bodyText}</p>
+                        <p className="mb-6 mt-6 block max-w-[30rem] text-center leading-6 text-primary">
+                          {card.bodyText}
+                        </p>
                         <Gen3ButtonReverse
                           colors="accent-lighter"
-                          className="mb-5 mr-5 text-base-contrast-lighter"
+                          className="text-base-contrast-lighter"
                         >
                           <Gen3Link href={card.href} linkType={card.linkType} text={card.btnText} />
                         </Gen3ButtonReverse>
