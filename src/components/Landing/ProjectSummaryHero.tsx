@@ -140,14 +140,12 @@ const ProjectSummaryHero = () => {
         textStyle: {
           color: '#000F46',
         },
-        formatter: (params: {
-          seriesName: string;
-          data?: { rawValue?: number; metric?: MetricKey };
-          value: number;
-        }) => {
-          const rawValue = params.data?.rawValue ?? 0;
-          const metric = params.data?.metric ?? 'Samples';
-          return `${params.seriesName}<br/>${metric}: ${formatCount(rawValue)} (${params.value}%)`;
+        formatter: (params: any) => {
+          const rawValue = params?.data?.rawValue ?? 0;
+          const metric = (params?.data?.metric as MetricKey | undefined) ?? 'Samples';
+          const seriesName = params?.seriesName ?? '';
+          const value = params?.value ?? 0;
+          return `${seriesName}<br/>${metric}: ${formatCount(rawValue)} (${value}%)`;
         },
       },
       xAxis: {
