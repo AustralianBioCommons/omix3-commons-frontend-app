@@ -17,8 +17,6 @@
     "summary": "Selecting a value in one chart is expected to update the filter context for the rest of the dashboard."
   },
   "initialFields": [
-    "project_id",
-    "baseline_year",
     "sex",
     "ancestry",
     "participant_assessment_centres.medical_historys.diabetes",

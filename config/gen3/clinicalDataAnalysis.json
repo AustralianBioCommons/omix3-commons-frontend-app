@@ -1,8 +1,6 @@
 {
   "index": "subject",
   "initialFields": [
-    "project_id",
-    "baseline_year",
     "sex",
     "ancestry",
     "participant_assessment_centres.medical_historys.diabetes",

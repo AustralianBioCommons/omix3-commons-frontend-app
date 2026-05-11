@@ -42,9 +42,16 @@
             "linkType": "portal"
           },
           {
+            "icon": "MdGroup",
+            "bodyText": "Explore participant-level data and filters across the commons using Explorer.",
+            "btnText": "Explorer",
+            "href": "/Explorer",
+            "linkType": "portal"
+          },
+          {
             "icon": "MdOutlineBarChart",
             "bodyText": "Explore Tutorials and Example Analysis.",
-            "btnText": "Analyze",
+            "btnText": "Analyse",
             "href": "/resource-browser",
             "linkType": "portal"
           }

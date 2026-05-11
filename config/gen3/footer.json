@@ -22,11 +22,11 @@
         "rows": [
           {
             "Icon": {
-              "logo": "/icons/createdby.png",
+              "logo": "/icons/australian-biocommons.png",
               "width": 170,
               "height": 60,
-              "description": "Center for Translational Data Science at the University of Chicago",
-              "href": "https://ctds.uchicago.edu/"
+              "description": "Australian BioCommons",
+              "href": "https://www.biocommons.org.au/"
             }
           }
         ]

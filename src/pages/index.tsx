@@ -147,17 +147,17 @@ const LandingPage = ({ headerProps, footerProps, mainProps, headerMetadata, land
                 <Title className="my-5" order={3}>
                   {component.cardsArea.title}
                 </Title>
-                <ul className="mx-auto flex max-w-[900px] flex-wrap justify-center gap-8 !p-0">
+                <ul className="mx-auto flex max-w-[1120px] flex-wrap justify-center gap-6 !p-0">
                   {component.cardsArea.cards.map((card) => {
                     const Icon = cardIcons[card.icon];
 
                     return (
                       <li
                         key={card.btnText}
-                        className="flex h-[26rem] w-full max-w-[24rem] flex-col items-center justify-center rounded-xl border border-secondary-lightest bg-base-max shadow-lg !p-8"
+                        className="flex h-[22rem] w-full max-w-[20rem] flex-col items-center justify-center rounded-xl border border-secondary-lightest bg-base-max shadow-lg !p-6"
                       >
-                        {Icon ? <Icon className="inline-block text-7xl text-accent-lighter" /> : null}
-                        <p className="mb-6 mt-6 block max-w-[30rem] text-center leading-6 text-primary">
+                        {Icon ? <Icon className="inline-block text-6xl text-accent-lighter" /> : null}
+                        <p className="mb-5 mt-5 block max-w-[24rem] text-center leading-6 text-primary">
                           {card.bodyText}
                         </p>
                         <Gen3ButtonReverse
