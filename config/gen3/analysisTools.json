@@ -27,6 +27,15 @@
       "description": "Preview the curated field groups and interaction model for a cross-filtered clinical dashboard.",
       "loginRequired": false,
       "href": "/ClinicalInsights"
+    },
+    {
+      "title": "IGV BAM Viewer",
+      "type": "application",
+      "icon": "/images/apps/icons/gen3_app.png",
+      "image": "/images/apps/bam-viewer.png",
+      "description": "Select and view data commons BAM files in the IGV browser.",
+      "loginRequired": false,
+      "href": "/app/IGVBamViewer?mode=app"
     }
   ]
 }
