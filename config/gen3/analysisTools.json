@@ -4,7 +4,7 @@
       "title": "OMIX3 JupyterLite Notebook",
       "type": "notebook",
       "icon": "/images/apps/icons/jupyter.svg",
-      "image": "/images/apps/generic_image.png",
+      "image": "/images/apps/jupyterlite.png",
       "description": "Launch a JupyterLite (browser-only) notebook to explore OMIX3 data.",
       "loginRequired": false,
       "href": "/notebook/notebook_omix3.ipynb",

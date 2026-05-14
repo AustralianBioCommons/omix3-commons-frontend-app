@@ -2,7 +2,7 @@
   "body": [
     {
       "title": {
-        "text": "OMIX3 Multi-Omics Data Platform",
+        "text": "OMIX3 Multi-Omics Data Commons",
         "level": 2
       }
     },
@@ -10,7 +10,7 @@
       "splitarea": {
         "left": [
           {
-            "text": "The <strong>OMIX3 Multi-Omics Data Platform</strong> is a secure data sharing platform that enables the storage, sharing, and analysis of large-scale, clinically accredited multi-omics data. It aims to support the complex needs of researchers to drive collaboration and innovation in health and life science research. "
+            "text": "The <strong>OMIX3 Multi-Omics Data Commons</strong> is a secure data sharing platform that enables the storage, sharing, and analysis of large-scale, clinically accredited multi-omics data. It aims to support the complex needs of researchers to drive collaboration and innovation in health and life science research. "
           }
         ],
         "right": [
@@ -44,7 +44,7 @@
           {
             "icon": "MdGroup",
             "bodyText": "Explore participant-level data and filters across the commons using Explorer.",
-            "btnText": "Explorer",
+            "btnText": "Explore",
             "href": "/Explorer",
             "linkType": "portal"
           },

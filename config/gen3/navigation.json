@@ -81,11 +81,11 @@
       },
       {
         "href": "https://mdhs.unimelb.edu.au/melbournebioinformatics/research-and-infrastructure/projects/omix3",
-        "name": "OMIX3 Doc "
+        "name": "Documentation"
       },
       {
         "href": "https://docs.gen3.org/",
-        "name": "Gen3 Doc"
+        "name": "Gen3"
       }
     ],
     "loginButtonVisibility": "visible"

@@ -1,0 +1,45 @@
+{
+  "genome": "hg38",
+  "locus": "chr1:155,140,000-155,160,000",
+  "showDefaultTracks": true,
+  "track": {
+    "name": "OMIX3 BAM Alignments",
+    "type": "annotation",
+    "displayMode": "EXPANDED",
+    "color": "#255990",
+    "features": [
+      {
+        "chr": "chr1",
+        "start": 155140000,
+        "end": 155160000,
+        "name": "Sample IGV Window"
+      }
+    ]
+  },
+  "samples": [
+    {
+      "id": "gstt1-s3-bam",
+      "name": "GSTT1 sample BAM",
+      "description": "Public IGV S3-hosted sample BAM used in IGV notebook examples.",
+      "bamUrl": "https://s3.amazonaws.com/igv.org.demo/gstt1_sample.bam",
+      "baiUrl": "https://s3.amazonaws.com/igv.org.demo/gstt1_sample.bam.bai",
+      "locus": "chr22:24,376,166-24,376,456",
+      "genome": "hg19",
+      "track": {
+        "name": "Sample Region",
+        "type": "annotation",
+        "displayMode": "EXPANDED",
+        "color": "#255990",
+        "features": [
+          {
+            "chr": "chr22",
+            "start": 24376166,
+            "end": 24376456,
+            "name": "GSTT1 locus"
+          }
+        ]
+      }
+    }
+  ],
+  "returnTab": "data"
+}
