@@ -10,7 +10,7 @@
       "loginRequired": true
     },
     "/Explorer": {
-      "loginRequired": true
+      "loginRequired": false
     },
     "/Query": {
       "loginRequired": true
