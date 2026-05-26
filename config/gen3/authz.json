@@ -18,6 +18,9 @@
     "/Analysis": {
 	"loginRequired": true
     },
+    "/Submission": {
+        "loginRequired": true
+    },
     "*": {
       "loginRequired": false
     }
