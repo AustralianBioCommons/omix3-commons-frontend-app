@@ -1,5 +1,20 @@
-[
-  {
+{
+  "sharedFilters": {
+    "defined": {
+      "project_id": [
+        {
+          "index": "subject",
+          "field": "project_id"
+        },
+        {
+          "index": "file",
+          "field": "project_id"
+        }
+      ]
+    }
+  },
+ "explorerConfig": [ 
+ {
     "tabTitle": "Cases",
       "charts": {
         "project_id": {
@@ -772,3 +787,4 @@
     "loginForDownload": true
   }
 ]
+}
