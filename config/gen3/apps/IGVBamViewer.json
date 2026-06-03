@@ -18,24 +18,24 @@
   },
   "samples": [
     {
-      "id": "gstt1-s3-bam",
-      "name": "GSTT1 sample BAM",
-      "description": "Public IGV S3-hosted sample BAM used in IGV notebook examples.",
-      "bamUrl": "https://s3.amazonaws.com/igv.org.demo/gstt1_sample.bam",
-      "baiUrl": "https://s3.amazonaws.com/igv.org.demo/gstt1_sample.bam.bai",
-      "locus": "chr22:24,376,166-24,376,456",
-      "genome": "hg19",
+      "id": "na12878-slx-sample-bam",
+      "name": "NA12878 SLX sample BAM",
+      "description": "IGV workshop BAM/BAI sample with real alignment coverage at chr1 SNP loci.",
+      "bamUrl": "/igv/NA12878.SLX.sample.bam",
+      "baiUrl": "/igv/NA12878.SLX.sample.bam.bai",
+      "locus": "1:9718575-9718675",
+      "genome": "hg18",
       "track": {
-        "name": "Sample Region",
+        "name": "SNP Region",
         "type": "annotation",
         "displayMode": "EXPANDED",
         "color": "#255990",
         "features": [
           {
-            "chr": "chr22",
-            "start": 24376166,
-            "end": 24376456,
-            "name": "GSTT1 locus"
+            "chr": "1",
+            "start": 9718624,
+            "end": 9718625,
+            "name": "snp1"
           }
         ]
       }
