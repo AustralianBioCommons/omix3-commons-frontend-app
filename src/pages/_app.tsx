@@ -13,6 +13,7 @@ import {
   RegisteredIcons,
   registerExplorerDefaultCellRenderers,
   registerMetadataSchemaApp,
+  registerIGVApp,
   SessionConfiguration,
   TenStringArray,
   Fonts,
