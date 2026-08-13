@@ -6,7 +6,7 @@
   "description": "An interactive clinical dashboard concept for cross-filtered cohort exploration across curated participant variables.",
   "explorerHref": "/Explorer",
   "headerMetadata": {
-    "title": "OMIX3 Clinical Insights",
+    "title": "Px4 Clinical Insights",
     "content": "Interactive clinical cohort dashboard",
     "key": "omix3-clinical-insights-page"
   },

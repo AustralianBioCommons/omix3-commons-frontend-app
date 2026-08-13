@@ -1,11 +1,11 @@
 {
   "tools": [
     {
-      "title": "OMIX3 JupyterLite Notebook",
+      "title": "Px4 JupyterLite Notebook",
       "type": "notebook",
       "icon": "/images/apps/icons/jupyter.svg",
       "image": "/images/apps/jupyterlite.png",
-      "description": "Launch a JupyterLite (browser-only) notebook to explore OMIX3 data.",
+      "description": "Launch a JupyterLite (browser-only) notebook to explore Px4 data.",
       "loginRequired": false,
       "href": "/notebook/notebook_omix3.ipynb",
       "btnText": "Open Notebook"

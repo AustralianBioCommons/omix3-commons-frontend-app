@@ -3,7 +3,7 @@
   "locus": "chr1:155,140,000-155,160,000",
   "showDefaultTracks": true,
   "track": {
-    "name": "OMIX3 BAM Alignments",
+    "name": "Px4 BAM Alignments",
     "type": "annotation",
     "displayMode": "EXPANDED",
     "color": "#255990",

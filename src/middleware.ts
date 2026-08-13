@@ -9,6 +9,7 @@ export const config = {
   "/Profile",
   "/Explorer",
   "/Query",
-  "/Analysis"
+  "/Analysis",
+  "/Submission"
 ],
 };
