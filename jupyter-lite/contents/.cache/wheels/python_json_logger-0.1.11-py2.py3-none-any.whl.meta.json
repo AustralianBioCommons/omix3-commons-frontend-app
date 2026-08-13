@@ -1,0 +1,24 @@
+{
+  "name": "python-json-logger",
+  "release": {
+    "comment_text": "",
+    "digests": {
+      "md5": "ff58ffc67f786f1e590f904a5a558fd7",
+      "sha256": "7c58eefd7551805b59564ae08b59ebd4b13a37abde9a24f920cfc5ba4f1809d5"
+    },
+    "downloads": -1,
+    "filename": "python_json_logger-0.1.11-py2.py3-none-any.whl",
+    "has_sig": false,
+    "md5_digest": "ff58ffc67f786f1e590f904a5a558fd7",
+    "packagetype": "bdist_wheel",
+    "python_version": "py3",
+    "requires_python": ">=2.7",
+    "size": 5075,
+    "upload_time": "2026-04-14T00:47:00.713946Z",
+    "upload_time_iso_8601": "2026-04-14T00:47:00.713946Z",
+    "url": "./python_json_logger-0.1.11-py2.py3-none-any.whl",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "version": "0.1.11"
+}

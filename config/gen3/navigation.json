@@ -15,19 +15,19 @@
     },
     "items": [
       {
-        "icon": "gen3:query",
-        "href": "/Discovery",
-        "name": "Discovery",
-        "tooltip": {
-          "authorized": "Use free-text search and tags to rapidly find relevant studies."
-        }
-      },
-      {
         "icon": "gen3:dictionary",
         "href": "/DataDictionary",
         "name": "Dictionary",
         "tooltip": {
           "authorized": "The Data Dictionary serves to inform the data model and is updated as new data is ingested."
+        }
+      },
+      {
+        "icon": "gen3:query",
+        "href": "/Discovery",
+        "name": "Discovery",
+        "tooltip": {
+          "authorized": "Use free-text search and tags to rapidly find relevant studies."
         }
       },
       {
@@ -80,8 +80,12 @@
         "name": "Browse Data"
       },
       {
-        "href": "https://docs.gen3.org/",
+        "href": "https://mdhs.unimelb.edu.au/melbournebioinformatics/research-and-infrastructure/projects/omix3",
         "name": "Documentation"
+      },
+      {
+        "href": "https://docs.gen3.org/",
+        "name": "Gen3"
       }
     ],
     "loginButtonVisibility": "visible"

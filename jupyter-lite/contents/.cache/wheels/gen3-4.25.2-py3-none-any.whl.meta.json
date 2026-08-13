@@ -1,0 +1,24 @@
+{
+  "name": "gen3",
+  "release": {
+    "comment_text": "",
+    "digests": {
+      "md5": "2ac80df598e8bd5ef7729f26d20fd256",
+      "sha256": "8e3a440d22e72072a78a04d665d7f748b709769d1404971e819050abf563ee50"
+    },
+    "downloads": -1,
+    "filename": "gen3-4.25.2-py3-none-any.whl",
+    "has_sig": false,
+    "md5_digest": "2ac80df598e8bd5ef7729f26d20fd256",
+    "packagetype": "bdist_wheel",
+    "python_version": "py3",
+    "requires_python": ">=3.9,<4",
+    "size": 168773,
+    "upload_time": "2026-04-14T00:47:00.715306Z",
+    "upload_time_iso_8601": "2026-04-14T00:47:00.715306Z",
+    "url": "./gen3-4.25.2-py3-none-any.whl",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "version": "4.25.2"
+}

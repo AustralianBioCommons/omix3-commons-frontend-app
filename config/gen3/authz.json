@@ -10,13 +10,16 @@
       "loginRequired": true
     },
     "/Explorer": {
-      "loginRequired": true
+      "loginRequired": false
     },
     "/Query": {
       "loginRequired": true
     },
     "/Analysis": {
 	"loginRequired": true
+    },
+    "/Submission": {
+        "loginRequired": true
     },
     "*": {
       "loginRequired": false

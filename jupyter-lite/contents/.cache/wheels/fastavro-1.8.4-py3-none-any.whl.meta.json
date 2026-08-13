@@ -1,0 +1,24 @@
+{
+  "name": "fastavro",
+  "release": {
+    "comment_text": "",
+    "digests": {
+      "md5": "11e677822bcb40118416ba0deb76bf87",
+      "sha256": "fbdfc8a12f2aae1415e842742beb5e7873854ae090b3c96da2738c2fa88db713"
+    },
+    "downloads": -1,
+    "filename": "fastavro-1.8.4-py3-none-any.whl",
+    "has_sig": false,
+    "md5_digest": "11e677822bcb40118416ba0deb76bf87",
+    "packagetype": "bdist_wheel",
+    "python_version": "py3",
+    "requires_python": ">=3.8",
+    "size": 340341,
+    "upload_time": "2026-04-14T00:47:00.722450Z",
+    "upload_time_iso_8601": "2026-04-14T00:47:00.722450Z",
+    "url": "./fastavro-1.8.4-py3-none-any.whl",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "version": "1.8.4"
+}

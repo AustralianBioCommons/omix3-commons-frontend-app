@@ -1,0 +1,24 @@
+{
+  "name": "drsclient",
+  "release": {
+    "comment_text": "",
+    "digests": {
+      "md5": "1c2ed1a6df92ee5b1dcd019b86d27828",
+      "sha256": "1147eba2a0f4b6c781b323d9f1b4d4f31866391c21a33a49250f231ad2e3ee1d"
+    },
+    "downloads": -1,
+    "filename": "drsclient-0.2.3-py3-none-any.whl",
+    "has_sig": false,
+    "md5_digest": "1c2ed1a6df92ee5b1dcd019b86d27828",
+    "packagetype": "bdist_wheel",
+    "python_version": "py3",
+    "requires_python": ">=3.9,<4.0",
+    "size": 7428,
+    "upload_time": "2026-04-14T00:47:00.718939Z",
+    "upload_time_iso_8601": "2026-04-14T00:47:00.718939Z",
+    "url": "./drsclient-0.2.3-py3-none-any.whl",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "version": "0.2.3"
+}

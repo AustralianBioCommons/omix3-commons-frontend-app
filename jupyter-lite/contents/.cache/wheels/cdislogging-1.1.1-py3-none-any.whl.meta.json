@@ -1,0 +1,24 @@
+{
+  "name": "cdislogging",
+  "release": {
+    "comment_text": "",
+    "digests": {
+      "md5": "3d8dac4816695e556d7c737f93275923",
+      "sha256": "f9c15ab23e6d8af2cbe309cd9a53586ba21dc610c8fc312989467de0b9cda1d3"
+    },
+    "downloads": -1,
+    "filename": "cdislogging-1.1.1-py3-none-any.whl",
+    "has_sig": false,
+    "md5_digest": "3d8dac4816695e556d7c737f93275923",
+    "packagetype": "bdist_wheel",
+    "python_version": "py3",
+    "requires_python": null,
+    "size": 7178,
+    "upload_time": "2026-04-14T00:47:00.722872Z",
+    "upload_time_iso_8601": "2026-04-14T00:47:00.722872Z",
+    "url": "./cdislogging-1.1.1-py3-none-any.whl",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "version": "1.1.1"
+}

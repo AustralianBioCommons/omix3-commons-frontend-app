@@ -1,65 +1,137 @@
-[
-  {
-    "tabTitle": "Cases",
-    "chartsSection": {
-      "title": "Charts",
-      "enabled": true,
-      "showLegends" : {
-        "enabled" : true
-      },
-      "charts": {
-        "baseline_year": {
-          "chartType": "fullPie",
-          "title": "baseline_year",
-          "showLegendInChart" : false
+{
+  "sharedFilters": {
+    "defined": {
+      "project_id": [
+        {
+          "index": "subject",
+          "field": "project_id"
         },
-        "diabetes_type": {
-          "chartType": "fullPie",
-          "title": "diabetes_type",
-          "showLegendInChart" : false
-        },
-        "year_birth": {
-          "chartType": "verticalBarChart",
-          "title": "Age",
-          "showLegendInChart" : false
+        {
+          "index": "file",
+          "field": "project_id"
         }
-     } 
+      ]
+    }
+  },
+ "explorerConfig": [ 
+ {
+    "tabTitle": "Cases",
+      "charts": {
+        "project_id": {
+          "chartType": "horizontalStacked",
+          "title": "Projects"
+        },
+        "sex": {
+          "chartType": "fullPie",
+          "title": "Sex",
+          "label": {
+            "show": true
+          },
+          "showLegendInChart": false
+        },
+        "ancestry": {
+          "chartType": "verticalBarChart",
+          "title": "Ancestry",
+          "showLegendInChart" : true
+        },
+        "participant_assessment_centres.medical_historys.hypertension": {
+          "chartType": "horizontalStacked",
+          "title": "Hypertension"
+        },
+        "participant_assessment_centres.medical_historys.hay_fever": {
+          "chartType": "verticalBarChart",
+          "title": "Hay Fever"
+        },
+        "participant_assessment_centres.medical_historys.gluten_status": {
+          "chartType": "fullPie",
+          "title": "Gluten Status",
+          "label": {
+            "show": true
+          },
+          "showLegendInChart": false
+        },
+        "participant_assessment_centres.wellbeings.social_isolation": {
+          "chartType": "horizontalStacked",
+          "title": "Social Isolation",
+          "showLegendInChart" : true
+        }
     },
     "filters": {
       "tabs": [
         {
           "title": "Study Selection",
           "fields": [
-            "project_id"
+            "project_id",
+            "baseline_year",
+            "participant_assessment_centres.assessment_centre_name"
           ]
         },
         {
-          "title": "Subjects",
+          "title": "Demographics",
           "fields": [
-            "baseline_year"
-          ],
-          "fieldsConfig": {
-            "gender" : {
-              "type" : "multiselect"
-            }
-          }
-        },
-        {
-          "title": "Medical history",
-          "fields": [
-            "diabetes_type"
-          ]
-        },
-	{
-          "title": "demographic",
-          "fields": [
+            "age",
+            "ancestry",
+            "country_birth",
+            "country_of_birth",
+            "education_highest_level",
+            "education_level",
+            "employment_status",
+            "household_size",
+            "income_adequacy",
+            "month_birth",
+            "pet_in_home",
+            "relationship_status",
+            "residence_type",
+            "sex",
+            "sex_at_birth",
             "year_birth"
           ],
           "fieldsConfig": {
+            "age": {
+              "label": "Age"
+            },
+            "sex": {
+              "label": "Sex"
+            },
+            "sex_at_birth": {
+              "label": "Sex at Birth"
+            },
             "year_birth": {
-            "label": "Age"
+              "label": "Year of Birth"
             }
           }
+        },
+        {
+          "title": "Medical History",
+          "fields": [
+            "participant_assessment_centres.medical_historys.cancer",
+            "participant_assessment_centres.medical_historys.diabetes",
+            "participant_assessment_centres.medical_historys.diabetes_type",
+            "participant_assessment_centres.medical_historys.diagnosed_conditions",
+            "participant_assessment_centres.medical_historys.food_allergies",
+            "participant_assessment_centres.medical_historys.gluten_status",
+            "participant_assessment_centres.medical_historys.hay_fever",
+            "participant_assessment_centres.medical_historys.hypertension",
+            "participant_assessment_centres.medical_historys.hypertension_measurement_type",
+            "participant_assessment_centres.medical_historys.infant_feeding",
+            "participant_assessment_centres.medical_historys.mode_of_birth"
+          ]
+        },
+        {
+          "title": "Anthropometry",
+          "fields": [
+            "participant_assessment_centres.anthropometrys.height",
+            "participant_assessment_centres.anthropometrys.weight",
+            "participant_assessment_centres.anthropometrys.bmi"
+          ]
+        },
+        {
+          "title": "Wellbeing",
+          "fields": [
+            "participant_assessment_centres.wellbeings.quality_of_life",
+            "participant_assessment_centres.wellbeings.sleep_satisfaction",
+            "participant_assessment_centres.wellbeings.social_isolation"
+          ]
         }
       ]
     },
@@ -75,12 +147,446 @@
         "limit": 10000
       },
       "fields": [
+        "submitter_id",
         "project_id",
-        "baseline_year"
+        "baseline_year",
+        "sex",
+        "sex_at_birth",
+        "age",
+        "year_birth",
+        "ancestry",
+        "country_of_birth",
+        "education_level",
+        "employment_status",
+        "household_size",
+        "income_adequacy",
+        "relationship_status",
+        "residence_type",
+        "participant_assessment_centres.assessment_centre_name",
+        "participant_assessment_centres.medical_historys.diabetes_type",
+        "participant_assessment_centres.anthropometrys.bmi",
+        "participant_assessment_centres.wellbeings.quality_of_life"
       ],
       "columns": {
-        "project": {
+        "project_id": {
           "sortable": false
+        },
+        "baseline_year": {
+          "title": "Baseline Year"
+        },
+        "sex": {
+          "title": "Sex"
+        },
+        "sex_at_birth": {
+          "title": "Sex at Birth"
+        },
+        "age": {
+          "title": "Age"
+        },
+        "year_birth": {
+          "title": "Year of Birth"
+        },
+        "ancestry": {
+          "title": "Ancestry"
+        },
+        "country_of_birth": {
+          "title": "Country of Birth"
+        },
+        "education_level": {
+          "title": "Education Level"
+        },
+        "employment_status": {
+          "title": "Employment Status"
+        },
+        "household_size": {
+          "title": "Household Size"
+        },
+        "income_adequacy": {
+          "title": "Income Adequacy"
+        },
+        "relationship_status": {
+          "title": "Relationship Status"
+        },
+        "residence_type": {
+          "title": "Residence Type"
+        },
+        "participant_assessment_centres.assessment_centre_name": {
+          "title": "Assessment Centre"
+        },
+        "participant_assessment_centres.medical_historys.diabetes_type": {
+          "title": "Diabetes Type"
+        },
+        "participant_assessment_centres.anthropometrys.bmi": {
+          "title": "BMI"
+        },
+        "participant_assessment_centres.wellbeings.quality_of_life": {
+          "title": "Quality of Life"
+        }
+      }
+    },
+    "dropdowns": {
+      "download-table": {
+        "title": "Download Table",
+        "leftIcon": "gen3:download",
+        "rightIcon": "gen3:chevron-down",
+        "dropdownItems": [
+          {
+            "enabled": true,
+            "type": "data-json",
+            "title": "JSON",
+            "leftIcon": "datafile",
+            "rightIcon": "download",
+            "action": "data-json",
+            "actionArgs" : {
+              "filename": "MIDRC_Series_table.json",
+              "rootPath": "gen3_discovery"
+            }
+          },
+          {
+            "enabled": true,
+            "type": "data-tsv",
+            "title": "TSV",
+            "dropdownId": "download-table",
+            "leftIcon": "datafile",
+            "rightIcon": "download",
+            "actionArgs": {
+              "filename": "data_table.tsv"
+            }
+          },
+          {
+            "enabled": true,
+            "type": "data-csv",
+            "title": "CSV",
+            "leftIcon": "datafile",
+            "rightIcon": "download",
+            "action": "data-csv",
+            "actionArgs" : {
+              "filename": "data_table.csv"
+            }
+          }
+        ]
+      }
+    },
+    "buttons": [
+      {
+        "enabled": true,
+        "type": "manifest",
+        "action": "manifest",
+        "title": "Download File Manifest for Cases",
+        "leftIcon": "datafile",
+        "rightIcon": "download",
+        "fileName": "case_manifest.json",
+        "actionArgs": {
+          "resourceIndexType": "file",
+          "resourceIdField": "object_id",
+          "referenceIdFieldInResourceIndex": "project_id",
+          "referenceIdFieldInDataIndex": "project_id",
+          "fileFields": ["file_name", "file_size", "md5sum", "object_id"]
+        }
+      }
+    ],
+    "loginForDownload": false,
+    "guppyConfig": {
+      "dataType": "subject",
+      "nodeCountTitle": "Subjects",
+      "fieldMapping": [
+        {
+          "field": "_samples_count",
+          "name": "Samples Count"
+        },
+        {
+          "field": "_imaging_files_count",
+          "name": "Imaging Files Count"
+        },
+        {
+          "field": "_unaligned_reads_files_count",
+          "name": "Unaligned Reads Count"
+        },
+        {
+          "field": "_aligned_reads_files_count",
+          "name": "Aligned Reads Count"
+        },
+        {
+          "field": "_expression_arrays_count",
+          "name": "Expression Arrays Count"
+        }
+      ],
+      "manifestMapping": {
+        "resourceIndexType": "file",
+        "resourceIdField": "object_id",
+        "referenceIdFieldInResourceIndex": "subject_id",
+        "referenceIdFieldInDataIndex": "subject_id"
+      },
+      "accessibleFieldCheckList": ["project"],
+      "accessibleValidationField": "project"
+    }
+  },
+  {
+    "tabTitle": "Cases1",
+    "chartsSection": {
+      "title": "Charts",
+      "enabled": true,
+      "showLegends" : {
+        "enabled" : true
+      },
+      "charts": {
+        "project_id": {
+          "chartType": "fullPie",
+          "title": "Projects",
+          "showLegendInChart" : false
+        },
+        "sex": {
+          "chartType": "fullPie",
+          "title": "Sex",
+          "showLegendInChart" : false
+        },
+        "sex_at_birth": {
+          "chartType": "fullPie",
+          "title": "Sex at Birth",
+          "showLegendInChart" : false
+        },
+        "ancestry": {
+          "chartType": "horizontalStacked",
+          "title": "Ancestry",
+          "showLegendInChart" : false
+        },
+        "relationship_status": {
+          "chartType": "horizontalStacked",
+          "title": "Relationship Status",
+          "showLegendInChart" : false
+        },
+        "residence_type": {
+          "chartType": "horizontalStacked",
+          "title": "Residence Type",
+          "showLegendInChart" : false
+        },
+        "employment_status": {
+          "chartType": "horizontalStacked",
+          "title": "Employment Status",
+          "showLegendInChart" : false
+        },
+        "education_level": {
+          "chartType": "horizontalStacked",
+          "title": "Education Level",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.diabetes": {
+          "chartType": "fullPie",
+          "title": "Diabetes",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.diabetes_type": {
+          "chartType": "horizontalStacked",
+          "title": "Diabetes Type",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.hypertension": {
+          "chartType": "fullPie",
+          "title": "Hypertension",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.hay_fever": {
+          "chartType": "fullPie",
+          "title": "Hay Fever",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.mode_of_birth": {
+          "chartType": "horizontalStacked",
+          "title": "Mode of Birth",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.gluten_status": {
+          "chartType": "fullPie",
+          "title": "Gluten Status",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.medical_historys.infant_feeding": {
+          "chartType": "horizontalStacked",
+          "title": "Infant Feeding",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.wellbeings.quality_of_life": {
+          "chartType": "horizontalStacked",
+          "title": "Quality of Life",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.wellbeings.sleep_satisfaction": {
+          "chartType": "horizontalStacked",
+          "title": "Sleep Satisfaction",
+          "showLegendInChart" : false
+        },
+        "participant_assessment_centres.wellbeings.social_isolation": {
+          "chartType": "horizontalStacked",
+          "title": "Social Isolation",
+          "showLegendInChart" : false
+        }
+     }
+    },
+    "filters": {
+      "tabs": [
+        {
+          "title": "Study Selection",
+          "fields": [
+            "project_id",
+            "baseline_year",
+            "participant_assessment_centres.assessment_centre_name"
+          ]
+        },
+        {
+          "title": "Demographics",
+          "fields": [
+            "age",
+            "ancestry",
+            "country_birth",
+            "country_of_birth",
+            "education_highest_level",
+            "education_level",
+            "employment_status",
+            "household_size",
+            "income_adequacy",
+            "month_birth",
+            "pet_in_home",
+            "relationship_status",
+            "residence_type",
+            "sex",
+            "sex_at_birth",
+            "year_birth"
+          ],
+          "fieldsConfig": {
+            "age": {
+              "label": "Age"
+            },
+            "sex": {
+              "label": "Sex"
+            },
+            "sex_at_birth": {
+              "label": "Sex at Birth"
+            },
+            "year_birth": {
+              "label": "Year of Birth"
+            }
+          }
+        },
+        {
+          "title": "Medical History",
+          "fields": [
+            "participant_assessment_centres.medical_historys.cancer",
+            "participant_assessment_centres.medical_historys.diabetes",
+            "participant_assessment_centres.medical_historys.diabetes_type",
+            "participant_assessment_centres.medical_historys.diagnosed_conditions",
+            "participant_assessment_centres.medical_historys.food_allergies",
+            "participant_assessment_centres.medical_historys.gluten_status",
+            "participant_assessment_centres.medical_historys.hay_fever",
+            "participant_assessment_centres.medical_historys.hypertension",
+            "participant_assessment_centres.medical_historys.hypertension_measurement_type",
+            "participant_assessment_centres.medical_historys.infant_feeding",
+            "participant_assessment_centres.medical_historys.mode_of_birth"
+          ]
+        },
+        {
+          "title": "Anthropometry",
+          "fields": [
+            "participant_assessment_centres.anthropometrys.height",
+            "participant_assessment_centres.anthropometrys.weight",
+            "participant_assessment_centres.anthropometrys.bmi"
+          ]
+        },
+        {
+          "title": "Wellbeing",
+          "fields": [
+            "participant_assessment_centres.wellbeings.quality_of_life",
+            "participant_assessment_centres.wellbeings.sleep_satisfaction",
+            "participant_assessment_centres.wellbeings.social_isolation"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "enabled": true,
+      "detailsConfig": {
+        "panel": "default",
+        "mode" : "click",
+        "idField": "submitter_id",
+        "title": "Row Details"
+      },
+      "pageLimit": {
+        "limit": 10000
+      },
+      "fields": [
+        "submitter_id",
+        "project_id",
+        "baseline_year",
+        "sex",
+        "sex_at_birth",
+        "age",
+        "year_birth",
+        "ancestry",
+        "country_of_birth",
+        "education_level",
+        "employment_status",
+        "household_size",
+        "income_adequacy",
+        "relationship_status",
+        "residence_type",
+        "participant_assessment_centres.assessment_centre_name",
+        "participant_assessment_centres.medical_historys.diabetes_type",
+        "participant_assessment_centres.anthropometrys.bmi",
+        "participant_assessment_centres.wellbeings.quality_of_life"
+      ],
+      "columns": {
+        "project_id": {
+          "sortable": false
+        },
+        "baseline_year": {
+          "title": "Baseline Year"
+        },
+        "sex": {
+          "title": "Sex"
+        },
+        "sex_at_birth": {
+          "title": "Sex at Birth"
+        },
+        "age": {
+          "title": "Age"
+        },
+        "year_birth": {
+          "title": "Year of Birth"
+        },
+        "ancestry": {
+          "title": "Ancestry"
+        },
+        "country_of_birth": {
+          "title": "Country of Birth"
+        },
+        "education_level": {
+          "title": "Education Level"
+        },
+        "employment_status": {
+          "title": "Employment Status"
+        },
+        "household_size": {
+          "title": "Household Size"
+        },
+        "income_adequacy": {
+          "title": "Income Adequacy"
+        },
+        "relationship_status": {
+          "title": "Relationship Status"
+        },
+        "residence_type": {
+          "title": "Residence Type"
+        },
+        "participant_assessment_centres.assessment_centre_name": {
+          "title": "Assessment Centre"
+        },
+        "participant_assessment_centres.medical_historys.diabetes_type": {
+          "title": "Diabetes Type"
+        },
+        "participant_assessment_centres.anthropometrys.bmi": {
+          "title": "BMI"
+        },
+        "participant_assessment_centres.wellbeings.quality_of_life": {
+          "title": "Quality of Life"
         }
       }
     },
@@ -281,3 +787,4 @@
     "loginForDownload": true
   }
 ]
+}

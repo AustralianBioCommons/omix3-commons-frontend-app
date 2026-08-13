@@ -1,0 +1,24 @@
+{
+  "name": "fastavro",
+  "release": {
+    "comment_text": "",
+    "digests": {
+      "md5": "35bd1026ac6d02959eb7bee73a93ea83",
+      "sha256": "e319534d36e2e65851f9132f2b69441895be6d6b162a81805308f06030c141f9"
+    },
+    "downloads": -1,
+    "filename": "fastavro-1.8.4-cp311-cp311-emscripten_3_1_58_wasm32.whl",
+    "has_sig": false,
+    "md5_digest": "35bd1026ac6d02959eb7bee73a93ea83",
+    "packagetype": "bdist_wheel",
+    "python_version": "py3",
+    "requires_python": ">=3.8",
+    "size": 333161,
+    "upload_time": "2026-04-14T00:47:00.716280Z",
+    "upload_time_iso_8601": "2026-04-14T00:47:00.716280Z",
+    "url": "./fastavro-1.8.4-cp311-cp311-emscripten_3_1_58_wasm32.whl",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "version": "1.8.4"
+}

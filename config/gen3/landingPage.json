@@ -2,7 +2,7 @@
   "body": [
     {
       "title": {
-        "text": "OMIX3 Multi-Omics Data Platform",
+        "text": "OMIX3 Multi-Omics Data Commons",
         "level": 2
       }
     },
@@ -10,23 +10,7 @@
       "splitarea": {
         "left": [
           {
-            "text": "The <strong>OMIX3 Multi-Omics Data Platform</strong> is a secure data sharing platform that enables the storage, sharing, and analysis of large-scale, clinically accredited multi-omics data. It aims to support the complex needs of researchers to drive collaboration and innovation in health and life science research. "
-          },
-          {
-            "link": {
-              "href": "/Discovery",
-              "linkType": "portal",
-              "text": "Explore OMIX3 Data"
-            }
-          },
-          {
-            "text": " The Gen3 platform consists of open-source software services that support the emergence of healthy data ecosystems by enabling the interoperation and creation of cloud-based data resources, including data commons and analysis workspaces. Gen3 aims to accelerate and democratize the process of scientific discovery by making it easy to manage, analyze, harmonize, and share large and complex datasets in the cloud."
-          },
-          {
-            "link": {
-              "href": "https://gen3.datacommons.io",
-              "text": "Learn More"
-            }
+            "text": "The <strong>OMIX3 Multi-Omics Data Commons</strong> is a secure data sharing platform that enables the storage, sharing, and analysis of large-scale, clinically accredited multi-omics data. It aims to support the complex needs of researchers to drive collaboration and innovation in health and life science research. "
           }
         ],
         "right": [
@@ -47,9 +31,6 @@
       }
     },
     {
-      "break": "standard"
-    },
-    {
       "cardsArea": {
         "title": "",
         "cards": [
@@ -61,9 +42,16 @@
             "linkType": "portal"
           },
           {
+            "icon": "MdGroup",
+            "bodyText": "Explore participant-level data and filters across the commons using Explorer.",
+            "btnText": "Explore",
+            "href": "/Explorer",
+            "linkType": "portal"
+          },
+          {
             "icon": "MdOutlineBarChart",
             "bodyText": "Explore Tutorials and Example Analysis.",
-            "btnText": "Analyze",
+            "btnText": "Analyse",
             "href": "/resource-browser",
             "linkType": "portal"
           }
