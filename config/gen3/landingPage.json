@@ -2,7 +2,7 @@
   "body": [
     {
       "title": {
-        "text": "Px4 helath Data Commons",
+        "text": "Px4 Health Data Commons",
         "level": 2
       }
     },
@@ -10,7 +10,7 @@
       "splitarea": {
         "left": [
           {
-            "text": "The <strong>Px4 helath Data Commons</strong> is a secure data sharing platform that enables the storage, sharing, and analysis of large-scale, clinically accredited multi-omics data. It aims to support the complex needs of researchers to drive collaboration and innovation in health and life science research. "
+            "text": "The <strong>Px4 Health Data Commons</strong> is a secure data sharing platform that enables the storage, sharing, and analysis of large-scale, clinically accredited multi-omics data. It aims to support the complex needs of researchers to drive collaboration and innovation in health and life science research. "
           }
         ],
         "right": [
