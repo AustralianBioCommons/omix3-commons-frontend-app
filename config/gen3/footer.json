@@ -9,19 +9,6 @@
         "rows": [
           {
             "Icon": {
-              "logo": "/icons/gen3.png",
-              "width": 132,
-              "height": 60,
-              "description": "Gen3",
-              "href": "https://gen3.org"
-            }
-          }
-        ]
-      },
-      {
-        "rows": [
-          {
-            "Icon": {
               "logo": "/icons/Px4-Brandmark-RGB.png",
               "width": 170,
               "height": 60,
