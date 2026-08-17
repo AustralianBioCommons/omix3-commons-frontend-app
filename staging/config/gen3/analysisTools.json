@@ -1,0 +1,41 @@
+{
+  "tools": [
+    {
+      "title": "Px4 JupyterLite Notebook",
+      "type": "notebook",
+      "icon": "/images/apps/icons/jupyter.svg",
+      "image": "/images/apps/jupyterlite.png",
+      "description": "Launch a JupyterLite (browser-only) notebook to explore Px4 data.",
+      "loginRequired": false,
+      "href": "/notebook/notebook_omix3.ipynb",
+      "btnText": "Open Notebook"
+    },
+    {
+      "title": "Clinical Data Analysis",
+      "type": "application",
+      "icon": "/images/apps/icons/gen3_app.png",
+      "image": "/images/apps/ClinicalData.png",
+      "description": "Use clinical variables to perform basic statistical analysis of your cohort.",
+      "loginRequired": false,
+      "href": "/ClinicalDataAnalysis"
+    },
+    {
+      "title": "Clinical Insights",
+      "type": "application",
+      "icon": "/images/apps/icons/gen3_app.png",
+      "image": "/images/apps/ClinicalInsights.png",
+      "description": "Preview the curated field groups and interaction model for a cross-filtered clinical dashboard.",
+      "loginRequired": false,
+      "href": "/ClinicalInsights"
+    },
+    {
+      "title": "IGV BAM Viewer",
+      "type": "application",
+      "icon": "/images/apps/icons/gen3_app.png",
+      "image": "/images/apps/bam-viewer.png",
+      "description": "Select and view data commons BAM files in the IGV browser.",
+      "loginRequired": false,
+      "href": "/app/IGVBamViewer?mode=app"
+    }
+  ]
+}
