@@ -21,9 +21,9 @@
           "chartType": "horizontalStacked",
           "title": "Projects"
         },
-        "sex": {
+        "sex_at_birth": {
           "chartType": "fullPie",
-          "title": "Sex",
+          "title": "Sex at Birth",
           "label": {
             "show": true
           },
@@ -34,25 +34,17 @@
           "title": "Ancestry",
           "showLegendInChart" : true
         },
-        "participant_assessment_centres.medical_historys.hypertension": {
+        "sites.medical_historys.hypertension": {
           "chartType": "horizontalStacked",
           "title": "Hypertension"
         },
-        "participant_assessment_centres.medical_historys.hay_fever": {
+        "sites.medical_historys.hay_fever": {
           "chartType": "verticalBarChart",
           "title": "Hay Fever"
         },
-        "participant_assessment_centres.medical_historys.gluten_status": {
-          "chartType": "fullPie",
-          "title": "Gluten Status",
-          "label": {
-            "show": true
-          },
-          "showLegendInChart": false
-        },
-        "participant_assessment_centres.wellbeings.social_isolation": {
+        "sites.psychosocial_measurementss.gad7_category": {
           "chartType": "horizontalStacked",
-          "title": "Social Isolation",
+          "title": "Anxiety Severity",
           "showLegendInChart" : true
         }
     },
@@ -63,7 +55,7 @@
           "fields": [
             "project_id",
             "baseline_year",
-            "participant_assessment_centres.assessment_centre_name"
+            "sites.site_name"
           ]
         },
         {
@@ -71,27 +63,21 @@
           "fields": [
             "age",
             "ancestry",
-            "country_birth",
             "country_of_birth",
             "education_highest_level",
             "education_level",
             "employment_status",
             "household_size",
             "income_adequacy",
-            "month_birth",
             "pet_in_home",
             "relationship_status",
             "residence_type",
-            "sex",
             "sex_at_birth",
             "year_birth"
           ],
           "fieldsConfig": {
             "age": {
               "label": "Age"
-            },
-            "sex": {
-              "label": "Sex"
             },
             "sex_at_birth": {
               "label": "Sex at Birth"
@@ -104,33 +90,30 @@
         {
           "title": "Medical History",
           "fields": [
-            "participant_assessment_centres.medical_historys.cancer",
-            "participant_assessment_centres.medical_historys.diabetes",
-            "participant_assessment_centres.medical_historys.diabetes_type",
-            "participant_assessment_centres.medical_historys.diagnosed_conditions",
-            "participant_assessment_centres.medical_historys.food_allergies",
-            "participant_assessment_centres.medical_historys.gluten_status",
-            "participant_assessment_centres.medical_historys.hay_fever",
-            "participant_assessment_centres.medical_historys.hypertension",
-            "participant_assessment_centres.medical_historys.hypertension_measurement_type",
-            "participant_assessment_centres.medical_historys.infant_feeding",
-            "participant_assessment_centres.medical_historys.mode_of_birth"
+            "sites.medical_historys.cancer",
+            "sites.medical_historys.diabetes",
+            "sites.medical_historys.hay_fever",
+            "sites.medical_historys.hypertension",
+            "sites.medical_historys.infant_feeding",
+            "sites.medical_historys.mode_of_birth"
           ]
         },
         {
           "title": "Anthropometry",
           "fields": [
-            "participant_assessment_centres.anthropometrys.height",
-            "participant_assessment_centres.anthropometrys.weight",
-            "participant_assessment_centres.anthropometrys.bmi"
+            "sites.anthropometric_measurementss.height",
+            "sites.anthropometric_measurementss.weight",
+            "sites.anthropometric_measurementss.bmi"
           ]
         },
         {
-          "title": "Wellbeing",
+          "title": "Psychosocial",
           "fields": [
-            "participant_assessment_centres.wellbeings.quality_of_life",
-            "participant_assessment_centres.wellbeings.sleep_satisfaction",
-            "participant_assessment_centres.wellbeings.social_isolation"
+            "sites.psychosocial_measurementss.phq9_total_score",
+            "sites.psychosocial_measurementss.pss_total_score",
+            "sites.psychosocial_measurementss.asrs_total_score",
+            "sites.psychosocial_measurementss.gad7_total_score",
+            "sites.psychosocial_measurementss.gad7_category"
           ]
         }
       ]
@@ -150,7 +133,6 @@
         "submitter_id",
         "project_id",
         "baseline_year",
-        "sex",
         "sex_at_birth",
         "age",
         "year_birth",
@@ -162,10 +144,10 @@
         "income_adequacy",
         "relationship_status",
         "residence_type",
-        "participant_assessment_centres.assessment_centre_name",
-        "participant_assessment_centres.medical_historys.diabetes_type",
-        "participant_assessment_centres.anthropometrys.bmi",
-        "participant_assessment_centres.wellbeings.quality_of_life"
+        "sites.site_name",
+        "sites.medical_historys.diabetes",
+        "sites.anthropometric_measurementss.bmi",
+        "sites.psychosocial_measurementss.gad7_category"
       ],
       "columns": {
         "project_id": {
@@ -173,9 +155,6 @@
         },
         "baseline_year": {
           "title": "Baseline Year"
-        },
-        "sex": {
-          "title": "Sex"
         },
         "sex_at_birth": {
           "title": "Sex at Birth"
@@ -210,17 +189,17 @@
         "residence_type": {
           "title": "Residence Type"
         },
-        "participant_assessment_centres.assessment_centre_name": {
-          "title": "Assessment Centre"
+        "sites.site_name": {
+          "title": "Site Name"
         },
-        "participant_assessment_centres.medical_historys.diabetes_type": {
-          "title": "Diabetes Type"
+        "sites.medical_historys.diabetes": {
+          "title": "Diabetes"
         },
-        "participant_assessment_centres.anthropometrys.bmi": {
+        "sites.anthropometric_measurementss.bmi": {
           "title": "BMI"
         },
-        "participant_assessment_centres.wellbeings.quality_of_life": {
-          "title": "Quality of Life"
+        "sites.psychosocial_measurementss.gad7_category": {
+          "title": "Anxiety Severity"
         }
       }
     },
@@ -335,11 +314,6 @@
           "title": "Projects",
           "showLegendInChart" : false
         },
-        "sex": {
-          "chartType": "fullPie",
-          "title": "Sex",
-          "showLegendInChart" : false
-        },
         "sex_at_birth": {
           "chartType": "fullPie",
           "title": "Sex at Birth",
@@ -370,54 +344,44 @@
           "title": "Education Level",
           "showLegendInChart" : false
         },
-        "participant_assessment_centres.medical_historys.diabetes": {
+        "sites.medical_historys.diabetes": {
           "chartType": "fullPie",
           "title": "Diabetes",
           "showLegendInChart" : false
         },
-        "participant_assessment_centres.medical_historys.diabetes_type": {
-          "chartType": "horizontalStacked",
-          "title": "Diabetes Type",
-          "showLegendInChart" : false
-        },
-        "participant_assessment_centres.medical_historys.hypertension": {
+        "sites.medical_historys.hypertension": {
           "chartType": "fullPie",
           "title": "Hypertension",
           "showLegendInChart" : false
         },
-        "participant_assessment_centres.medical_historys.hay_fever": {
+        "sites.medical_historys.hay_fever": {
           "chartType": "fullPie",
           "title": "Hay Fever",
           "showLegendInChart" : false
         },
-        "participant_assessment_centres.medical_historys.mode_of_birth": {
+        "sites.medical_historys.mode_of_birth": {
           "chartType": "horizontalStacked",
           "title": "Mode of Birth",
           "showLegendInChart" : false
         },
-        "participant_assessment_centres.medical_historys.gluten_status": {
-          "chartType": "fullPie",
-          "title": "Gluten Status",
-          "showLegendInChart" : false
-        },
-        "participant_assessment_centres.medical_historys.infant_feeding": {
+        "sites.medical_historys.infant_feeding": {
           "chartType": "horizontalStacked",
           "title": "Infant Feeding",
           "showLegendInChart" : false
         },
-        "participant_assessment_centres.wellbeings.quality_of_life": {
+        "sites.psychosocial_measurementss.phq9_total_score": {
           "chartType": "horizontalStacked",
-          "title": "Quality of Life",
+          "title": "PHQ-9 Total Score",
           "showLegendInChart" : false
         },
-        "participant_assessment_centres.wellbeings.sleep_satisfaction": {
+        "sites.psychosocial_measurementss.pss_total_score": {
           "chartType": "horizontalStacked",
-          "title": "Sleep Satisfaction",
+          "title": "PSS Total Score",
           "showLegendInChart" : false
         },
-        "participant_assessment_centres.wellbeings.social_isolation": {
+        "sites.psychosocial_measurementss.gad7_category": {
           "chartType": "horizontalStacked",
-          "title": "Social Isolation",
+          "title": "GAD-7 Category",
           "showLegendInChart" : false
         }
      }
@@ -429,7 +393,7 @@
           "fields": [
             "project_id",
             "baseline_year",
-            "participant_assessment_centres.assessment_centre_name"
+            "sites.site_name"
           ]
         },
         {
@@ -437,27 +401,21 @@
           "fields": [
             "age",
             "ancestry",
-            "country_birth",
             "country_of_birth",
             "education_highest_level",
             "education_level",
             "employment_status",
             "household_size",
             "income_adequacy",
-            "month_birth",
             "pet_in_home",
             "relationship_status",
             "residence_type",
-            "sex",
             "sex_at_birth",
             "year_birth"
           ],
           "fieldsConfig": {
             "age": {
               "label": "Age"
-            },
-            "sex": {
-              "label": "Sex"
             },
             "sex_at_birth": {
               "label": "Sex at Birth"
@@ -470,33 +428,30 @@
         {
           "title": "Medical History",
           "fields": [
-            "participant_assessment_centres.medical_historys.cancer",
-            "participant_assessment_centres.medical_historys.diabetes",
-            "participant_assessment_centres.medical_historys.diabetes_type",
-            "participant_assessment_centres.medical_historys.diagnosed_conditions",
-            "participant_assessment_centres.medical_historys.food_allergies",
-            "participant_assessment_centres.medical_historys.gluten_status",
-            "participant_assessment_centres.medical_historys.hay_fever",
-            "participant_assessment_centres.medical_historys.hypertension",
-            "participant_assessment_centres.medical_historys.hypertension_measurement_type",
-            "participant_assessment_centres.medical_historys.infant_feeding",
-            "participant_assessment_centres.medical_historys.mode_of_birth"
+            "sites.medical_historys.cancer",
+            "sites.medical_historys.diabetes",
+            "sites.medical_historys.hay_fever",
+            "sites.medical_historys.hypertension",
+            "sites.medical_historys.infant_feeding",
+            "sites.medical_historys.mode_of_birth"
           ]
         },
         {
           "title": "Anthropometry",
           "fields": [
-            "participant_assessment_centres.anthropometrys.height",
-            "participant_assessment_centres.anthropometrys.weight",
-            "participant_assessment_centres.anthropometrys.bmi"
+            "sites.anthropometric_measurementss.height",
+            "sites.anthropometric_measurementss.weight",
+            "sites.anthropometric_measurementss.bmi"
           ]
         },
         {
-          "title": "Wellbeing",
+          "title": "Psychosocial",
           "fields": [
-            "participant_assessment_centres.wellbeings.quality_of_life",
-            "participant_assessment_centres.wellbeings.sleep_satisfaction",
-            "participant_assessment_centres.wellbeings.social_isolation"
+            "sites.psychosocial_measurementss.phq9_total_score",
+            "sites.psychosocial_measurementss.pss_total_score",
+            "sites.psychosocial_measurementss.asrs_total_score",
+            "sites.psychosocial_measurementss.gad7_total_score",
+            "sites.psychosocial_measurementss.gad7_category"
           ]
         }
       ]
@@ -516,7 +471,6 @@
         "submitter_id",
         "project_id",
         "baseline_year",
-        "sex",
         "sex_at_birth",
         "age",
         "year_birth",
@@ -528,10 +482,10 @@
         "income_adequacy",
         "relationship_status",
         "residence_type",
-        "participant_assessment_centres.assessment_centre_name",
-        "participant_assessment_centres.medical_historys.diabetes_type",
-        "participant_assessment_centres.anthropometrys.bmi",
-        "participant_assessment_centres.wellbeings.quality_of_life"
+        "sites.site_name",
+        "sites.medical_historys.diabetes",
+        "sites.anthropometric_measurementss.bmi",
+        "sites.psychosocial_measurementss.gad7_category"
       ],
       "columns": {
         "project_id": {
@@ -539,9 +493,6 @@
         },
         "baseline_year": {
           "title": "Baseline Year"
-        },
-        "sex": {
-          "title": "Sex"
         },
         "sex_at_birth": {
           "title": "Sex at Birth"
@@ -576,17 +527,17 @@
         "residence_type": {
           "title": "Residence Type"
         },
-        "participant_assessment_centres.assessment_centre_name": {
-          "title": "Assessment Centre"
+        "sites.site_name": {
+          "title": "Site Name"
         },
-        "participant_assessment_centres.medical_historys.diabetes_type": {
-          "title": "Diabetes Type"
+        "sites.medical_historys.diabetes": {
+          "title": "Diabetes"
         },
-        "participant_assessment_centres.anthropometrys.bmi": {
+        "sites.anthropometric_measurementss.bmi": {
           "title": "BMI"
         },
-        "participant_assessment_centres.wellbeings.quality_of_life": {
-          "title": "Quality of Life"
+        "sites.psychosocial_measurementss.gad7_category": {
+          "title": "GAD-7 Category"
         }
       }
     },

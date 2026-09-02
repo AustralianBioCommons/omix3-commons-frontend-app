@@ -1,11 +1,11 @@
 {
   "index": "subject",
   "initialFields": [
-    "sex",
+    "sex_at_birth",
     "ancestry",
-    "participant_assessment_centres.medical_historys.diabetes",
-    "participant_assessment_centres.medical_historys.diabetes_type",
-    "participant_assessment_centres.wellbeings.quality_of_life"
+    "sites.medical_historys.diabetes",
+    "sites.anthropometric_measurementss.bmi",
+    "sites.psychosocial_measurementss.gad7_category"
   ],
   "uniqueIdField": "_subject_id",
   "dataTypename": "Subject",
@@ -25,8 +25,8 @@
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.assessment_centre_name",
-          "label": "Assessment Centre",
+          "field": "sites.site_name",
+          "label": "Site Name",
           "cardType": "categorical"
         }
       ]
@@ -35,11 +35,6 @@
       "label": "Demographics",
       "color": "#2081A8",
       "facets": [
-        {
-          "field": "sex",
-          "label": "Sex",
-          "cardType": "categorical"
-        },
         {
           "field": "sex_at_birth",
           "label": "Sex at Birth",
@@ -82,79 +77,54 @@
       "color": "#F39C12",
       "facets": [
         {
-          "field": "participant_assessment_centres.medical_historys.cancer",
+          "field": "sites.medical_historys.cancer",
           "label": "Cancer",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.diabetes",
+          "field": "sites.medical_historys.diabetes",
           "label": "Diabetes",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.diabetes_type",
-          "label": "Diabetes Type",
-          "cardType": "categorical"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.diagnosed_conditions",
-          "label": "Diagnosed Conditions",
-          "cardType": "categorical"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.food_allergies",
-          "label": "Food Allergies",
-          "cardType": "categorical"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.gluten_status",
-          "label": "Gluten Status",
-          "cardType": "categorical"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.hay_fever",
+          "field": "sites.medical_historys.hay_fever",
           "label": "Hay Fever",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.hypertension",
+          "field": "sites.medical_historys.hypertension",
           "label": "Hypertension",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.hypertension_measurement_type",
-          "label": "Hypertension Measurement Type",
-          "cardType": "categorical"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.infant_feeding",
+          "field": "sites.medical_historys.infant_feeding",
           "label": "Infant Feeding",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.mode_of_birth",
+          "field": "sites.medical_historys.mode_of_birth",
           "label": "Mode of Birth",
           "cardType": "categorical"
         }
       ]
     },
     {
-      "label": "Wellbeing",
+      "label": "Psychosocial",
       "color": "#20A8A8",
       "facets": [
         {
-          "field": "participant_assessment_centres.wellbeings.quality_of_life",
-          "label": "Quality of Life",
+          "field": "sites.psychosocial_measurementss.phq9_total_score",
+          "label": "PHQ-9 Total Score",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.wellbeings.sleep_satisfaction",
-          "label": "Sleep Satisfaction",
+          "field": "sites.psychosocial_measurementss.pss_total_score",
+          "label": "PSS Total Score",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.wellbeings.social_isolation",
-          "label": "Social Isolation",
+          "field": "sites.psychosocial_measurementss.gad7_category",
+          "label": "GAD-7 Category",
           "cardType": "categorical"
         }
       ]

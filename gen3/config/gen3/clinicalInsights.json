@@ -17,11 +17,11 @@
     "summary": "Selecting a value in one chart is expected to update the filter context for the rest of the dashboard."
   },
   "initialFields": [
-    "sex",
+    "sex_at_birth",
     "ancestry",
-    "participant_assessment_centres.medical_historys.diabetes",
-    "participant_assessment_centres.medical_historys.diabetes_type",
-    "participant_assessment_centres.wellbeings.quality_of_life"
+    "sites.medical_historys.diabetes",
+    "sites.anthropometric_measurementss.bmi",
+    "sites.psychosocial_measurementss.gad7_category"
   ],
   "tabs": [
     {
@@ -38,8 +38,8 @@
           "label": "Baseline Year"
         },
         {
-          "field": "participant_assessment_centres.assessment_centre_name",
-          "label": "Assessment Centre"
+          "field": "sites.site_name",
+          "label": "Site Name"
         }
       ]
     },
@@ -48,10 +48,6 @@
       "color": "#2081A8",
       "purpose": "Review cohort composition and socio-demographic structure.",
       "facets": [
-        {
-          "field": "sex",
-          "label": "Sex"
-        },
         {
           "field": "sex_at_birth",
           "label": "Sex at Birth"
@@ -88,67 +84,47 @@
       "purpose": "Assess clinical burden, diagnoses, and participant health background.",
       "facets": [
         {
-          "field": "participant_assessment_centres.medical_historys.cancer",
+          "field": "sites.medical_historys.cancer",
           "label": "Cancer"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.diabetes",
+          "field": "sites.medical_historys.diabetes",
           "label": "Diabetes"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.diabetes_type",
-          "label": "Diabetes Type"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.diagnosed_conditions",
-          "label": "Diagnosed Conditions"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.food_allergies",
-          "label": "Food Allergies"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.gluten_status",
-          "label": "Gluten Status"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.hay_fever",
+          "field": "sites.medical_historys.hay_fever",
           "label": "Hay Fever"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.hypertension",
+          "field": "sites.medical_historys.hypertension",
           "label": "Hypertension"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.hypertension_measurement_type",
-          "label": "Hypertension Measurement Type"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.infant_feeding",
+          "field": "sites.medical_historys.infant_feeding",
           "label": "Infant Feeding"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.mode_of_birth",
+          "field": "sites.medical_historys.mode_of_birth",
           "label": "Mode of Birth"
         }
       ]
     },
     {
-      "label": "Wellbeing",
+      "label": "Psychosocial",
       "color": "#20A8A8",
-      "purpose": "Surface participant-reported wellbeing measures suitable for cross-filtered cohort review.",
+      "purpose": "Surface participant-reported psychosocial measures suitable for cross-filtered cohort review.",
       "facets": [
         {
-          "field": "participant_assessment_centres.wellbeings.quality_of_life",
-          "label": "Quality of Life"
+          "field": "sites.psychosocial_measurementss.phq9_total_score",
+          "label": "PHQ-9 Total Score"
         },
         {
-          "field": "participant_assessment_centres.wellbeings.sleep_satisfaction",
-          "label": "Sleep Satisfaction"
+          "field": "sites.psychosocial_measurementss.pss_total_score",
+          "label": "PSS Total Score"
         },
         {
-          "field": "participant_assessment_centres.wellbeings.social_isolation",
-          "label": "Social Isolation"
+          "field": "sites.psychosocial_measurementss.gad7_category",
+          "label": "GAD-7 Category"
         }
       ]
     }
