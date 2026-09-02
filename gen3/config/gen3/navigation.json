@@ -85,10 +85,11 @@
       },
       {
         "href": "https://docs.gen3.org/",
-        "name": "Gen3"
+        "name": "Gen3",
+        "target": "_blank",
+        "rel": "noreferrer"
       }
     ],
     "loginButtonVisibility": "visible"
   }
 }
-

@@ -84,11 +84,10 @@
         "name": "Documentation"
       },
       {
-        "href": "https://docs.gen3.org/",
+        "href": "https://docs.gen3.org",
         "name": "Gen3"
       }
     ],
     "loginButtonVisibility": "visible"
   }
 }
-
