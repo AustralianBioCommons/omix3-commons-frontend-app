@@ -1,0 +1,132 @@
+{
+  "index": "subject",
+  "dataTypename": "Subject",
+  "uniqueIdField": "_subject_id",
+  "title": "Clinical Insights",
+  "description": "An interactive clinical dashboard concept for cross-filtered cohort exploration across curated participant variables.",
+  "explorerHref": "/Explorer",
+  "headerMetadata": {
+    "title": "Px4 Clinical Insights",
+    "content": "Interactive clinical cohort dashboard",
+    "key": "omix3-clinical-insights-page"
+  },
+  "pageNote": "Clinical Insights is intended to complement Explorer with a chart-first, cross-filtered dashboard experience across selected participant, medical history, and wellbeing variables.",
+  "interactionModel": {
+    "name": "cross-filtered-dashboard",
+    "status": "scaffold",
+    "summary": "Selecting a value in one chart is expected to update the filter context for the rest of the dashboard."
+  },
+  "initialFields": [
+    "sex_at_birth",
+    "ancestry",
+    "sites.medical_historys.diabetes",
+    "sites.anthropometric_measurementss.bmi",
+    "sites.psychosocial_measurementss.gad7_category"
+  ],
+  "tabs": [
+    {
+      "label": "Study Selection",
+      "color": "#2081A8",
+      "purpose": "Use these variables to define the study frame and assessment site context.",
+      "facets": [
+        {
+          "field": "project_id",
+          "label": "Project"
+        },
+        {
+          "field": "baseline_year",
+          "label": "Baseline Year"
+        },
+        {
+          "field": "sites.site_name",
+          "label": "Site Name"
+        }
+      ]
+    },
+    {
+      "label": "Demographics",
+      "color": "#2081A8",
+      "purpose": "Review cohort composition and socio-demographic structure.",
+      "facets": [
+        {
+          "field": "sex_at_birth",
+          "label": "Sex at Birth"
+        },
+        {
+          "field": "ancestry",
+          "label": "Ancestry"
+        },
+        {
+          "field": "education_level",
+          "label": "Education Level"
+        },
+        {
+          "field": "employment_status",
+          "label": "Employment Status"
+        },
+        {
+          "field": "relationship_status",
+          "label": "Relationship Status"
+        },
+        {
+          "field": "residence_type",
+          "label": "Residence Type"
+        },
+        {
+          "field": "country_of_birth",
+          "label": "Country of Birth"
+        }
+      ]
+    },
+    {
+      "label": "Medical History",
+      "color": "#F39C12",
+      "purpose": "Assess clinical burden, diagnoses, and participant health background.",
+      "facets": [
+        {
+          "field": "sites.medical_historys.cancer",
+          "label": "Cancer"
+        },
+        {
+          "field": "sites.medical_historys.diabetes",
+          "label": "Diabetes"
+        },
+        {
+          "field": "sites.medical_historys.hay_fever",
+          "label": "Hay Fever"
+        },
+        {
+          "field": "sites.medical_historys.hypertension",
+          "label": "Hypertension"
+        },
+        {
+          "field": "sites.medical_historys.infant_feeding",
+          "label": "Infant Feeding"
+        },
+        {
+          "field": "sites.medical_historys.mode_of_birth",
+          "label": "Mode of Birth"
+        }
+      ]
+    },
+    {
+      "label": "Psychosocial",
+      "color": "#20A8A8",
+      "purpose": "Surface participant-reported psychosocial measures suitable for cross-filtered cohort review.",
+      "facets": [
+        {
+          "field": "sites.psychosocial_measurementss.phq9_total_score",
+          "label": "PHQ-9 Total Score"
+        },
+        {
+          "field": "sites.psychosocial_measurementss.pss_total_score",
+          "label": "PSS Total Score"
+        },
+        {
+          "field": "sites.psychosocial_measurementss.gad7_category",
+          "label": "GAD-7 Category"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,402 @@
+{
+  "sharedFilters": {
+    "defined": {
+      "project_id": [
+        {
+          "index": "subject",
+          "field": "project_id"
+        },
+        {
+          "index": "file",
+          "field": "project_id"
+        }
+      ]
+    }
+  },
+
+  "explorerConfig": [
+    {
+      "tabTitle": "Cases",
+
+      "charts": {
+        "project_id": {
+          "chartType": "horizontalStacked",
+          "title": "Projects"
+        },
+
+        "sites.medical_historys.diabetes": {
+          "chartType": "fullPie",
+          "title": "Diabetes",
+          "showLegendInChart": false
+        },
+
+        "sites.medical_historys.hypertension": {
+          "chartType": "horizontalStacked",
+          "title": "Hypertension"
+        },
+
+        "sites.medical_historys.hay_fever": {
+          "chartType": "verticalBarChart",
+          "title": "Hay Fever"
+        },
+
+        "sites.psychosocial_measurementss.gad7_category": {
+          "chartType": "horizontalStacked",
+          "title": "GAD7 Category",
+          "showLegendInChart": true
+        }
+      },
+
+      "filters": {
+        "tabs": [
+          {
+            "title": "Study Selection",
+            "fields": [
+              "project_id",
+              "baseline_year",
+              "sites.site_name"
+            ]
+          },
+
+          {
+            "title": "Medical History",
+            "fields": [
+              "sites.medical_historys.cancer",
+              "sites.medical_historys.diabetes",
+              "sites.medical_historys.hay_fever",
+              "sites.medical_historys.hypertension",
+              "sites.medical_historys.infant_feeding",
+              "sites.medical_historys.mode_of_birth"
+            ]
+          },
+
+          {
+            "title": "Anthropometry",
+            "fields": [
+              "sites.anthropometric_measurementss.height",
+              "sites.anthropometric_measurementss.weight",
+              "sites.anthropometric_measurementss.bmi"
+            ]
+          },
+
+          {
+            "title": "Psychosocial",
+            "fields": [
+              "sites.psychosocial_measurementss.phq9_total_score",
+              "sites.psychosocial_measurementss.pss_total_score",
+              "sites.psychosocial_measurementss.gad7_total_score",
+              "sites.psychosocial_measurementss.gad7_category"
+            ]
+          }
+        ]
+      },
+
+      "table": {
+        "enabled": true,
+
+        "detailsConfig": {
+          "panel": "default",
+          "mode": "click",
+          "idField": "submitter_id",
+          "title": "Row Details"
+        },
+
+        "pageLimit": {
+          "limit": 10000
+        },
+
+        "fields": [
+          "submitter_id",
+          "project_id",
+          "baseline_year",
+          "sites.site_name",
+          "sites.site_location",
+          "sites.anthropometric_measurementss.bmi",
+          "sites.medical_historys.diabetes",
+          "sites.medical_historys.hypertension",
+          "sites.psychosocial_measurementss.phq9_total_score"
+        ],
+
+        "columns": {
+          "project_id": {
+            "sortable": false
+          },
+
+          "baseline_year": {
+            "title": "Baseline Year"
+          },
+
+          "sites.site_name": {
+            "title": "Site"
+          },
+
+          "sites.site_location": {
+            "title": "Site Location"
+          },
+
+          "sites.anthropometric_measurementss.bmi": {
+            "title": "BMI"
+          },
+
+          "sites.medical_historys.diabetes": {
+            "title": "Diabetes"
+          },
+
+          "sites.medical_historys.hypertension": {
+            "title": "Hypertension"
+          },
+
+          "sites.psychosocial_measurementss.phq9_total_score": {
+            "title": "PHQ9 Total Score"
+          }
+        }
+      },
+
+      "dropdowns": {
+        "download-table": {
+          "title": "Download Table",
+          "leftIcon": "gen3:download",
+          "rightIcon": "gen3:chevron-down",
+
+          "dropdownItems": [
+            {
+              "enabled": true,
+              "type": "data-json",
+              "title": "JSON",
+              "leftIcon": "datafile",
+              "rightIcon": "download",
+              "action": "data-json",
+
+              "actionArgs": {
+                "filename": "cases_table.json",
+                "rootPath": "gen3_discovery"
+              }
+            },
+
+            {
+              "enabled": true,
+              "type": "data-tsv",
+              "title": "TSV",
+              "dropdownId": "download-table",
+              "leftIcon": "datafile",
+              "rightIcon": "download",
+
+              "actionArgs": {
+                "filename": "cases_table.tsv"
+              }
+            },
+
+            {
+              "enabled": true,
+              "type": "data-csv",
+              "title": "CSV",
+              "leftIcon": "datafile",
+              "rightIcon": "download",
+              "action": "data-csv",
+
+              "actionArgs": {
+                "filename": "cases_table.csv"
+              }
+            }
+          ]
+        }
+      },
+
+      "buttons": [
+        {
+          "enabled": true,
+          "type": "manifest",
+          "action": "manifest",
+          "title": "Download File Manifest for Cases",
+          "leftIcon": "datafile",
+          "rightIcon": "download",
+          "fileName": "case_manifest.json",
+
+          "actionArgs": {
+            "resourceIndexType": "file",
+            "resourceIdField": "object_id",
+            "referenceIdFieldInResourceIndex": "_subject_id",
+            "referenceIdFieldInDataIndex": "_subject_id",
+
+            "fileFields": [
+              "file_name",
+              "file_size",
+              "md5sum",
+              "object_id"
+            ]
+          }
+        }
+      ],
+
+      "loginForDownload": false,
+
+      "guppyConfig": {
+        "dataType": "subject",
+        "nodeCountTitle": "Subjects",
+
+        "manifestMapping": {
+          "resourceIndexType": "file",
+          "resourceIdField": "object_id",
+          "referenceIdFieldInResourceIndex": "_subject_id",
+          "referenceIdFieldInDataIndex": "_subject_id"
+        },
+
+        "accessibleFieldCheckList": [
+          "project_id"
+        ],
+
+        "accessibleValidationField": "project_id"
+      }
+    },
+
+    {
+      "tabTitle": "Data Files",
+
+      "chartsSection": {
+        "title": "Charts",
+        "enabled": true,
+
+        "showLegends": {
+          "enabled": true
+        }
+      },
+
+      "charts": {
+        "data_type": {
+          "chartType": "verticalBarChart",
+          "title": "Data Type",
+          "showLegendInChart": false
+        },
+
+        "data_category": {
+          "chartType": "fullPie",
+          "title": "Data Category",
+          "showLegendInChart": false
+        }
+      },
+
+      "filters": {
+        "tabs": [
+          {
+            "title": "File",
+
+            "fields": [
+              "project_id",
+              "data_type",
+              "data_format",
+              "data_category"
+            ]
+          }
+        ]
+      },
+
+      "table": {
+        "enabled": true,
+
+        "detailsConfig": {
+          "panel": "default",
+          "mode": "click",
+          "idField": "_file_id",
+          "title": "File Details"
+        },
+
+        "fields": [
+          "project_id",
+          "file_name",
+          "data_type",
+          "data_format",
+          "data_category",
+          "file_size",
+          "md5sum"
+        ],
+
+        "columns": {
+          "project_id": {
+            "title": "Project"
+          },
+
+          "file_name": {
+            "title": "File Name"
+          },
+
+          "data_type": {
+            "title": "Data Type"
+          },
+
+          "data_format": {
+            "title": "Data Format"
+          },
+
+          "data_category": {
+            "title": "Data Category"
+          },
+
+          "file_size": {
+            "title": "File Size"
+          },
+
+          "md5sum": {
+            "title": "MD5"
+          }
+        }
+      },
+
+      "guppyConfig": {
+        "dataType": "file",
+
+        "fieldMapping": [
+          {
+            "field": "_file_id",
+            "name": "GUID"
+          }
+        ],
+
+        "nodeCountTitle": "Files",
+
+        "manifestMapping": {
+          "resourceIndexType": "subject",
+          "resourceIdField": "_subject_id",
+          "referenceIdFieldInResourceIndex": "_subject_id",
+          "referenceIdFieldInDataIndex": "_subject_id"
+        },
+
+        "accessibleFieldCheckList": [
+          "project_id"
+        ],
+
+        "accessibleValidationField": "project_id",
+
+        "downloadAccessor": "_subject_id"
+      },
+
+      "buttons": [
+        {
+          "enabled": true,
+          "type": "manifest",
+          "action": "manifest",
+          "title": "Download File Manifest",
+          "leftIcon": "datafile",
+          "rightIcon": "download",
+
+          "actionArgs": {
+            "resourceIndexType": "file",
+            "resourceIdField": "object_id",
+            "referenceIdFieldInResourceIndex": "project_id",
+            "referenceIdFieldInDataIndex": "project_id",
+
+            "fileFields": [
+              "file_name",
+              "file_size",
+              "md5sum",
+              "object_id"
+            ],
+
+            "filename": "data_table_manifest.csv"
+          }
+        }
+      ],
+
+      "loginForDownload": true
+    }
+  ]
+}

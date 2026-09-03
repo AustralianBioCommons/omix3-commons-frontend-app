@@ -1,12 +1,12 @@
 # docker build -t ff .
 # docker run -p 3000:3000 -it ff
 # Build stage
-#FROM --platform=$BUILDPLATFORM node:24.14.0-trixie-slim AS builder
-FROM  820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node24.14.0 AS builder
+
+FROM  820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.15.0-trixie-slim AS builder
+#FROM --platform=$BUILDPLATFORM node:24.15.0-trixie-slim AS builder
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
-
 WORKDIR /gen3
 
 # Copy dependency files first for better caching
@@ -27,36 +27,41 @@ COPY .env.production ./
 COPY ./src ./src
 COPY ./public ./public
 COPY ./config ./config
-COPY ./start.sh ./
+COPY ./start_with_config.sh ./start.sh
 
 # Build and prune
-RUN npm run build && \
+RUN  npm run build:volume && \
     npm prune --omit=dev;
 
-# Production stage
-#FROM node:24.14.0-trixie-slim AS runner
-FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node24.14.0 AS runner
+#FROM node:24.15.0-trixie-slim AS runner
+FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.15.0-trixie-slim AS runner
 
 WORKDIR /gen3
 
 RUN addgroup --system --gid 1001 nextjs && \
     adduser --system --uid 1001 nextjs
 
-# Copy only production dependencies
-COPY --from=builder --chown=nextjs:nextjs /gen3/package.json ./
-COPY --from=builder --chown=nextjs:nextjs /gen3/node_modules ./node_modules
-COPY --from=builder --chown=nextjs:nextjs /gen3/config ./config
-COPY --from=builder --chown=nextjs:nextjs /gen3/.next ./.next
-COPY --from=builder --chown=nextjs:nextjs /gen3/public ./public
+COPY --from=builder --chown=nextjs:nextjs /gen3/.next/standalone ./.next/standalone
+COPY --from=builder --chown=nextjs:nextjs /gen3/.next/static ./.next/standalone/.next/static
 COPY --from=builder --chown=nextjs:nextjs /gen3/start.sh ./start.sh
+COPY --from=builder --chown=nextjs:nextjs /gen3/config ./config
+COPY --from=builder --chown=nextjs:nextjs /gen3/public ./public
 
-RUN mkdir -p .next/cache/images && \
-    chmod +x start.sh && \
-    chown -R nextjs:nextjs .next/cache
+#VOLUME /gen3/config
+#VOLUME /gen3/public
+
+RUN mkdir -p /gen3/.next/cache/images && \
+   chmod -R 777 /gen3/.next/cache && \
+   chown -R nextjs:nextjs /gen3/.next/cache
+
+RUN chmod +x start.sh && \
+    chown -R nextjs:nextjs start.sh
+
+RUN rm -rf .next/standalone/config
+
+RUN cd .next/standalone && \
+    ln -s ../../config ./config && \
+    ln -s ../../public ./public
 
 USER nextjs:nextjs
-ENV NODE_ENV=production \
-    PORT=3000 \
-    NEXT_TELEMETRY_DISABLED=1
-
 CMD ["sh", "./start.sh"]

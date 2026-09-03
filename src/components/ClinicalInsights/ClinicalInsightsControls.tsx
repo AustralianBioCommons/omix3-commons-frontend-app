@@ -65,7 +65,7 @@ const ControlGroup = ({
         <span className="font-heading text-[1rem] font-semibold">{label}</span>
       </button>
 
-      <Collapse in={groupOpen}>
+      <Collapse expanded={groupOpen}>
         <div className="px-4 py-3">
           <ul className="space-y-2">
             {visibleFields.map((field) => (

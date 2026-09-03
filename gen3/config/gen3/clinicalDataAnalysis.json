@@ -1,0 +1,133 @@
+{
+  "index": "subject",
+  "initialFields": [
+    "sex_at_birth",
+    "ancestry",
+    "sites.medical_historys.diabetes",
+    "sites.anthropometric_measurementss.bmi",
+    "sites.psychosocial_measurementss.gad7_category"
+  ],
+  "uniqueIdField": "_subject_id",
+  "dataTypename": "Subject",
+  "tabs": [
+    {
+      "label": "Study Selection",
+      "color": "#2081A8",
+      "facets": [
+        {
+          "field": "project_id",
+          "label": "Project",
+          "cardType": "categorical"
+        },
+        {
+          "field": "baseline_year",
+          "label": "Baseline Year",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.site_name",
+          "label": "Site Name",
+          "cardType": "categorical"
+        }
+      ]
+    },
+    {
+      "label": "Demographics",
+      "color": "#2081A8",
+      "facets": [
+        {
+          "field": "sex_at_birth",
+          "label": "Sex at Birth",
+          "cardType": "categorical"
+        },
+        {
+          "field": "ancestry",
+          "label": "Ancestry",
+          "cardType": "categorical"
+        },
+        {
+          "field": "education_level",
+          "label": "Education Level",
+          "cardType": "categorical"
+        },
+        {
+          "field": "employment_status",
+          "label": "Employment Status",
+          "cardType": "categorical"
+        },
+        {
+          "field": "relationship_status",
+          "label": "Relationship Status",
+          "cardType": "categorical"
+        },
+        {
+          "field": "residence_type",
+          "label": "Residence Type",
+          "cardType": "categorical"
+        },
+        {
+          "field": "country_of_birth",
+          "label": "Country of Birth",
+          "cardType": "categorical"
+        }
+      ]
+    },
+    {
+      "label": "Medical History",
+      "color": "#F39C12",
+      "facets": [
+        {
+          "field": "sites.medical_historys.cancer",
+          "label": "Cancer",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.medical_historys.diabetes",
+          "label": "Diabetes",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.medical_historys.hay_fever",
+          "label": "Hay Fever",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.medical_historys.hypertension",
+          "label": "Hypertension",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.medical_historys.infant_feeding",
+          "label": "Infant Feeding",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.medical_historys.mode_of_birth",
+          "label": "Mode of Birth",
+          "cardType": "categorical"
+        }
+      ]
+    },
+    {
+      "label": "Psychosocial",
+      "color": "#20A8A8",
+      "facets": [
+        {
+          "field": "sites.psychosocial_measurementss.phq9_total_score",
+          "label": "PHQ-9 Total Score",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.psychosocial_measurementss.pss_total_score",
+          "label": "PSS Total Score",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.psychosocial_measurementss.gad7_category",
+          "label": "GAD-7 Category",
+          "cardType": "categorical"
+        }
+      ]
+    }
+  ]
+}
