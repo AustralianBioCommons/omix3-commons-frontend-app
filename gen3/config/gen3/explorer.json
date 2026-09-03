@@ -23,19 +23,23 @@
           "chartType": "horizontalStacked",
           "title": "Projects"
         },
+
         "sites.medical_historys.diabetes": {
           "chartType": "fullPie",
           "title": "Diabetes",
           "showLegendInChart": false
         },
+
         "sites.medical_historys.hypertension": {
           "chartType": "horizontalStacked",
           "title": "Hypertension"
         },
+
         "sites.medical_historys.hay_fever": {
           "chartType": "verticalBarChart",
           "title": "Hay Fever"
         },
+
         "sites.psychosocial_measurementss.gad7_category": {
           "chartType": "horizontalStacked",
           "title": "GAD7 Category",
@@ -53,27 +57,7 @@
               "sites.site_name"
             ]
           },
-          {
-            "title": "Demographics",
-            "fields": [
-              "demographic_measurementss.age",
-              "demographic_measurementss.ancestry",
-              "demographic_measurementss.country_of_birth",
-              "demographic_measurementss.education_highest_level",
-              "demographic_measurementss.education_level",
-              "demographic_measurementss.employment_status",
-              "demographic_measurementss.household_size",
-              "demographic_measurementss.income_adequacy",
-              "demographic_measurementss.pet_in_home",
-              "demographic_measurementss.relationship_status",
-              "demographic_measurementss.residence_type"
-            ],
-            "fieldsConfig": {
-              "demographic_measurementss.age": {
-                "label": "Age"
-              }
-            }
-          },
+
           {
             "title": "Medical History",
             "fields": [
@@ -85,6 +69,7 @@
               "sites.medical_historys.mode_of_birth"
             ]
           },
+
           {
             "title": "Anthropometry",
             "fields": [
@@ -93,6 +78,7 @@
               "sites.anthropometric_measurementss.bmi"
             ]
           },
+
           {
             "title": "Psychosocial",
             "fields": [
@@ -123,14 +109,11 @@
           "submitter_id",
           "project_id",
           "baseline_year",
-          "demographic_measurementss.age",
-          "demographic_measurementss.country_of_birth",
-          "demographic_measurementss.education_level",
-          "demographic_measurementss.employment_status",
-          "demographic_measurementss.relationship_status",
-          "demographic_measurementss.residence_type",
           "sites.site_name",
+          "sites.site_location",
           "sites.anthropometric_measurementss.bmi",
+          "sites.medical_historys.diabetes",
+          "sites.medical_historys.hypertension",
           "sites.psychosocial_measurementss.phq9_total_score"
         ],
 
@@ -138,33 +121,31 @@
           "project_id": {
             "sortable": false
           },
+
           "baseline_year": {
             "title": "Baseline Year"
           },
-          "demographic_measurementss.age": {
-            "title": "Age"
-          },
-          "demographic_measurementss.country_of_birth": {
-            "title": "Country of Birth"
-          },
-          "demographic_measurementss.education_level": {
-            "title": "Education Level"
-          },
-          "demographic_measurementss.employment_status": {
-            "title": "Employment Status"
-          },
-          "demographic_measurementss.relationship_status": {
-            "title": "Relationship Status"
-          },
-          "demographic_measurementss.residence_type": {
-            "title": "Residence Type"
-          },
+
           "sites.site_name": {
             "title": "Site"
           },
+
+          "sites.site_location": {
+            "title": "Site Location"
+          },
+
           "sites.anthropometric_measurementss.bmi": {
             "title": "BMI"
           },
+
+          "sites.medical_historys.diabetes": {
+            "title": "Diabetes"
+          },
+
+          "sites.medical_historys.hypertension": {
+            "title": "Hypertension"
+          },
+
           "sites.psychosocial_measurementss.phq9_total_score": {
             "title": "PHQ9 Total Score"
           }
@@ -176,6 +157,7 @@
           "title": "Download Table",
           "leftIcon": "gen3:download",
           "rightIcon": "gen3:chevron-down",
+
           "dropdownItems": [
             {
               "enabled": true,
@@ -184,11 +166,13 @@
               "leftIcon": "datafile",
               "rightIcon": "download",
               "action": "data-json",
+
               "actionArgs": {
                 "filename": "cases_table.json",
                 "rootPath": "gen3_discovery"
               }
             },
+
             {
               "enabled": true,
               "type": "data-tsv",
@@ -196,10 +180,12 @@
               "dropdownId": "download-table",
               "leftIcon": "datafile",
               "rightIcon": "download",
+
               "actionArgs": {
                 "filename": "cases_table.tsv"
               }
             },
+
             {
               "enabled": true,
               "type": "data-csv",
@@ -207,6 +193,7 @@
               "leftIcon": "datafile",
               "rightIcon": "download",
               "action": "data-csv",
+
               "actionArgs": {
                 "filename": "cases_table.csv"
               }
@@ -224,11 +211,13 @@
           "leftIcon": "datafile",
           "rightIcon": "download",
           "fileName": "case_manifest.json",
+
           "actionArgs": {
             "resourceIndexType": "file",
             "resourceIdField": "object_id",
             "referenceIdFieldInResourceIndex": "_subject_id",
             "referenceIdFieldInDataIndex": "_subject_id",
+
             "fileFields": [
               "file_name",
               "file_size",
@@ -266,6 +255,7 @@
       "chartsSection": {
         "title": "Charts",
         "enabled": true,
+
         "showLegends": {
           "enabled": true
         }
@@ -277,6 +267,7 @@
           "title": "Data Type",
           "showLegendInChart": false
         },
+
         "data_category": {
           "chartType": "fullPie",
           "title": "Data Category",
@@ -288,6 +279,7 @@
         "tabs": [
           {
             "title": "File",
+
             "fields": [
               "project_id",
               "data_type",
@@ -322,21 +314,27 @@
           "project_id": {
             "title": "Project"
           },
+
           "file_name": {
             "title": "File Name"
           },
+
           "data_type": {
             "title": "Data Type"
           },
+
           "data_format": {
             "title": "Data Format"
           },
+
           "data_category": {
             "title": "Data Category"
           },
+
           "file_size": {
             "title": "File Size"
           },
+
           "md5sum": {
             "title": "MD5"
           }
@@ -379,17 +377,20 @@
           "title": "Download File Manifest",
           "leftIcon": "datafile",
           "rightIcon": "download",
+
           "actionArgs": {
             "resourceIndexType": "file",
             "resourceIdField": "object_id",
             "referenceIdFieldInResourceIndex": "project_id",
             "referenceIdFieldInDataIndex": "project_id",
+
             "fileFields": [
               "file_name",
               "file_size",
               "md5sum",
               "object_id"
             ],
+
             "filename": "data_table_manifest.csv"
           }
         }
