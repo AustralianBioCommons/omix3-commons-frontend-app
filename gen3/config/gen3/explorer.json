@@ -23,20 +23,20 @@
           "chartType": "horizontalStacked",
           "title": "Projects"
         },
-        "diabetes": {
+        "sites.medical_historys.diabetes": {
           "chartType": "fullPie",
           "title": "Diabetes",
           "showLegendInChart": false
         },
-        "hypertension": {
+        "sites.medical_historys.hypertension": {
           "chartType": "horizontalStacked",
           "title": "Hypertension"
         },
-        "hay_fever": {
+        "sites.medical_historys.hay_fever": {
           "chartType": "verticalBarChart",
           "title": "Hay Fever"
         },
-        "gad7_category": {
+        "sites.psychosocial_measurementss.gad7_category": {
           "chartType": "horizontalStacked",
           "title": "GAD7 Category",
           "showLegendInChart": true
@@ -50,23 +50,26 @@
             "fields": [
               "project_id",
               "baseline_year",
-              "site_name"
+              "sites.site_name"
             ]
           },
           {
             "title": "Demographics",
             "fields": [
-              "age",
-              "country_of_birth",
-              "education_highest_level",
-              "education_level",
-              "employment_status",
-              "pet_in_home",
-              "relationship_status",
-              "residence_type"
+              "demographic_measurementss.age",
+              "demographic_measurementss.ancestry",
+              "demographic_measurementss.country_of_birth",
+              "demographic_measurementss.education_highest_level",
+              "demographic_measurementss.education_level",
+              "demographic_measurementss.employment_status",
+              "demographic_measurementss.household_size",
+              "demographic_measurementss.income_adequacy",
+              "demographic_measurementss.pet_in_home",
+              "demographic_measurementss.relationship_status",
+              "demographic_measurementss.residence_type"
             ],
             "fieldsConfig": {
-              "age": {
+              "demographic_measurementss.age": {
                 "label": "Age"
               }
             }
@@ -74,29 +77,29 @@
           {
             "title": "Medical History",
             "fields": [
-              "cancer",
-              "diabetes",
-              "hay_fever",
-              "hypertension",
-              "infant_feeding",
-              "mode_of_birth"
+              "sites.medical_historys.cancer",
+              "sites.medical_historys.diabetes",
+              "sites.medical_historys.hay_fever",
+              "sites.medical_historys.hypertension",
+              "sites.medical_historys.infant_feeding",
+              "sites.medical_historys.mode_of_birth"
             ]
           },
           {
             "title": "Anthropometry",
             "fields": [
-              "height",
-              "weight",
-              "bmi"
+              "sites.anthropometric_measurementss.height",
+              "sites.anthropometric_measurementss.weight",
+              "sites.anthropometric_measurementss.bmi"
             ]
           },
           {
             "title": "Psychosocial",
             "fields": [
-              "phq9_total_score",
-              "pss_total_score",
-              "gad7_total_score",
-              "gad7_category"
+              "sites.psychosocial_measurementss.phq9_total_score",
+              "sites.psychosocial_measurementss.pss_total_score",
+              "sites.psychosocial_measurementss.gad7_total_score",
+              "sites.psychosocial_measurementss.gad7_category"
             ]
           }
         ]
@@ -120,15 +123,15 @@
           "submitter_id",
           "project_id",
           "baseline_year",
-          "age",
-          "country_of_birth",
-          "education_level",
-          "employment_status",
-          "relationship_status",
-          "residence_type",
-          "site_name",
-          "bmi",
-          "phq9_total_score"
+          "demographic_measurementss.age",
+          "demographic_measurementss.country_of_birth",
+          "demographic_measurementss.education_level",
+          "demographic_measurementss.employment_status",
+          "demographic_measurementss.relationship_status",
+          "demographic_measurementss.residence_type",
+          "sites.site_name",
+          "sites.anthropometric_measurementss.bmi",
+          "sites.psychosocial_measurementss.phq9_total_score"
         ],
 
         "columns": {
@@ -138,31 +141,31 @@
           "baseline_year": {
             "title": "Baseline Year"
           },
-          "age": {
+          "demographic_measurementss.age": {
             "title": "Age"
           },
-          "country_of_birth": {
+          "demographic_measurementss.country_of_birth": {
             "title": "Country of Birth"
           },
-          "education_level": {
+          "demographic_measurementss.education_level": {
             "title": "Education Level"
           },
-          "employment_status": {
+          "demographic_measurementss.employment_status": {
             "title": "Employment Status"
           },
-          "relationship_status": {
+          "demographic_measurementss.relationship_status": {
             "title": "Relationship Status"
           },
-          "residence_type": {
+          "demographic_measurementss.residence_type": {
             "title": "Residence Type"
           },
-          "site_name": {
+          "sites.site_name": {
             "title": "Site"
           },
-          "bmi": {
+          "sites.anthropometric_measurementss.bmi": {
             "title": "BMI"
           },
-          "phq9_total_score": {
+          "sites.psychosocial_measurementss.phq9_total_score": {
             "title": "PHQ9 Total Score"
           }
         }
