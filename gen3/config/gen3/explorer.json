@@ -9,6 +9,14 @@
         {
           "index": "file",
           "field": "project_id"
+        },
+        {
+          "index": "project",
+          "field": "project_id"
+        },
+        {
+          "index": "core_metadata_collection",
+          "field": "project_id"
         }
       ]
     }
@@ -23,23 +31,42 @@
           "chartType": "horizontalStacked",
           "title": "Projects"
         },
-
-        "sites.medical_historys.diabetes": {
+        "sex_at_birth": {
           "chartType": "fullPie",
-          "title": "Diabetes",
-          "showLegendInChart": false
+          "title": "Sex at Birth",
+          "showLegendInChart": true
         },
-
+        "demographic_measurementss.country_of_birth": {
+          "chartType": "horizontalStacked",
+          "title": "Country of Birth"
+        },
+        "demographic_measurementss.education_highest_level": {
+          "chartType": "horizontalStacked",
+          "title": "Highest Education Level"
+        },
+        "demographic_measurementss.employment_status": {
+          "chartType": "horizontalStacked",
+          "title": "Employment Status"
+        },
+        "sites.site_name": {
+          "chartType": "horizontalStacked",
+          "title": "Assessment Sites"
+        },
+        "sites.medical_historys.diabetes": {
+          "chartType": "horizontalStacked",
+          "title": "Diabetes",
+          "showLegendInChart": true
+        },
         "sites.medical_historys.hypertension": {
           "chartType": "horizontalStacked",
-          "title": "Hypertension"
+          "title": "Hypertension",
+          "showLegendInChart": true
         },
-
         "sites.medical_historys.hay_fever": {
-          "chartType": "verticalBarChart",
-          "title": "Hay Fever"
+          "chartType": "horizontalStacked",
+          "title": "Hay Fever",
+          "showLegendInChart": true
         },
-
         "sites.psychosocial_measurementss.gad7_category": {
           "chartType": "horizontalStacked",
           "title": "GAD7 Category",
@@ -51,13 +78,68 @@
         "tabs": [
           {
             "title": "Study Selection",
-            "fields": [
-              "project_id",
-              "baseline_year",
-              "sites.site_name"
-            ]
+            "fields": ["project_id", "baseline_year"]
           },
-
+          {
+            "title": "Demographics",
+            "fields": [
+              "year_birth",
+              "sex_at_birth",
+              "demographic_measurementss.age",
+              "demographic_measurementss.country_of_birth",
+              "demographic_measurementss.education_highest_level",
+              "demographic_measurementss.education_level",
+              "demographic_measurementss.employment_status",
+              "demographic_measurementss.pet_in_home",
+              "demographic_measurementss.relationship_status",
+              "demographic_measurementss.residence_type"
+            ],
+            "fieldsConfig": {
+              "year_birth": { "label": "Year of Birth" },
+              "sex_at_birth": { "label": "Sex at Birth" },
+              "demographic_measurementss.country_of_birth": {
+                "label": "Country of Birth"
+              },
+              "demographic_measurementss.education_highest_level": {
+                "label": "Highest Education Level"
+              },
+              "demographic_measurementss.education_level": {
+                "label": "Education Level"
+              },
+              "demographic_measurementss.employment_status": {
+                "label": "Employment Status"
+              },
+              "demographic_measurementss.pet_in_home": {
+                "label": "Pet in Home"
+              },
+              "demographic_measurementss.relationship_status": {
+                "label": "Relationship Status"
+              },
+              "demographic_measurementss.residence_type": {
+                "label": "Residence Type"
+              },
+              "demographic_measurementss.age": {
+                "label": "Age"
+              }
+            }
+          },
+          {
+            "title": "Sites",
+            "fields": [
+              "sites.site_name",
+              "sites.site_location",
+              "sites.site_protocol_version",
+              "sites.site_purpose"
+            ],
+            "fieldsConfig": {
+              "sites.site_name": { "label": "Site Name" },
+              "sites.site_location": { "label": "Site Location" },
+              "sites.site_protocol_version": {
+                "label": "Site Protocol Version"
+              },
+              "sites.site_purpose": { "label": "Site Purpose" }
+            }
+          },
           {
             "title": "Medical History",
             "fields": [
@@ -67,18 +149,39 @@
               "sites.medical_historys.hypertension",
               "sites.medical_historys.infant_feeding",
               "sites.medical_historys.mode_of_birth"
-            ]
+            ],
+            "fieldsConfig": {
+              "sites.medical_historys.cancer": { "label": "Cancer" },
+              "sites.medical_historys.diabetes": { "label": "Diabetes" },
+              "sites.medical_historys.hay_fever": { "label": "Hay Fever" },
+              "sites.medical_historys.hypertension": {
+                "label": "Hypertension"
+              },
+              "sites.medical_historys.infant_feeding": {
+                "label": "Infant Feeding"
+              },
+              "sites.medical_historys.mode_of_birth": {
+                "label": "Mode of Birth"
+              }
+            }
           },
-
           {
             "title": "Anthropometry",
             "fields": [
               "sites.anthropometric_measurementss.height",
               "sites.anthropometric_measurementss.weight",
               "sites.anthropometric_measurementss.bmi"
-            ]
+            ],
+            "fieldsConfig": {
+              "sites.anthropometric_measurementss.height": {
+                "label": "Height (cm)"
+              },
+              "sites.anthropometric_measurementss.weight": {
+                "label": "Weight (kg)"
+              },
+              "sites.anthropometric_measurementss.bmi": { "label": "BMI" }
+            }
           },
-
           {
             "title": "Psychosocial",
             "fields": [
@@ -86,7 +189,21 @@
               "sites.psychosocial_measurementss.pss_total_score",
               "sites.psychosocial_measurementss.gad7_total_score",
               "sites.psychosocial_measurementss.gad7_category"
-            ]
+            ],
+            "fieldsConfig": {
+              "sites.psychosocial_measurementss.phq9_total_score": {
+                "label": "PHQ9 Total Score"
+              },
+              "sites.psychosocial_measurementss.pss_total_score": {
+                "label": "PSS Total Score"
+              },
+              "sites.psychosocial_measurementss.gad7_total_score": {
+                "label": "GAD7 Total Score"
+              },
+              "sites.psychosocial_measurementss.gad7_category": {
+                "label": "GAD7 Category"
+              }
+            }
           }
         ]
       },
@@ -109,43 +226,100 @@
           "submitter_id",
           "project_id",
           "baseline_year",
+          "year_birth",
+          "sex_at_birth",
+          "demographic_measurementss.age",
+          "demographic_measurementss.country_of_birth",
+          "demographic_measurementss.education_highest_level",
+          "demographic_measurementss.education_level",
+          "demographic_measurementss.employment_status",
+          "demographic_measurementss.pet_in_home",
+          "demographic_measurementss.relationship_status",
+          "demographic_measurementss.residence_type",
           "sites.site_name",
           "sites.site_location",
-          "sites.anthropometric_measurementss.bmi",
+          "sites.site_protocol_version",
+          "sites.site_purpose",
+          "sites.medical_historys.cancer",
           "sites.medical_historys.diabetes",
+          "sites.medical_historys.hay_fever",
           "sites.medical_historys.hypertension",
-          "sites.psychosocial_measurementss.phq9_total_score"
+          "sites.medical_historys.infant_feeding",
+          "sites.medical_historys.mode_of_birth",
+          "sites.anthropometric_measurementss.height",
+          "sites.anthropometric_measurementss.weight",
+          "sites.anthropometric_measurementss.bmi",
+          "sites.psychosocial_measurementss.phq9_total_score",
+          "sites.psychosocial_measurementss.pss_total_score",
+          "sites.psychosocial_measurementss.gad7_total_score",
+          "sites.psychosocial_measurementss.gad7_category"
         ],
 
         "columns": {
+          "submitter_id": { "title": "Subject ID" },
+          "year_birth": { "title": "Year of Birth" },
+          "sex_at_birth": { "title": "Sex at Birth" },
+          "demographic_measurementss.education_highest_level": {
+            "title": "Highest Education Level"
+          },
+          "demographic_measurementss.pet_in_home": { "title": "Pet in Home" },
+          "sites.site_location": { "title": "Site Location" },
+          "sites.site_protocol_version": { "title": "Site Protocol Version" },
+          "sites.site_purpose": { "title": "Site Purpose" },
+          "sites.medical_historys.cancer": { "title": "Cancer" },
+          "sites.medical_historys.diabetes": { "title": "Diabetes" },
+          "sites.medical_historys.hay_fever": { "title": "Hay Fever" },
+          "sites.medical_historys.hypertension": { "title": "Hypertension" },
+          "sites.medical_historys.infant_feeding": {
+            "title": "Infant Feeding"
+          },
+          "sites.medical_historys.mode_of_birth": { "title": "Mode of Birth" },
+          "sites.anthropometric_measurementss.height": {
+            "title": "Height (cm)"
+          },
+          "sites.anthropometric_measurementss.weight": {
+            "title": "Weight (kg)"
+          },
+          "sites.psychosocial_measurementss.pss_total_score": {
+            "title": "PSS Total Score"
+          },
+          "sites.psychosocial_measurementss.gad7_total_score": {
+            "title": "GAD7 Total Score"
+          },
+          "sites.psychosocial_measurementss.gad7_category": {
+            "title": "GAD7 Category"
+          },
           "project_id": {
+            "title": "Project",
             "sortable": false
           },
-
           "baseline_year": {
             "title": "Baseline Year"
           },
-
+          "demographic_measurementss.age": {
+            "title": "Age"
+          },
+          "demographic_measurementss.country_of_birth": {
+            "title": "Country of Birth"
+          },
+          "demographic_measurementss.education_level": {
+            "title": "Education Level"
+          },
+          "demographic_measurementss.employment_status": {
+            "title": "Employment Status"
+          },
+          "demographic_measurementss.relationship_status": {
+            "title": "Relationship Status"
+          },
+          "demographic_measurementss.residence_type": {
+            "title": "Residence Type"
+          },
           "sites.site_name": {
             "title": "Site"
           },
-
-          "sites.site_location": {
-            "title": "Site Location"
-          },
-
           "sites.anthropometric_measurementss.bmi": {
             "title": "BMI"
           },
-
-          "sites.medical_historys.diabetes": {
-            "title": "Diabetes"
-          },
-
-          "sites.medical_historys.hypertension": {
-            "title": "Hypertension"
-          },
-
           "sites.psychosocial_measurementss.phq9_total_score": {
             "title": "PHQ9 Total Score"
           }
@@ -157,7 +331,6 @@
           "title": "Download Table",
           "leftIcon": "gen3:download",
           "rightIcon": "gen3:chevron-down",
-
           "dropdownItems": [
             {
               "enabled": true,
@@ -166,13 +339,11 @@
               "leftIcon": "datafile",
               "rightIcon": "download",
               "action": "data-json",
-
               "actionArgs": {
                 "filename": "cases_table.json",
                 "rootPath": "gen3_discovery"
               }
             },
-
             {
               "enabled": true,
               "type": "data-tsv",
@@ -180,12 +351,10 @@
               "dropdownId": "download-table",
               "leftIcon": "datafile",
               "rightIcon": "download",
-
               "actionArgs": {
                 "filename": "cases_table.tsv"
               }
             },
-
             {
               "enabled": true,
               "type": "data-csv",
@@ -193,7 +362,6 @@
               "leftIcon": "datafile",
               "rightIcon": "download",
               "action": "data-csv",
-
               "actionArgs": {
                 "filename": "cases_table.csv"
               }
@@ -211,19 +379,12 @@
           "leftIcon": "datafile",
           "rightIcon": "download",
           "fileName": "case_manifest.json",
-
           "actionArgs": {
             "resourceIndexType": "file",
             "resourceIdField": "object_id",
             "referenceIdFieldInResourceIndex": "_subject_id",
             "referenceIdFieldInDataIndex": "_subject_id",
-
-            "fileFields": [
-              "file_name",
-              "file_size",
-              "md5sum",
-              "object_id"
-            ]
+            "fileFields": ["file_name", "file_size", "md5sum", "object_id"]
           }
         }
       ],
@@ -241,9 +402,7 @@
           "referenceIdFieldInDataIndex": "_subject_id"
         },
 
-        "accessibleFieldCheckList": [
-          "project_id"
-        ],
+        "accessibleFieldCheckList": ["project_id"],
 
         "accessibleValidationField": "project_id"
       }
@@ -255,19 +414,29 @@
       "chartsSection": {
         "title": "Charts",
         "enabled": true,
-
         "showLegends": {
           "enabled": true
         }
       },
 
       "charts": {
+        "data_format": {
+          "chartType": "horizontalStacked",
+          "title": "Data Format"
+        },
+        "source_node": {
+          "chartType": "horizontalStacked",
+          "title": "Source Node"
+        },
+        "sample_orig_provider": {
+          "chartType": "horizontalStacked",
+          "title": "Sample Provider"
+        },
         "data_type": {
           "chartType": "verticalBarChart",
           "title": "Data Type",
           "showLegendInChart": false
         },
-
         "data_category": {
           "chartType": "fullPie",
           "title": "Data Category",
@@ -279,13 +448,23 @@
         "tabs": [
           {
             "title": "File",
-
             "fields": [
               "project_id",
               "data_type",
               "data_format",
-              "data_category"
-            ]
+              "data_category",
+              "state",
+              "source_node",
+              "sample_orig_provider"
+            ],
+            "fieldsConfig": {
+              "source_node": { "label": "Source Node" },
+              "sample_orig_provider": { "label": "Sample Provider" }
+            }
+          },
+          {
+            "title": "File Identifiers",
+            "fields": ["object_id", "file_name", "_subject_id", "_sample_id"]
           }
         ]
       },
@@ -307,34 +486,40 @@
           "data_format",
           "data_category",
           "file_size",
-          "md5sum"
+          "md5sum",
+          "object_id",
+          "state",
+          "source_node",
+          "_subject_id",
+          "_sample_id",
+          "sample_orig_provider"
         ],
 
         "columns": {
+          "object_id": { "title": "Object ID" },
+          "state": { "title": "State" },
+          "source_node": { "title": "Source Node" },
+          "_subject_id": { "title": "Subject ID" },
+          "_sample_id": { "title": "Sample ID" },
+          "sample_orig_provider": { "title": "Sample Provider" },
           "project_id": {
             "title": "Project"
           },
-
           "file_name": {
             "title": "File Name"
           },
-
           "data_type": {
             "title": "Data Type"
           },
-
           "data_format": {
             "title": "Data Format"
           },
-
           "data_category": {
             "title": "Data Category"
           },
-
           "file_size": {
             "title": "File Size"
           },
-
           "md5sum": {
             "title": "MD5"
           }
@@ -360,9 +545,7 @@
           "referenceIdFieldInDataIndex": "_subject_id"
         },
 
-        "accessibleFieldCheckList": [
-          "project_id"
-        ],
+        "accessibleFieldCheckList": ["project_id"],
 
         "accessibleValidationField": "project_id",
 
@@ -377,25 +560,191 @@
           "title": "Download File Manifest",
           "leftIcon": "datafile",
           "rightIcon": "download",
-
           "actionArgs": {
             "resourceIndexType": "file",
             "resourceIdField": "object_id",
             "referenceIdFieldInResourceIndex": "project_id",
             "referenceIdFieldInDataIndex": "project_id",
-
-            "fileFields": [
-              "file_name",
-              "file_size",
-              "md5sum",
-              "object_id"
-            ],
-
+            "fileFields": ["file_name", "file_size", "md5sum", "object_id"],
             "filename": "data_table_manifest.csv"
           }
         }
       ],
 
+      "loginForDownload": true
+    },
+    {
+      "tabTitle": "Projects",
+      "charts": {
+        "availability_type": {
+          "chartType": "fullPie",
+          "title": "Availability Type",
+          "showLegendInChart": true
+        },
+        "data_types": {
+          "chartType": "horizontalStacked",
+          "title": "Data Types"
+        }
+      },
+      "filters": {
+        "tabs": [
+          {
+            "title": "Projects",
+            "fields": [
+              "project_id",
+              "code",
+              "name",
+              "availability_type",
+              "data_types"
+            ],
+            "fieldsConfig": {
+              "project_id": { "label": "Project" },
+              "code": { "label": "Project Code" },
+              "name": { "label": "Project Name" },
+              "availability_type": { "label": "Availability Type" },
+              "data_types": { "label": "Data Types" }
+            }
+          }
+        ]
+      },
+      "table": {
+        "enabled": true,
+        "detailsConfig": {
+          "panel": "default",
+          "mode": "click",
+          "idField": "project_id",
+          "title": "Project Details"
+        },
+        "fields": [
+          "project_id",
+          "code",
+          "name",
+          "short_name",
+          "full_name",
+          "project_description",
+          "availability_type",
+          "data_access_url",
+          "dbgap_accession_number",
+          "_subjects_count",
+          "_publications_count",
+          "data_types"
+        ],
+        "columns": {
+          "project_id": { "title": "Project ID" },
+          "code": { "title": "Project Code" },
+          "name": { "title": "Project Name" },
+          "short_name": { "title": "Short Name" },
+          "full_name": { "title": "Full Name" },
+          "project_description": { "title": "Description" },
+          "availability_type": { "title": "Availability Type" },
+          "data_access_url": { "title": "Data Access URL" },
+          "dbgap_accession_number": { "title": "dbGaP Accession" },
+          "_subjects_count": { "title": "Subjects" },
+          "_publications_count": { "title": "Publications" },
+          "data_types": { "title": "Data Types" }
+        }
+      },
+      "guppyConfig": {
+        "dataType": "project",
+        "nodeCountTitle": "Projects",
+        "accessibleFieldCheckList": ["project_id"],
+        "accessibleValidationField": "project_id"
+      },
+      "loginForDownload": true
+    },
+    {
+      "tabTitle": "Core Metadata",
+      "charts": {
+        "project_id": { "chartType": "horizontalStacked", "title": "Projects" },
+        "data_type": { "chartType": "horizontalStacked", "title": "Data Type" },
+        "data_format": {
+          "chartType": "horizontalStacked",
+          "title": "File Data Format"
+        },
+        "data_category": {
+          "chartType": "fullPie",
+          "title": "File Data Category"
+        }
+      },
+      "filters": {
+        "tabs": [
+          {
+            "title": "Collection",
+            "fields": [
+              "project_id",
+              "data_type",
+              "format",
+              "language",
+              "creator",
+              "contributor",
+              "publisher"
+            ]
+          },
+          {
+            "title": "Linked Files",
+            "fields": ["file_name", "file_size", "data_format", "data_category"]
+          }
+        ]
+      },
+      "table": {
+        "enabled": true,
+        "detailsConfig": {
+          "panel": "default",
+          "mode": "click",
+          "idField": "submitter_id",
+          "title": "Core Metadata Details"
+        },
+        "fields": [
+          "submitter_id",
+          "project_id",
+          "title",
+          "description",
+          "subject",
+          "creator",
+          "contributor",
+          "publisher",
+          "date",
+          "coverage",
+          "format",
+          "language",
+          "relation",
+          "rights",
+          "source",
+          "data_type",
+          "file_name",
+          "file_size",
+          "data_format",
+          "data_category"
+        ],
+        "columns": {
+          "submitter_id": { "title": "Collection ID" },
+          "project_id": { "title": "Project" },
+          "title": { "title": "Title" },
+          "description": { "title": "Description" },
+          "subject": { "title": "Subject" },
+          "creator": { "title": "Creator" },
+          "contributor": { "title": "Contributor" },
+          "publisher": { "title": "Publisher" },
+          "date": { "title": "Date" },
+          "coverage": { "title": "Coverage" },
+          "format": { "title": "Metadata Format" },
+          "language": { "title": "Language" },
+          "relation": { "title": "Relation" },
+          "rights": { "title": "Rights" },
+          "source": { "title": "Source" },
+          "data_type": { "title": "Data Type" },
+          "file_name": { "title": "File Name" },
+          "file_size": { "title": "File Size (bytes)" },
+          "data_format": { "title": "File Data Format" },
+          "data_category": { "title": "File Data Category" }
+        }
+      },
+      "guppyConfig": {
+        "dataType": "core_metadata_collection",
+        "nodeCountTitle": "Collections",
+        "accessibleFieldCheckList": ["project_id"],
+        "accessibleValidationField": "project_id"
+      },
       "loginForDownload": true
     }
   ]
