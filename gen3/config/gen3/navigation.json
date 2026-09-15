@@ -63,6 +63,14 @@
         }
       },
       {
+        "icon": "gen3:workspace",
+        "href": "/Workspaces",
+        "name": "Workspaces",
+        "tooltip": {
+          "authorized": "Gen3 workspaces are secure data analysis environments in the cloud that can access data from one or more data resources."
+        }
+      },
+      {
         "icon": "gen3:profile",
         "href": "/Profile",
         "name": "Profile",
@@ -85,11 +93,10 @@
       },
       {
         "href": "https://docs.gen3.org/",
-        "name": "Gen3",
-        "target": "_blank",
-        "rel": "noreferrer"
+        "name": "Gen3"
       }
     ],
     "loginButtonVisibility": "visible"
   }
 }
+

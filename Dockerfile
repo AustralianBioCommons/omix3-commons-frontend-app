@@ -1,12 +1,12 @@
 # docker build -t ff .
 # docker run -p 3000:3000 -it ff
 # Build stage
-
-FROM  820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.15.0-trixie-slim AS builder
-#FROM --platform=$BUILDPLATFORM node:24.15.0-trixie-slim AS builder
+#FROM --platform=$BUILDPLATFORM node:24.18.1-alpine3.23 AS builder
+FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.18.1-alpine3.23 AS builder
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
+ARG TARGETARCH
 WORKDIR /gen3
 
 # Copy dependency files first for better caching
@@ -19,6 +19,27 @@ RUN npm config set fetch-retries 5 && \
     npm ci && \
     npm cache clean --force
 
+# Install Python for JupyterLite build
+RUN apk add --no-cache python3 py3-pip bash curl bzip2 uv git coreutils
+
+COPY docker/micromamba-stub.py /usr/local/bin/micromamba
+RUN chmod +x /usr/local/bin/micromamba
+
+# Download cockle WASM packages from emscripten-forge so prepare_wasm.js reuses
+# the existing env instead of running micromamba create.
+RUN LITE_DIR=node_modules/@gen3/workspaces/dist/jupyterlite-builds/remote-private && \
+    WASM_ENV="$LITE_DIR/cockle_wasm_env" && \
+    mkdir -p "$WASM_ENV" && \
+    for URL in \
+      "https://repo.prefix.dev/emscripten-forge-4x/emscripten-wasm32/cockle_fs-0.3.0-h8b79025_1.tar.bz2" \
+      "https://repo.prefix.dev/emscripten-forge-4x/emscripten-wasm32/coreutils-9.10-h072c4ef_2.tar.bz2" \
+      "https://repo.prefix.dev/emscripten-forge-4x/emscripten-wasm32/grep-3.12-h8b79025_0.tar.bz2" \
+      "https://repo.prefix.dev/emscripten-forge-4x/emscripten-wasm32/less-693-hf259948_0.tar.bz2" \
+      "https://repo.prefix.dev/emscripten-forge-4x/emscripten-wasm32/sed-4.9-h072c4ef_0.tar.bz2" \
+    ; do \
+      curl -fsSL "$URL" | tar -xj -C "$WASM_ENV"; \
+    done
+
 # Copy necessary config files
 COPY next.config.js tsconfig.json tailwind.config.js postcss.config.js ./
 COPY .env.production ./
@@ -27,14 +48,18 @@ COPY .env.production ./
 COPY ./src ./src
 COPY ./public ./public
 COPY ./config ./config
-COPY ./start_with_config.sh ./start.sh
+COPY ./start_with_config.sh ./start_with_config.sh
+
+# Build JupyterLite static assets (outputs to public/ before Next.js build)
+RUN npm run build:jupyterlite
 
 # Build and prune
-RUN  npm run build:volume && \
+RUN NODE_OPTIONS="--max-old-space-size=4096" \
+    npm run build:volume && \
     npm prune --omit=dev;
 
-#FROM node:24.15.0-trixie-slim AS runner
-FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.15.0-trixie-slim AS runner
+# Production stage
+FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.18.1-alpine3.23 AS runner
 
 WORKDIR /gen3
 
@@ -43,9 +68,10 @@ RUN addgroup --system --gid 1001 nextjs && \
 
 COPY --from=builder --chown=nextjs:nextjs /gen3/.next/standalone ./.next/standalone
 COPY --from=builder --chown=nextjs:nextjs /gen3/.next/static ./.next/standalone/.next/static
-COPY --from=builder --chown=nextjs:nextjs /gen3/start.sh ./start.sh
+COPY --from=builder --chown=nextjs:nextjs /gen3/start_with_config.sh ./start_with_config.sh
 COPY --from=builder --chown=nextjs:nextjs /gen3/config ./config
 COPY --from=builder --chown=nextjs:nextjs /gen3/public ./public
+COPY --from=builder --chown=nextjs:nextjs /gen3/jupyter-workspaces ./jupyter-workspaces
 
 #VOLUME /gen3/config
 #VOLUME /gen3/public
@@ -54,14 +80,21 @@ RUN mkdir -p /gen3/.next/cache/images && \
    chmod -R 777 /gen3/.next/cache && \
    chown -R nextjs:nextjs /gen3/.next/cache
 
-RUN chmod +x start.sh && \
-    chown -R nextjs:nextjs start.sh
+RUN chmod +x start_with_config.sh && \
+    chown -R nextjs:nextjs start_with_config.sh
 
 RUN rm -rf .next/standalone/config
 
 RUN cd .next/standalone && \
     ln -s ../../config ./config && \
-    ln -s ../../public ./public
+    ln -s ../../public ./public && \
+    ln -s ../../jupyter-workspaces ./jupyter-workspaces
 
 USER nextjs:nextjs
-CMD ["sh", "./start.sh"]
+
+ENV NODE_ENV=production \
+    PORT=3000 \
+    HOSTNAME=0.0.0.0 \
+    NEXT_TELEMETRY_DISABLED=1
+
+CMD ["sh", "./start_with_config.sh"]

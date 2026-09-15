@@ -6,6 +6,9 @@
     "/Workspace": {
       "loginRequired": true
     },
+    "/Workspaces": {
+      "loginRequired": true
+    },
     "/Profile": {
       "loginRequired": true
     },
@@ -16,7 +19,7 @@
       "loginRequired": true
     },
     "/Analysis": {
-	"loginRequired": true
+	    "loginRequired": true
     },
     "/Submission": {
         "loginRequired": true
