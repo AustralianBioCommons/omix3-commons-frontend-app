@@ -1,11 +1,11 @@
 {
   "index": "subject",
   "initialFields": [
-    "sex",
-    "ancestry",
-    "participant_assessment_centres.medical_historys.diabetes",
-    "participant_assessment_centres.medical_historys.diabetes_type",
-    "participant_assessment_centres.wellbeings.quality_of_life"
+    "sex_at_birth",
+    "demographic_measurementss.country_of_birth",
+    "sites.medical_historys.diabetes",
+    "sites.medical_historys.hypertension",
+    "sites.psychosocial_measurementss.gad7_category"
   ],
   "uniqueIdField": "_subject_id",
   "dataTypename": "Subject",
@@ -23,11 +23,6 @@
           "field": "baseline_year",
           "label": "Baseline Year",
           "cardType": "categorical"
-        },
-        {
-          "field": "participant_assessment_centres.assessment_centre_name",
-          "label": "Assessment Centre",
-          "cardType": "categorical"
         }
       ]
     },
@@ -36,8 +31,8 @@
       "color": "#2081A8",
       "facets": [
         {
-          "field": "sex",
-          "label": "Sex",
+          "field": "year_birth",
+          "label": "Year of Birth",
           "cardType": "categorical"
         },
         {
@@ -46,33 +41,64 @@
           "cardType": "categorical"
         },
         {
-          "field": "ancestry",
-          "label": "Ancestry",
+          "field": "demographic_measurementss.country_of_birth",
+          "label": "Country of Birth",
           "cardType": "categorical"
         },
         {
-          "field": "education_level",
+          "field": "demographic_measurementss.education_highest_level",
+          "label": "Highest Education Level",
+          "cardType": "categorical"
+        },
+        {
+          "field": "demographic_measurementss.education_level",
           "label": "Education Level",
           "cardType": "categorical"
         },
         {
-          "field": "employment_status",
+          "field": "demographic_measurementss.employment_status",
           "label": "Employment Status",
           "cardType": "categorical"
         },
         {
-          "field": "relationship_status",
+          "field": "demographic_measurementss.pet_in_home",
+          "label": "Pet in Home",
+          "cardType": "categorical"
+        },
+        {
+          "field": "demographic_measurementss.relationship_status",
           "label": "Relationship Status",
           "cardType": "categorical"
         },
         {
-          "field": "residence_type",
+          "field": "demographic_measurementss.residence_type",
           "label": "Residence Type",
+          "cardType": "categorical"
+        }
+      ]
+    },
+    {
+      "label": "Sites",
+      "color": "#6C5CE7",
+      "facets": [
+        {
+          "field": "sites.site_name",
+          "label": "Site Name",
           "cardType": "categorical"
         },
         {
-          "field": "country_of_birth",
-          "label": "Country of Birth",
+          "field": "sites.site_location",
+          "label": "Site Location",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.site_protocol_version",
+          "label": "Site Protocol Version",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.site_purpose",
+          "label": "Site Purpose",
           "cardType": "categorical"
         }
       ]
@@ -82,79 +108,86 @@
       "color": "#F39C12",
       "facets": [
         {
-          "field": "participant_assessment_centres.medical_historys.cancer",
+          "field": "sites.medical_historys.cancer",
           "label": "Cancer",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.diabetes",
+          "field": "sites.medical_historys.diabetes",
           "label": "Diabetes",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.diabetes_type",
-          "label": "Diabetes Type",
-          "cardType": "categorical"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.diagnosed_conditions",
-          "label": "Diagnosed Conditions",
-          "cardType": "categorical"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.food_allergies",
-          "label": "Food Allergies",
-          "cardType": "categorical"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.gluten_status",
-          "label": "Gluten Status",
-          "cardType": "categorical"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.hay_fever",
+          "field": "sites.medical_historys.hay_fever",
           "label": "Hay Fever",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.hypertension",
+          "field": "sites.medical_historys.hypertension",
           "label": "Hypertension",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.hypertension_measurement_type",
-          "label": "Hypertension Measurement Type",
-          "cardType": "categorical"
-        },
-        {
-          "field": "participant_assessment_centres.medical_historys.infant_feeding",
+          "field": "sites.medical_historys.infant_feeding",
           "label": "Infant Feeding",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.medical_historys.mode_of_birth",
+          "field": "sites.medical_historys.mode_of_birth",
           "label": "Mode of Birth",
           "cardType": "categorical"
         }
       ]
     },
     {
-      "label": "Wellbeing",
+      "label": "Anthropometry",
+      "color": "#27AE60",
+      "facets": [
+        {
+          "field": "sites.anthropometric_measurementss.height",
+          "label": "Height (cm)",
+          "cardType": "categorical",
+          "dataDimension": {
+            "unit": "Centimeters"
+          }
+        },
+        {
+          "field": "sites.anthropometric_measurementss.weight",
+          "label": "Weight (kg)",
+          "cardType": "categorical",
+          "dataDimension": {
+            "unit": "Kilograms"
+          }
+        },
+        {
+          "field": "sites.anthropometric_measurementss.bmi",
+          "label": "BMI",
+          "cardType": "categorical"
+        }
+      ]
+    },
+    {
+      "label": "Psychosocial",
       "color": "#20A8A8",
       "facets": [
         {
-          "field": "participant_assessment_centres.wellbeings.quality_of_life",
-          "label": "Quality of Life",
+          "field": "sites.psychosocial_measurementss.phq9_total_score",
+          "label": "PHQ9 Total Score",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.wellbeings.sleep_satisfaction",
-          "label": "Sleep Satisfaction",
+          "field": "sites.psychosocial_measurementss.pss_total_score",
+          "label": "PSS Total Score",
           "cardType": "categorical"
         },
         {
-          "field": "participant_assessment_centres.wellbeings.social_isolation",
-          "label": "Social Isolation",
+          "field": "sites.psychosocial_measurementss.gad7_total_score",
+          "label": "GAD7 Total Score",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.psychosocial_measurementss.gad7_category",
+          "label": "GAD7 Category",
           "cardType": "categorical"
         }
       ]

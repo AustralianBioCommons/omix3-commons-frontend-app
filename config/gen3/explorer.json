@@ -85,7 +85,6 @@
             "fields": [
               "year_birth",
               "sex_at_birth",
-              "demographic_measurementss.age",
               "demographic_measurementss.country_of_birth",
               "demographic_measurementss.education_highest_level",
               "demographic_measurementss.education_level",
@@ -117,9 +116,6 @@
               },
               "demographic_measurementss.residence_type": {
                 "label": "Residence Type"
-              },
-              "demographic_measurementss.age": {
-                "label": "Age"
               }
             }
           },
@@ -228,7 +224,6 @@
           "baseline_year",
           "year_birth",
           "sex_at_birth",
-          "demographic_measurementss.age",
           "demographic_measurementss.country_of_birth",
           "demographic_measurementss.education_highest_level",
           "demographic_measurementss.education_level",
@@ -295,9 +290,6 @@
           },
           "baseline_year": {
             "title": "Baseline Year"
-          },
-          "demographic_measurementss.age": {
-            "title": "Age"
           },
           "demographic_measurementss.country_of_birth": {
             "title": "Country of Birth"

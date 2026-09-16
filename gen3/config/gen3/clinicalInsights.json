@@ -10,7 +10,7 @@
     "content": "Interactive clinical cohort dashboard",
     "key": "omix3-clinical-insights-page"
   },
-  "pageNote": "Clinical Insights is intended to complement Explorer with a chart-first, cross-filtered dashboard experience across selected participant, medical history, and wellbeing variables.",
+  "pageNote": "Explore the same study, demographic, site, medical history, anthropometric, and psychosocial fields as the Explorer Cases tab.",
   "interactionModel": {
     "name": "cross-filtered-dashboard",
     "status": "scaffold",
@@ -18,113 +18,191 @@
   },
   "initialFields": [
     "sex_at_birth",
-    "ancestry",
+    "demographic_measurementss.country_of_birth",
     "sites.medical_historys.diabetes",
-    "sites.anthropometric_measurementss.bmi",
+    "sites.medical_historys.hypertension",
     "sites.psychosocial_measurementss.gad7_category"
   ],
   "tabs": [
     {
       "label": "Study Selection",
       "color": "#2081A8",
-      "purpose": "Use these variables to define the study frame and assessment site context.",
       "facets": [
         {
           "field": "project_id",
-          "label": "Project"
+          "label": "Project",
+          "cardType": "categorical"
         },
         {
           "field": "baseline_year",
-          "label": "Baseline Year"
-        },
-        {
-          "field": "sites.site_name",
-          "label": "Site Name"
+          "label": "Baseline Year",
+          "cardType": "categorical"
         }
       ]
     },
     {
       "label": "Demographics",
       "color": "#2081A8",
-      "purpose": "Review cohort composition and socio-demographic structure.",
       "facets": [
         {
+          "field": "year_birth",
+          "label": "Year of Birth",
+          "cardType": "continuous"
+        },
+        {
           "field": "sex_at_birth",
-          "label": "Sex at Birth"
+          "label": "Sex at Birth",
+          "cardType": "categorical"
         },
         {
-          "field": "ancestry",
-          "label": "Ancestry"
+          "field": "demographic_measurementss.country_of_birth",
+          "label": "Country of Birth",
+          "cardType": "categorical"
         },
         {
-          "field": "education_level",
-          "label": "Education Level"
+          "field": "demographic_measurementss.education_highest_level",
+          "label": "Highest Education Level",
+          "cardType": "categorical"
         },
         {
-          "field": "employment_status",
-          "label": "Employment Status"
+          "field": "demographic_measurementss.education_level",
+          "label": "Education Level",
+          "cardType": "categorical"
         },
         {
-          "field": "relationship_status",
-          "label": "Relationship Status"
+          "field": "demographic_measurementss.employment_status",
+          "label": "Employment Status",
+          "cardType": "categorical"
         },
         {
-          "field": "residence_type",
-          "label": "Residence Type"
+          "field": "demographic_measurementss.pet_in_home",
+          "label": "Pet in Home",
+          "cardType": "categorical"
         },
         {
-          "field": "country_of_birth",
-          "label": "Country of Birth"
+          "field": "demographic_measurementss.relationship_status",
+          "label": "Relationship Status",
+          "cardType": "categorical"
+        },
+        {
+          "field": "demographic_measurementss.residence_type",
+          "label": "Residence Type",
+          "cardType": "categorical"
+        }
+      ]
+    },
+    {
+      "label": "Sites",
+      "color": "#6C5CE7",
+      "facets": [
+        {
+          "field": "sites.site_name",
+          "label": "Site Name",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.site_location",
+          "label": "Site Location",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.site_protocol_version",
+          "label": "Site Protocol Version",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.site_purpose",
+          "label": "Site Purpose",
+          "cardType": "categorical"
         }
       ]
     },
     {
       "label": "Medical History",
       "color": "#F39C12",
-      "purpose": "Assess clinical burden, diagnoses, and participant health background.",
       "facets": [
         {
           "field": "sites.medical_historys.cancer",
-          "label": "Cancer"
+          "label": "Cancer",
+          "cardType": "categorical"
         },
         {
           "field": "sites.medical_historys.diabetes",
-          "label": "Diabetes"
+          "label": "Diabetes",
+          "cardType": "categorical"
         },
         {
           "field": "sites.medical_historys.hay_fever",
-          "label": "Hay Fever"
+          "label": "Hay Fever",
+          "cardType": "categorical"
         },
         {
           "field": "sites.medical_historys.hypertension",
-          "label": "Hypertension"
+          "label": "Hypertension",
+          "cardType": "categorical"
         },
         {
           "field": "sites.medical_historys.infant_feeding",
-          "label": "Infant Feeding"
+          "label": "Infant Feeding",
+          "cardType": "categorical"
         },
         {
           "field": "sites.medical_historys.mode_of_birth",
-          "label": "Mode of Birth"
+          "label": "Mode of Birth",
+          "cardType": "categorical"
+        }
+      ]
+    },
+    {
+      "label": "Anthropometry",
+      "color": "#27AE60",
+      "facets": [
+        {
+          "field": "sites.anthropometric_measurementss.height",
+          "label": "Height (cm)",
+          "cardType": "continuous",
+          "dataDimension": {
+            "unit": "Centimeters"
+          }
+        },
+        {
+          "field": "sites.anthropometric_measurementss.weight",
+          "label": "Weight (kg)",
+          "cardType": "continuous",
+          "dataDimension": {
+            "unit": "Kilograms"
+          }
+        },
+        {
+          "field": "sites.anthropometric_measurementss.bmi",
+          "label": "BMI",
+          "cardType": "continuous"
         }
       ]
     },
     {
       "label": "Psychosocial",
       "color": "#20A8A8",
-      "purpose": "Surface participant-reported psychosocial measures suitable for cross-filtered cohort review.",
       "facets": [
         {
           "field": "sites.psychosocial_measurementss.phq9_total_score",
-          "label": "PHQ-9 Total Score"
+          "label": "PHQ9 Total Score",
+          "cardType": "continuous"
         },
         {
           "field": "sites.psychosocial_measurementss.pss_total_score",
-          "label": "PSS Total Score"
+          "label": "PSS Total Score",
+          "cardType": "continuous"
+        },
+        {
+          "field": "sites.psychosocial_measurementss.gad7_total_score",
+          "label": "GAD7 Total Score",
+          "cardType": "continuous"
         },
         {
           "field": "sites.psychosocial_measurementss.gad7_category",
-          "label": "GAD-7 Category"
+          "label": "GAD7 Category",
+          "cardType": "categorical"
         }
       ]
     }

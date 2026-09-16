@@ -5,56 +5,67 @@ import {
   selectCohortFilters,
   useCoreSelector,
 } from '@gen3/core';
-import {
-  Badge,
-  Button,
-  Card,
-  Group,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
+import { Badge, Button, Card, Group, Stack, Text, Title } from '@mantine/core';
 import { MdClose } from 'react-icons/md';
 import { CohortManager, QueryExpression } from '@gen3/frontend';
 
 import ClinicalInsightsCardContainer from './ClinicalInsightsCardContainer';
 import ClinicalInsightsControls from './ClinicalInsightsControls';
-import type { ClinicalInsightsConfig } from './types';
+import type { ClinicalInsightsConfig, ClinicalInsightsFacet } from './types';
 import { buildDashboardFilterSet, toDisplayLabel } from './utils';
 
 type ClinicalInsightsDashboardProps = {
   config: ClinicalInsightsConfig;
 };
 
-const ClinicalInsightsDashboard = ({ config }: ClinicalInsightsDashboardProps) => {
+const ClinicalInsightsDashboard = ({
+  config,
+}: ClinicalInsightsDashboardProps) => {
   const [activeFields, setActiveFields] = useState(config.initialFields);
-  const [selectedValues, setSelectedValues] = useState<Record<string, string[]>>({});
+  const [selectedValues, setSelectedValues] = useState<
+    Record<string, string[]>
+  >({});
 
   const allFields = useMemo(
     () =>
-      config.tabs.reduce<Record<string, { field: string; label: string; color: string; tab: string }>>(
-        (acc, tab) => {
-          tab.facets.forEach((facet) => {
-            acc[facet.field] = {
-              ...facet,
-              color: tab.color,
-              tab: tab.label,
-            };
-          });
-          return acc;
-        },
-        {},
-      ),
+      config.tabs.reduce<
+        Record<string, ClinicalInsightsFacet & { color: string; tab: string }>
+      >((acc, tab) => {
+        tab.facets.forEach((facet) => {
+          acc[facet.field] = {
+            ...facet,
+            color: tab.color,
+            tab: tab.label,
+          };
+        });
+        return acc;
+      }, {}),
     [config.tabs],
   );
 
-  const cohortFilters = useCoreSelector((state) => selectCohortFilters(state)[config.index] ?? EmptyFilterSet);
+  const cohortFilters = useCoreSelector(
+    (state) => selectCohortFilters(state)[config.index] ?? EmptyFilterSet,
+  );
 
-  const dashboardFilters = useMemo(() => buildDashboardFilterSet(selectedValues), [selectedValues]);
+  const numericFields = useMemo(
+    () =>
+      new Set(
+        Object.values(allFields)
+          .filter((facet) => facet.cardType === 'continuous')
+          .map((facet) => facet.field),
+      ),
+    [allFields],
+  );
+  const dashboardFilters = useMemo(
+    () => buildDashboardFilterSet(selectedValues, numericFields),
+    [selectedValues, numericFields],
+  );
 
   const toggleField = (field: string) => {
     setActiveFields((current) =>
-      current.includes(field) ? current.filter((item) => item !== field) : [...current, field],
+      current.includes(field)
+        ? current.filter((item) => item !== field)
+        : [...current, field],
     );
   };
 
@@ -103,12 +114,18 @@ const ClinicalInsightsDashboard = ({ config }: ClinicalInsightsDashboardProps) =
           <Stack gap="sm">
             <Group justify="space-between">
               <Title order={4}>Clinical Insights Filters</Title>
-              <Button size="xs" variant="outline" onClick={clearAllSelections} disabled={Object.keys(selectedValues).length === 0}>
+              <Button
+                size="xs"
+                variant="outline"
+                onClick={clearAllSelections}
+                disabled={Object.keys(selectedValues).length === 0}
+              >
                 Clear All
               </Button>
             </Group>
             <Text size="sm" c="dimmed">
-              Click a chart bar or table row to apply a shared dashboard filter. All other cards will update from the selected context.
+              Click a chart bar or table row to apply a shared dashboard filter.
+              All other cards will update from the selected context.
             </Text>
             <Group gap="xs">
               {Object.entries(selectedValues).flatMap(([field, values]) =>
@@ -147,7 +164,10 @@ const ClinicalInsightsDashboard = ({ config }: ClinicalInsightsDashboardProps) =
         <section>
           {activeFields.length === 0 ? (
             <Card withBorder radius="md" padding="lg" className="bg-white">
-              <Text>Select one or more fields from the left panel to display dashboard cards.</Text>
+              <Text>
+                Select one or more fields from the left panel to display
+                dashboard cards.
+              </Text>
             </Card>
           ) : null}
 
@@ -163,6 +183,7 @@ const ClinicalInsightsDashboard = ({ config }: ClinicalInsightsDashboardProps) =
                     field={field}
                     label={facet?.label ?? field}
                     color={facet?.color ?? '#2081A8'}
+                    numeric={facet?.cardType === 'continuous'}
                     cohortFilters={cohortFilters}
                     dashboardFilters={dashboardFilters}
                     selectedValues={selectedValues[field] ?? []}

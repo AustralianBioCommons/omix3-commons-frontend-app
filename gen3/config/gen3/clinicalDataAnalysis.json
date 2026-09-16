@@ -2,9 +2,9 @@
   "index": "subject",
   "initialFields": [
     "sex_at_birth",
-    "ancestry",
+    "demographic_measurementss.country_of_birth",
     "sites.medical_historys.diabetes",
-    "sites.anthropometric_measurementss.bmi",
+    "sites.medical_historys.hypertension",
     "sites.psychosocial_measurementss.gad7_category"
   ],
   "uniqueIdField": "_subject_id",
@@ -23,11 +23,6 @@
           "field": "baseline_year",
           "label": "Baseline Year",
           "cardType": "categorical"
-        },
-        {
-          "field": "sites.site_name",
-          "label": "Site Name",
-          "cardType": "categorical"
         }
       ]
     },
@@ -36,38 +31,74 @@
       "color": "#2081A8",
       "facets": [
         {
+          "field": "year_birth",
+          "label": "Year of Birth",
+          "cardType": "categorical"
+        },
+        {
           "field": "sex_at_birth",
           "label": "Sex at Birth",
           "cardType": "categorical"
         },
         {
-          "field": "ancestry",
-          "label": "Ancestry",
+          "field": "demographic_measurementss.country_of_birth",
+          "label": "Country of Birth",
           "cardType": "categorical"
         },
         {
-          "field": "education_level",
+          "field": "demographic_measurementss.education_highest_level",
+          "label": "Highest Education Level",
+          "cardType": "categorical"
+        },
+        {
+          "field": "demographic_measurementss.education_level",
           "label": "Education Level",
           "cardType": "categorical"
         },
         {
-          "field": "employment_status",
+          "field": "demographic_measurementss.employment_status",
           "label": "Employment Status",
           "cardType": "categorical"
         },
         {
-          "field": "relationship_status",
+          "field": "demographic_measurementss.pet_in_home",
+          "label": "Pet in Home",
+          "cardType": "categorical"
+        },
+        {
+          "field": "demographic_measurementss.relationship_status",
           "label": "Relationship Status",
           "cardType": "categorical"
         },
         {
-          "field": "residence_type",
+          "field": "demographic_measurementss.residence_type",
           "label": "Residence Type",
+          "cardType": "categorical"
+        }
+      ]
+    },
+    {
+      "label": "Sites",
+      "color": "#6C5CE7",
+      "facets": [
+        {
+          "field": "sites.site_name",
+          "label": "Site Name",
           "cardType": "categorical"
         },
         {
-          "field": "country_of_birth",
-          "label": "Country of Birth",
+          "field": "sites.site_location",
+          "label": "Site Location",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.site_protocol_version",
+          "label": "Site Protocol Version",
+          "cardType": "categorical"
+        },
+        {
+          "field": "sites.site_purpose",
+          "label": "Site Purpose",
           "cardType": "categorical"
         }
       ]
@@ -109,12 +140,39 @@
       ]
     },
     {
+      "label": "Anthropometry",
+      "color": "#27AE60",
+      "facets": [
+        {
+          "field": "sites.anthropometric_measurementss.height",
+          "label": "Height (cm)",
+          "cardType": "categorical",
+          "dataDimension": {
+            "unit": "Centimeters"
+          }
+        },
+        {
+          "field": "sites.anthropometric_measurementss.weight",
+          "label": "Weight (kg)",
+          "cardType": "categorical",
+          "dataDimension": {
+            "unit": "Kilograms"
+          }
+        },
+        {
+          "field": "sites.anthropometric_measurementss.bmi",
+          "label": "BMI",
+          "cardType": "categorical"
+        }
+      ]
+    },
+    {
       "label": "Psychosocial",
       "color": "#20A8A8",
       "facets": [
         {
           "field": "sites.psychosocial_measurementss.phq9_total_score",
-          "label": "PHQ-9 Total Score",
+          "label": "PHQ9 Total Score",
           "cardType": "categorical"
         },
         {
@@ -123,8 +181,13 @@
           "cardType": "categorical"
         },
         {
+          "field": "sites.psychosocial_measurementss.gad7_total_score",
+          "label": "GAD7 Total Score",
+          "cardType": "categorical"
+        },
+        {
           "field": "sites.psychosocial_measurementss.gad7_category",
-          "label": "GAD-7 Category",
+          "label": "GAD7 Category",
           "cardType": "categorical"
         }
       ]

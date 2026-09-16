@@ -2,6 +2,7 @@ export type ClinicalInsightsFacet = {
   field: string;
   label: string;
   description?: string;
+  cardType?: 'categorical' | 'continuous';
 };
 
 export type ClinicalInsightsTab = {

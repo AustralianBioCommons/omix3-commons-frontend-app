@@ -25,18 +25,30 @@ export const formatPercent = (count: number, total: number) => {
   });
 };
 
-export const buildDashboardFilterSet = (selectedValues: Record<string, string[]>): FilterSet => {
-  const root = Object.entries(selectedValues).reduce<FilterSet['root']>((acc, [field, values]) => {
-    if (values.length === 0) return acc;
+export const buildDashboardFilterSet = (
+  selectedValues: Record<string, string[]>,
+  numericFields: ReadonlySet<string> = new Set(),
+): FilterSet => {
+  const root = Object.entries(selectedValues).reduce<FilterSet['root']>(
+    (acc, [field, values]) => {
+      if (values.length === 0) return acc;
 
-    acc[field] = buildNestedFilterForOperation(field, {
-      operator: 'in',
-      field,
-      operands: values,
-    });
+      acc[field] = buildNestedFilterForOperation(field, {
+        operator: 'in',
+        field,
+        operands: numericFields.has(field)
+          ? values.map((value) =>
+              value.trim() !== '' && Number.isFinite(Number(value))
+                ? Number(value)
+                : value,
+            )
+          : values,
+      });
 
-    return acc;
-  }, {});
+      return acc;
+    },
+    {},
+  );
 
   return {
     mode: 'and' as const,
@@ -49,13 +61,12 @@ export const omitFieldFromFilterSet = (
   field: string,
 ): FilterSet => {
   const source = filterSet ?? EmptyFilterSet;
-  const nextRoot = Object.entries(source.root).reduce<Record<string, Operation>>(
-    (acc, [key, value]) => {
-      if (key !== field) acc[key] = value;
-      return acc;
-    },
-    {},
-  );
+  const nextRoot = Object.entries(source.root).reduce<
+    Record<string, Operation>
+  >((acc, [key, value]) => {
+    if (key !== field) acc[key] = value;
+    return acc;
+  }, {});
 
   return {
     mode: source.mode,
