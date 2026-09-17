@@ -7,10 +7,6 @@ export const config = {
   "/DataLibrary",
   "/Workspace",
   "/Workspaces",
-  "/Profile",
-  "/Explorer",
-  "/Query",
-  "/Analysis",
-  "/Submission"
+  "/Profile"
 ],
 };

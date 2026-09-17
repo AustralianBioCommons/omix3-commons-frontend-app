@@ -393,351 +393,90 @@
           "referenceIdFieldInResourceIndex": "_subject_id",
           "referenceIdFieldInDataIndex": "_subject_id"
         },
-
-        "accessibleFieldCheckList": ["project_id"],
-
-        "accessibleValidationField": "project_id"
-      }
-    },
-
-    {
-      "tabTitle": "Data Files",
-
-      "chartsSection": {
-        "title": "Charts",
-        "enabled": true,
-        "showLegends": {
-          "enabled": true
-        }
-      },
-
-      "charts": {
-        "data_format": {
-          "chartType": "horizontalStacked",
-          "title": "Data Format"
-        },
-        "source_node": {
-          "chartType": "horizontalStacked",
-          "title": "Source Node"
-        },
-        "sample_orig_provider": {
-          "chartType": "horizontalStacked",
-          "title": "Sample Provider"
-        },
-        "data_type": {
-          "chartType": "verticalBarChart",
-          "title": "Data Type",
-          "showLegendInChart": false
-        },
-        "data_category": {
-          "chartType": "fullPie",
-          "title": "Data Category",
-          "showLegendInChart": false
-        }
-      },
-
-      "filters": {
-        "tabs": [
-          {
-            "title": "File",
-            "fields": [
-              "project_id",
-              "data_type",
-              "data_format",
-              "data_category",
-              "state",
-              "source_node",
-              "sample_orig_provider"
-            ],
-            "fieldsConfig": {
-              "source_node": { "label": "Source Node" },
-              "sample_orig_provider": { "label": "Sample Provider" }
-            }
-          },
-          {
-            "title": "File Identifiers",
-            "fields": ["object_id", "file_name", "_subject_id", "_sample_id"]
-          }
-        ]
-      },
-
-      "table": {
-        "enabled": true,
-
-        "detailsConfig": {
-          "panel": "default",
-          "mode": "click",
-          "idField": "_file_id",
-          "title": "File Details"
-        },
-
-        "fields": [
-          "project_id",
-          "file_name",
-          "data_type",
-          "data_format",
-          "data_category",
-          "file_size",
-          "md5sum",
-          "object_id",
-          "state",
-          "source_node",
-          "_subject_id",
-          "_sample_id",
-          "sample_orig_provider"
-        ],
-
-        "columns": {
-          "object_id": { "title": "Object ID" },
-          "state": { "title": "State" },
-          "source_node": { "title": "Source Node" },
-          "_subject_id": { "title": "Subject ID" },
-          "_sample_id": { "title": "Sample ID" },
-          "sample_orig_provider": { "title": "Sample Provider" },
-          "project_id": {
-            "title": "Project"
-          },
-          "file_name": {
-            "title": "File Name"
-          },
-          "data_type": {
-            "title": "Data Type"
-          },
-          "data_format": {
-            "title": "Data Format"
-          },
-          "data_category": {
-            "title": "Data Category"
-          },
-          "file_size": {
-            "title": "File Size"
-          },
-          "md5sum": {
-            "title": "MD5"
-          }
-        }
-      },
-
-      "guppyConfig": {
-        "dataType": "file",
-
-        "fieldMapping": [
-          {
-            "field": "_file_id",
-            "name": "GUID"
-          }
-        ],
-
-        "nodeCountTitle": "Files",
-
-        "manifestMapping": {
-          "resourceIndexType": "subject",
-          "resourceIdField": "_subject_id",
-          "referenceIdFieldInResourceIndex": "_subject_id",
-          "referenceIdFieldInDataIndex": "_subject_id"
-        },
-
-        "accessibleFieldCheckList": ["project_id"],
-
-        "accessibleValidationField": "project_id",
-
-        "downloadAccessor": "_subject_id"
-      },
-
-      "buttons": [
         {
-          "enabled": true,
-          "type": "manifest",
-          "action": "manifest",
-          "title": "Download File Manifest",
-          "leftIcon": "datafile",
-          "rightIcon": "download",
-          "actionArgs": {
-            "resourceIndexType": "file",
-            "resourceIdField": "object_id",
-            "referenceIdFieldInResourceIndex": "project_id",
-            "referenceIdFieldInDataIndex": "project_id",
-            "fileFields": ["file_name", "file_size", "md5sum", "object_id"],
-            "filename": "data_table_manifest.csv"
-          }
+          "field": "_unaligned_reads_files_count",
+          "name": "Unaligned Reads Count"
+        },
+        {
+          "field": "_aligned_reads_files_count",
+          "name": "Aligned Reads Count"
+        },
+        {
+          "field": "_expression_arrays_count",
+          "name": "Expression Arrays Count"
         }
       ],
-
-      "loginForDownload": true
-    },
-    {
-      "tabTitle": "Projects",
-      "charts": {
-        "availability_type": {
-          "chartType": "fullPie",
-          "title": "Availability Type",
-          "showLegendInChart": true
-        },
-        "data_types": {
-          "chartType": "horizontalStacked",
-          "title": "Data Types"
-        }
+      "manifestMapping": {
+        "resourceIndexType": "file",
+        "resourceIdField": "object_id",
+        "referenceIdFieldInResourceIndex": "subject_id",
+        "referenceIdFieldInDataIndex": "subject_id"
       },
-      "filters": {
-        "tabs": [
-          {
-            "title": "Projects",
-            "fields": [
-              "project_id",
-              "code",
-              "name",
-              "availability_type",
-              "data_types"
-            ],
-            "fieldsConfig": {
-              "project_id": { "label": "Project" },
-              "code": { "label": "Project Code" },
-              "name": { "label": "Project Name" },
-              "availability_type": { "label": "Availability Type" },
-              "data_types": { "label": "Data Types" }
-            }
-          }
-        ]
-      },
-      "table": {
-        "enabled": true,
-        "detailsConfig": {
-          "panel": "default",
-          "mode": "click",
-          "idField": "project_id",
-          "title": "Project Details"
-        },
-        "fields": [
-          "project_id",
-          "code",
-          "name",
-          "short_name",
-          "full_name",
-          "project_description",
-          "availability_type",
-          "data_access_url",
-          "dbgap_accession_number",
-          "_subjects_count",
-          "_publications_count",
-          "data_types"
-        ],
-        "columns": {
-          "project_id": { "title": "Project ID" },
-          "code": { "title": "Project Code" },
-          "name": { "title": "Project Name" },
-          "short_name": { "title": "Short Name" },
-          "full_name": { "title": "Full Name" },
-          "project_description": { "title": "Description" },
-          "availability_type": { "title": "Availability Type" },
-          "data_access_url": { "title": "Data Access URL" },
-          "dbgap_accession_number": { "title": "dbGaP Accession" },
-          "_subjects_count": { "title": "Subjects" },
-          "_publications_count": { "title": "Publications" },
-          "data_types": { "title": "Data Types" }
-        }
-      },
-      "guppyConfig": {
-        "dataType": "project",
-        "nodeCountTitle": "Projects",
-        "accessibleFieldCheckList": ["project_id"],
-        "accessibleValidationField": "project_id"
-      },
-      "loginForDownload": true
-    },
-    {
-      "tabTitle": "Core Metadata",
-      "charts": {
-        "project_id": { "chartType": "horizontalStacked", "title": "Projects" },
-        "data_type": { "chartType": "horizontalStacked", "title": "Data Type" },
-        "data_format": {
-          "chartType": "horizontalStacked",
-          "title": "File Data Format"
-        },
-        "data_category": {
-          "chartType": "fullPie",
-          "title": "File Data Category"
-        }
-      },
-      "filters": {
-        "tabs": [
-          {
-            "title": "Collection",
-            "fields": [
-              "project_id",
-              "data_type",
-              "format",
-              "language",
-              "creator",
-              "contributor",
-              "publisher"
-            ]
-          },
-          {
-            "title": "Linked Files",
-            "fields": ["file_name", "file_size", "data_format", "data_category"]
-          }
-        ]
-      },
-      "table": {
-        "enabled": true,
-        "detailsConfig": {
-          "panel": "default",
-          "mode": "click",
-          "idField": "submitter_id",
-          "title": "Core Metadata Details"
-        },
-        "fields": [
-          "submitter_id",
-          "project_id",
-          "title",
-          "description",
-          "subject",
-          "creator",
-          "contributor",
-          "publisher",
-          "date",
-          "coverage",
-          "format",
-          "language",
-          "relation",
-          "rights",
-          "source",
-          "data_type",
-          "file_name",
-          "file_size",
-          "data_format",
-          "data_category"
-        ],
-        "columns": {
-          "submitter_id": { "title": "Collection ID" },
-          "project_id": { "title": "Project" },
-          "title": { "title": "Title" },
-          "description": { "title": "Description" },
-          "subject": { "title": "Subject" },
-          "creator": { "title": "Creator" },
-          "contributor": { "title": "Contributor" },
-          "publisher": { "title": "Publisher" },
-          "date": { "title": "Date" },
-          "coverage": { "title": "Coverage" },
-          "format": { "title": "Metadata Format" },
-          "language": { "title": "Language" },
-          "relation": { "title": "Relation" },
-          "rights": { "title": "Rights" },
-          "source": { "title": "Source" },
-          "data_type": { "title": "Data Type" },
-          "file_name": { "title": "File Name" },
-          "file_size": { "title": "File Size (bytes)" },
-          "data_format": { "title": "File Data Format" },
-          "data_category": { "title": "File Data Category" }
-        }
-      },
-      "guppyConfig": {
-        "dataType": "core_metadata_collection",
-        "nodeCountTitle": "Collections",
-        "accessibleFieldCheckList": ["project_id"],
-        "accessibleValidationField": "project_id"
-      },
-      "loginForDownload": true
+      "accessibleFieldCheckList": ["project"],
+      "accessibleValidationField": "project"
     }
-  ]
-}
+  },
+  {
+    "tabTitle": "Data Files",
+    "charts": {
+      "file_type": {
+        "chartType": "stackedBar",
+        "title": "File Type"
+      },
+      "file_format": {
+        "chartType": "stackedBar",
+        "title": "File Format"
+      }
+    },
+    "filters": {
+      "tabs": [
+        {
+          "title": "File",
+          "fields": ["project_id", "data_type", "data_format", "data_category"]
+        }
+      ]
+    },
+    "table": {
+      "enabled": true,
+      "detailsConfig": {
+        "panel": "fileDetails",
+        "mode": "click",
+        "idField": "_file_id",
+        "title": "File Details"
+      },
+      "fields": ["project_id", "file_name", "file_size", "_file_id"]
+    },
+    "guppyConfig": {
+      "dataType": "file",
+      "fieldMapping": [
+        {
+          "field": "file_id",
+          "name": "GUID"
+        }
+      ],
+      "nodeCountTitle": "Files",
+      "manifestMapping": {
+        "resourceIndexType": "subject",
+        "resourceIdField": "subject_id",
+        "referenceIdFieldInResourceIndex": "object_id",
+        "referenceIdFieldInDataIndex": "object_id"
+      },
+      "accessibleFieldCheckList": ["subject_id"],
+      "accessibleValidationField": "subject_id",
+      "downloadAccessor": "subject_id"
+    },
+    "buttons": [
+      {
+        "enabled": true,
+        "type": "manifest",
+        "title": "Download File Manifest",
+        "leftIcon": "datafile",
+        "rightIcon": "download",
+        "actionArgs": {
+          "filename": "data_table_manifest.csv"
+        }
+      }
+    ],
+    "loginForDownload": true
+  }
+]

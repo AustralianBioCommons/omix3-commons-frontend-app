@@ -1,6 +1,6 @@
 {
   "name": "@gen3/commons-portal-app-base",
-  "version": "0.12.67",
+  "version": "0.12.69",
   "private": "true",
   "engines": {
     "npm": ">=11.16.0",
@@ -38,9 +38,9 @@
     "@fontsource/montserrat": "^5.2.8",
     "@fontsource/poppins": "^5.2.7",
     "@fontsource/source-sans-pro": "^5.2.5",
-    "@gen3/core": "^0.12.67",
-    "@gen3/frontend": "^0.12.67",
-    "@gen3/workspaces": "^0.12.67",
+    "@gen3/core": "^0.12.69",
+    "@gen3/frontend": "^0.12.69",
+    "@gen3/workspaces": "^0.12.69",
     "@mantine/core": "^9.4.0",
     "@mantine/dates": "^9.4.0",
     "@mantine/form": "^9.4.0",
@@ -65,14 +65,14 @@
   },
   "devDependencies": {
     "@axe-core/react": "^4.10.2",
-    "@chromatic-com/storybook": "^5.1.2",
-    "@gen3/toolsff": "^0.12.67",
+    "@chromatic-com/storybook": "^5.3.1",
+    "@gen3/toolsff": "^0.12.69",
     "@graphiql/react": "^0.37.7",
-    "@storybook/addon-a11y": "^10.5.8",
-    "@storybook/addon-docs": "^10.5.8",
-    "@storybook/addon-onboarding": "^10.5.8",
-    "@storybook/nextjs": "^10.5.8",
-    "@storybook/test-runner": "^0.24.4",
+    "@storybook/addon-a11y": "^10.6.0",
+    "@storybook/addon-docs": "^10.6.0",
+    "@storybook/addon-onboarding": "^10.6.0",
+    "@storybook/nextjs": "^10.6.0",
+    "@storybook/test-runner": "^0.24.5",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/line-clamp": "^0.4.4",
@@ -100,14 +100,15 @@
     "postcss-preset-mantine": "^1.18.0",
     "prettier": "^3.6.2",
     "sharp": "^0.34.4",
-    "storybook": "^10.5.8",
+    "storybook": "^10.6.0",
     "storybook-addon-deep-controls": "^0.10.0",
     "swr": "^2.3.6",
     "tailwindcss": "^3.4.18",
     "ts-jest": "^29.4.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.1"
+    "typescript-eslint": "^8.46.1",
+    "eslint-plugin-storybook": "10.6.0"
   },
   "allowScripts": {
     "esbuild": true,
@@ -116,6 +117,7 @@
     "fsevents": true,
     "msw": true,
     "sharp": true,
-    "@swc/core": true
+    "@swc/core": true,
+    "@parcel/watcher": true
   }
 }
