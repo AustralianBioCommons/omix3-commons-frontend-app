@@ -25,8 +25,8 @@ RUN apk add --no-cache python3 py3-pip bash curl bzip2 uv git coreutils
 COPY docker/micromamba-stub.py /usr/local/bin/micromamba
 RUN chmod +x /usr/local/bin/micromamba
 
-# Download cockle WASM packages from emscripten-forge so prepare_wasm.js reuses
-# the existing env instead of running micromamba create.
+# Download cockle WASM packages into the remote-private lite-dir so prepare_wasm.js
+# finds cockle_wasm_env/bin/fs.js at the correct relative path (cwd = lite-dir).
 RUN LITE_DIR=node_modules/@gen3/workspaces/dist/jupyterlite-builds/remote-private && \
     WASM_ENV="$LITE_DIR/cockle_wasm_env" && \
     mkdir -p "$WASM_ENV" && \
@@ -48,18 +48,17 @@ COPY .env.production ./
 COPY ./src ./src
 COPY ./public ./public
 COPY ./config ./config
-COPY ./start_with_config.sh ./start_with_config.sh
+COPY ./start.sh ./
 
 # Build JupyterLite static assets (outputs to public/ before Next.js build)
 RUN npm run build:jupyterlite
 
-# Build and prune
-RUN NODE_OPTIONS="--max-old-space-size=4096" \
-    npm run build:volume && \
-    npm prune --omit=dev;
+# Build
+RUN NODE_OPTIONS="--max-old-space-size=4096" npm run build
 
 # Production stage
-FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.18.1-alpine3.23 AS runner
+#FROM node:24.18.1-alpine3.23 AS runner
+FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.18.1-alpine3.23 AS builder
 
 WORKDIR /gen3
 
@@ -68,33 +67,26 @@ RUN addgroup --system --gid 1001 nextjs && \
 
 COPY --from=builder --chown=nextjs:nextjs /gen3/.next/standalone ./.next/standalone
 COPY --from=builder --chown=nextjs:nextjs /gen3/.next/static ./.next/standalone/.next/static
-COPY --from=builder --chown=nextjs:nextjs /gen3/start_with_config.sh ./start_with_config.sh
-COPY --from=builder --chown=nextjs:nextjs /gen3/config ./config
+COPY --from=builder --chown=nextjs:nextjs /gen3/start.sh ./start.sh
 COPY --from=builder --chown=nextjs:nextjs /gen3/public ./public
+COPY --from=builder --chown=nextjs:nextjs /gen3/config ./config
 COPY --from=builder --chown=nextjs:nextjs /gen3/jupyter-workspaces ./jupyter-workspaces
 
-#VOLUME /gen3/config
-#VOLUME /gen3/public
-
-RUN mkdir -p /gen3/.next/cache/images && \
-   chmod -R 777 /gen3/.next/cache && \
-   chown -R nextjs:nextjs /gen3/.next/cache
-
-RUN chmod +x start_with_config.sh && \
-    chown -R nextjs:nextjs start_with_config.sh
-
-RUN rm -rf .next/standalone/config
-
-RUN cd .next/standalone && \
+RUN mkdir -p .next/standalone/.next/cache/images && \
+    chmod -R 777 .next/standalone/.next/cache && \
+    chown -R nextjs:nextjs .next/standalone/.next/cache && \
+    chmod +x start.sh && \
+    chown -R nextjs:nextjs start.sh && \
+    rm -rf .next/standalone/config && \
+    cd .next/standalone && \
     ln -s ../../config ./config && \
     ln -s ../../public ./public && \
     ln -s ../../jupyter-workspaces ./jupyter-workspaces
 
 USER nextjs:nextjs
-
 ENV NODE_ENV=production \
     PORT=3000 \
     HOSTNAME=0.0.0.0 \
     NEXT_TELEMETRY_DISABLED=1
 
-CMD ["sh", "./start_with_config.sh"]
+CMD ["sh", "./start.sh"]
