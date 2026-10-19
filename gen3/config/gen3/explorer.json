@@ -25,6 +25,7 @@
   "explorerConfig": [
     {
       "tabTitle": "Cases",
+      "flattenFields": true,
 
       "charts": {
         "project_id": {
@@ -85,6 +86,7 @@
             "fields": [
               "year_birth",
               "sex_at_birth",
+              "demographic_measurementss.age",
               "demographic_measurementss.country_of_birth",
               "demographic_measurementss.education_highest_level",
               "demographic_measurementss.education_level",
@@ -96,6 +98,15 @@
             "fieldsConfig": {
               "year_birth": { "label": "Year of Birth" },
               "sex_at_birth": { "label": "Sex at Birth" },
+              "demographic_measurementss.age": {
+              "label": "Age",
+              "type": "age_in_years",
+                "range": {
+                  "maximum": 36525,
+                  "minimum": 0,
+                  "step": 10
+                }
+              },
               "demographic_measurementss.country_of_birth": {
                 "label": "Country of Birth"
               },
