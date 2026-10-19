@@ -26,7 +26,6 @@
     {
       "tabTitle": "Cases",
       "flattenFields": true,
-
       "charts": {
         "project_id": {
           "chartType": "horizontalStacked",
