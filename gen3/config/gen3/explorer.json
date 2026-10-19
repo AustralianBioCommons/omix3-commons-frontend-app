@@ -96,7 +96,15 @@
               "demographic_measurementss.residence_type"
             ],
             "fieldsConfig": {
-              "year_birth": { "label": "Year of Birth" },
+              "year_birth": {
+              "label": "Year of Birth",
+              "type": "numeric_range",
+                "range": {
+                  "maximum": 1000,
+                  "minimum": 2,
+                  "step": 5
+                }
+              },
               "sex_at_birth": { "label": "Sex at Birth" },
               "demographic_measurementss.age": {
               "label": "Age",
