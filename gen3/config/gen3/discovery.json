@@ -43,10 +43,22 @@
           "enabled": true,
           "columnTooltip": "Filter by data access",
           "supportedValues": {
-            "accessible": { "enabled": true, "menuText": "Available" },
-            "unaccessible": { "enabled": false, "menuText": "Not Accessible" },
-            "pending": { "enabled": true, "menuText": "Pending" },
-            "notAvailable": { "enabled": true, "menuText": "Not Available" }
+            "accessible": {
+              "enabled": true,
+              "label": "Available"
+            },
+            "unaccessible": {
+              "enabled": false,
+              "label": "Not Accessible"
+            },
+            "pending": {
+              "enabled": true,
+              "label": "Pending"
+            },
+            "notAvailable": {
+              "enabled": true,
+              "label": "Not Available"
+            }
           }
         }
       },
@@ -161,10 +173,21 @@
         "dataAvailabilityField": "data_availability",
         "uid": "_unique_id"
       },
-      "tagCategories": [
-        { "name": "Condition", "color": "#532565", "display": false },
-        { "name": "Data Type", "color": "#982568", "display": false }
-      ]
+      "tags": {
+        "tagCategories": [
+          {
+            "name": "Condition",
+            "color": "#532565",
+            "display": false
+          },
+          {
+            "name": "Data Type",
+            "color": "#982568",
+            "display": false
+          }
+        ],
+        "showUnknownTags": false
+      }
     }
   ]
 }
