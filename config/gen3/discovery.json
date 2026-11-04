@@ -11,14 +11,14 @@
       "features": {
         "dataLoader": { "dataFetchFunction": "MDSAllLocal" },
         "advSearchFilters": {
-          "enabled": true,
+          "enabled": false,
           "field": "advSearchFilters",
           "filters": [
             { "key": "availability_type", "displayName": "Access Level" },
             { "key": "name", "displayName": "Study Name" }
           ]
         },
-        "tagsColumn": { "enabled": false },
+        "tagsColumn": { "enabled": true },
         "tagsInDescription": { "enabled": true },
         "exportToWorkspace": {
           "enabled": true,
@@ -36,7 +36,12 @@
         "pageTitle": { "enabled": true, "title": "Discover Datasets" },
         "search": {
           "searchBar": {
-            "searchableTextFields": ["name"]
+            "enabled": true,
+            "searchableTextFields": [
+              "name",
+              "study_description",
+              "project_id"
+            ]
           }
         },
         "authorization": {
@@ -45,24 +50,26 @@
           "supportedValues": {
             "accessible": {
               "enabled": true,
-              "label": "Available"
+              "menuText": "Available"
             },
             "unaccessible": {
               "enabled": false,
-              "label": "Not Accessible"
+              "menuText": "Not Accessible"
             },
             "pending": {
               "enabled": true,
-              "label": "Pending"
+              "menuText": "Pending"
             },
             "notAvailable": {
               "enabled": true,
-              "label": "Not Available"
+              "menuText": "Not Available"
             }
           }
         }
       },
-      "aggregations": [{ "name": "Studies", "field": "name", "type": "count" }],
+      "aggregations": [
+        { "name": "Studies", "field": "_unique_id", "type": "count" }
+      ],
       "tagSelector": { "showTagCategoryNames": true },
       "studyColumns": [
         {
@@ -71,19 +78,32 @@
           "contentType": "string"
         },
         {
-          "field": "_subjects_count",
-          "name": "Subjects",
+          "field": "study_description",
+          "name": "Study Description",
           "contentType": "string"
         },
         {
-          "field": "summary",
-          "name": "Summary",
+          "field": "_subjects_count",
+          "name": "Subject count",
           "contentType": "string"
         },
         {
           "field": "availability_type",
           "name": "Access",
           "contentType": "string"
+        },
+        {
+          "field": "data_access_url",
+          "name": "LINK TO STUDY INFORMATION",
+          "contentType": "string",
+          "params": {
+            "valueIfNotAvailable": "No access URL has been provided for this study."
+          }
+        },
+        {
+          "field": "tags",
+          "name": "Tags",
+          "contentType": "tags"
         }
       ],
       "studyPreviewField": {
@@ -183,7 +203,7 @@
           {
             "name": "Data Type",
             "color": "#982568",
-            "display": false
+            "display": true
           }
         ],
         "showUnknownTags": false
