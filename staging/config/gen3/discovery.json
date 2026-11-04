@@ -49,7 +49,7 @@
           "columnTooltip": "Filter by data access",
           "supportedValues": {
             "accessible": { "enabled": true, "menuText": "Available" },
-            "unaccessible": { "enabled": false, "menuText": "Not Accessible" },
+            "unaccessible": { "enabled": true, "menuText": "Not Accessible" },
             "pending": { "enabled": true, "menuText": "Pending" },
             "notAvailable": { "enabled": true, "menuText": "Not Available" }
           }
@@ -84,24 +84,14 @@
           "field": "data_access_url",
           "name": "LINK TO STUDY INFORMATION",
           "contentType": "string",
-          "params": {
-            "valueIfNotAvailable": "No access URL has been provided for this study."
-          }
+          "valueIfNotAvailable": "No access URL has been provided for this study."
         },
         {
-          "field": "tags",
+          "field": "tags[*]",
           "name": "Tags",
           "contentType": "tags"
         }
       ],
-      "studyPreviewField": {
-        "name": "Study Description",
-        "field": "study_description",
-        "contentType": "string",
-        "includeName": true,
-        "includeIfNotAvailable": false,
-        "valueIfNotAvailable": "No summary has been provided for this study."
-      },
       "simpleDetailsView": {
         "header": { "field": "study_title" },
         "downloadLinks": { "field": "data_download_links" },
