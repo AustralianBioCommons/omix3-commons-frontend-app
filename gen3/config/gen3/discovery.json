@@ -40,24 +40,24 @@
           }
         },
         "authorization": {
-          "enabled": true,
+          "enabled": false,
           "columnTooltip": "Filter by data access",
           "supportedValues": {
             "accessible": {
               "enabled": true,
-              "label": "Available"
+              "menuText": "Available"
             },
             "unaccessible": {
               "enabled": false,
-              "label": "Not Accessible"
+              "menuText": "Not Accessible"
             },
             "pending": {
               "enabled": true,
-              "label": "Pending"
+              "menuText": "Pending"
             },
             "notAvailable": {
               "enabled": true,
-              "label": "Not Available"
+              "menuText": "Not Available"
             }
           }
         }
@@ -171,7 +171,7 @@
         "authzField": "authz",
         "tagsListFieldName": "tags",
         "dataAvailabilityField": "data_availability",
-        "uid": "_unique_id"
+        "uid": "project_id"
       },
       "tags": {
         "tagCategories": [
