@@ -76,9 +76,12 @@
           "contentType": "string"
         },
         {
-          "field": "availability_type",
-          "name": "Access",
-          "contentType": "string"
+          "name": "Data Availability",
+          "field": "__accessible",
+          "errorIfNotAvailable": false,
+          "valueIfNotAvailable": "n/a",
+          "contentType": "dataAccess",
+          "sortable": true
         }
       ],
       "simpleDetailsView": {

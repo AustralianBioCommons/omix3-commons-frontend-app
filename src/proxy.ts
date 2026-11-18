@@ -4,14 +4,15 @@ export { proxy } from './proxy-impl';
 
 export const config = {
   matcher: [
-  "/DataLibrary",
-  "/Workspace",
-  "/Workspaces",
-  "/WorkspaceRequestAccess",
-  "/Profile",
-  "/Explorer",
-  "/Query",
-  "/Analysis",
-  "/Submission"
+  "/DataLibrary/:authzRest*",
+  "/Workspace/:authzRest*",
+  "/Workspaces/:authzRest*",
+  "/WorkspaceRequestAccess/:authzRest*",
+  "/Profile/:authzRest*",
+  "/Explorer/:authzRest*",
+  "/Query/:authzRest*",
+  "/Analysis/:authzRest*",
+  "/Submission/:authzRest*",
+  "/Login"
 ],
 };

@@ -1,8 +1,7 @@
 # docker build -t ff .
 # docker run -p 3000:3000 -it ff
 # Build stage
-#FROM --platform=$BUILDPLATFORM node:24.18.1-alpine3.23 AS builder
-FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.18.1-alpine3.23 AS builder
+FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.22.1-alpine3.23 AS builder
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
@@ -57,8 +56,7 @@ RUN npm run build:jupyterlite
 RUN NODE_OPTIONS="--max-old-space-size=4096" npm run build
 
 # Production stage
-#FROM node:24.18.1-alpine3.23 AS runner
-FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.18.1-alpine3.23 AS runner
+FROM 820242927126.dkr.ecr.ap-southeast-2.amazonaws.com/omix3/commons-frontend:node.24.22.1-alpine3.23 AS runner
 
 WORKDIR /gen3
 

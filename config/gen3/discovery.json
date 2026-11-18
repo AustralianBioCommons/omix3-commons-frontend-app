@@ -5,11 +5,16 @@
       "guidType": "discovery_metadata",
       "studyField": "gen3_discovery",
       "tableConfig": {
-        "selectableRows": true,
+        "selectableRowConfiguration": {
+          "field": "__manifest",
+          "comparer": "arrayNotEmpty"
+        },
         "expandableRows": true
       },
       "features": {
-        "dataLoader": { "dataFetchFunction": "MDSAllLocal" },
+        "dataLoader": {
+          "dataFetchFunction": "MDSAllLocal"
+        },
         "advSearchFilters": {
           "enabled": false,
           "field": "advSearchFilters",
@@ -18,8 +23,8 @@
             { "key": "name", "displayName": "Study Name" }
           ]
         },
-        "tagsColumn": { "enabled": false },
-        "tagsInDescription": { "enabled": false },
+        "tagsColumn": { "enabled": true },
+        "tagsInDescription": { "enabled": true },
         "exportToWorkspace": {
           "enabled": true,
           "manifestFieldName": "__manifest",
@@ -33,7 +38,6 @@
           },
           "verifyExternalLogins": true
         },
-        "pageTitle": { "enabled": true, "title": "Discover Datasets" },
         "search": {
           "searchBar": {
             "enabled": true,
@@ -42,16 +46,29 @@
               "study_description",
               "project_id"
             ]
+          },
+          "tagSearchDropdown": {
+            "enabled": true,
+            "collapsibleButtonText": "Study Filters",
+            "categoryTypes": ["Data Type"]
           }
         },
         "authorization": {
           "enabled": true,
           "columnTooltip": "Filter by data access",
           "supportedValues": {
-            "accessible": { "enabled": true, "menuText": "Available" },
-            "unaccessible": { "enabled": true, "menuText": "Not Accessible" },
-            "pending": { "enabled": true, "menuText": "Pending" },
-            "notAvailable": { "enabled": true, "menuText": "Not Available" }
+            "accessible": {
+              "enabled": true,
+              "menuText": "Available"
+            },
+            "unaccessible": {
+              "enabled": true,
+              "menuText": "Not Accessible"
+            },
+            "notAvailable": {
+              "enabled": true,
+              "menuText": "Not Available"
+            }
           }
         }
       },
@@ -66,27 +83,48 @@
           "contentType": "string"
         },
         {
-          "field": "_subjects_count",
+          "name": "Study Title",
+          "field": "study_title",
+          "contentType": "string",
+          "errorIfNotAvailable": false,
+          "valueIfNotAvailable": "n/a"
+        },
+        {
           "name": "Subjects",
-          "contentType": "string"
+          "field": "subjects_count",
+          "contentType": "string",
+          "errorIfNotAvailable": false,
+          "valueIfNotAvailable": "n/a"
         },
         {
-          "field": "summary",
-          "name": "Summary",
-          "contentType": "string"
+          "field": "data_access_url",
+          "name": "LINK TO STUDY INFORMATION",
+          "contentType": "string",
+          "valueIfNotAvailable": "No access URL has been provided for this study."
         },
         {
-          "field": "availability_type",
-          "name": "Access",
-          "contentType": "string"
+          "name": "Data Availability",
+          "field": "__accessible",
+          "errorIfNotAvailable": false,
+          "valueIfNotAvailable": "n/a",
+          "contentType": "dataAccess",
+          "sortable": true
         }
       ],
+      "studyPreviewField": {
+        "name": "Study Description",
+        "field": "study_description",
+        "contentType": "string",
+        "includeName": true,
+        "includeIfNotAvailable": false,
+        "valueIfNotAvailable": "No summary has been provided for this study."
+      },
       "simpleDetailsView": {
         "header": { "field": "study_title" },
         "downloadLinks": { "field": "data_download_links" },
         "fieldsToShow": [
           {
-            "groupWidth": "half",
+            "groupWidth": "full",
             "fields": [
               {
                 "name": "Study Name",
@@ -152,20 +190,28 @@
           }
         ]
       },
-      "tagsDisplayName": "Study Filters",
       "tagColumnWidth": "500px",
       "minimalFieldMapping": {
         "authzField": "authz",
-        "tagsListFieldName": "tags",
+        "tagsListField": "tags",
         "dataAvailabilityField": "data_availability",
         "uid": "_unique_id"
       },
       "tags": {
         "tagCategories": [
-          { "name": "Condition", "color": "#532565", "display": false },
-          { "name": "Data Type", "color": "#982568", "display": true }
+          {
+            "name": "Data Type",
+            "category": "Data Type",
+            "color": "#982568",
+            "display": true
+          },
+          {
+            "name": "Commons",
+            "color": "#345599",
+            "display": false
+          }
         ],
-        "showUnknownTags": false
+        "showUnknownTags": true
       }
     }
   ]
